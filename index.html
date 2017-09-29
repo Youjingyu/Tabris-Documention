@@ -711,10 +711,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       var href =$this .attr('href');
       if(href){
           var pageName = href.replace(/.*\//, '');
-          $('#doc-body').load('./pages/' + pageName, function () {
-              $('#main-nav').find('.active').removeClass('active');
-              $this.parent().addClass('active');
-              $this.parent().parent().parent().addClass('active');
+          $('#doc-body').load('./pages/' + pageName, function (response, status) {
+              if(status === 'success'){
+                  $('#main-nav').find('.active').removeClass('active');
+                  $this.parent().addClass('active');
+                  $this.parent().parent().parent().addClass('active');
+              }
           });
       }
   })
