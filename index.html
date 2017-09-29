@@ -117,13 +117,13 @@
       
       
       
-      <li><a href="../latest/index.html">Introduction</a></li>
+      <li class="active"><a href="../latest/index.html">Introduction</a></li>
       
     
       
       
       
-      <li class="active"><a>Quick Start Guide</a></li>
+      <li><a href="../latest/getting-started.html">Quick Start Guide</a></li>
       
     
       
@@ -526,80 +526,10 @@
 
         <!-- main content area -->
         <div class="col-sm-9 col-md-8">
-          <div id="doc-body" class="main markdown-body">
-            <h1 id="quick-start-guide">Quick Start Guide</h1>
+            <div id="doc-body" class="main markdown-body">
 
-<p>This guide will help you create the foundation of a Tabris.js app and test it on a mobile device.</p>
-
-<blockquote>
-  <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> If you want to test a code snippet on your mobile device without creating an app on your development machine, check out the <a href="https://tabrisjs.com/playground">Tabris.js Playground</a> first.</p>
-</blockquote>
-
-<h2 id="set-up-a-mobile-device">Set up a mobile device</h2>
-
-<p>All you need is an Android, iOS, or Windows device, connected to the same network as your development machine.
-Install the <a href="/tabris-js-docs/latest/developer-app.html">Tabris.js 2 Developer App</a>.
-Start the app and (optional) log in with your GitHub account.</p>
-
-<h2 id="set-up-your-development-machine">Set up your development machine</h2>
-
-<p>On your development machine, the following software needs to be installed:</p>
-
-<ul>
-  <li>
-<a href="https://nodejs.org/">Node.js</a> (<a href="https://docs.npmjs.com/getting-started/installing-node">installation guide</a>). You need a version &gt;= 6.0 (type <code class="highlighter-rouge">node -v</code> to check your node version).</li>
-  <li>
-<a href="https://www.npmjs.com/package/tabris-cli">Tabris CLI</a> (type <code class="highlighter-rouge">npm install -g tabris-cli</code>).</li>
-  <li>A text editor or JavaScript IDE of your choice.</li>
-</ul>
-
-<h2 id="create-your-first-app">Create your first app</h2>
-
-<p>Create a new empty directory for your project, open a terminal in this directory and type <code class="highlighter-rouge">tabris init</code>.
-The <em>Tabris CLI</em> will ask you a number of questions including the project’s name and version and the type of project to create: a <em>JavaScript App</em> or a <em>TypeScript App</em>.</p>
-
-<blockquote>
-  <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">  TypeScript projects are more complex, but also provide type safety, better tooling and out-of-the-box declarative UI using JSX. It’s especially recommendable for experienced developers coming from Java or C#.</p>
-</blockquote>
-
-<p>Choose <em>JavaScript App</em> for your first project.
-The CLI will then create a simple example project and install the required dependencies. Let’s have a look at the most important files:</p>
-
-<ul>
-  <li>
-<code class="highlighter-rouge">package.json</code>: This is the central manifest file of your project. It includes your app’s name and version, dependencies, and a pointer to the app’s main module in the <code class="highlighter-rouge">main</code> field. For the details, see the <a href="https://www.npmjs.com/doc/files/package.json.html">npm doc on package.json</a>.</li>
-  <li>
-<code class="highlighter-rouge">src/app.js</code>: That’s your app’s main JS file. You are free to change its name and location, but you have to adjust the <code class="highlighter-rouge">main</code> field in the <code class="highlighter-rouge">package.json</code>.</li>
-  <li>
-<code class="highlighter-rouge">cordova/config.xml</code>: This is the Cordova configuration file. You won’t need this file until you build your app (see <a href="/tabris-js-docs/latest/build.html">build documentation</a>).</li>
-</ul>
-
-<p>Of course, you can also set up your projects manually. At the very least, you need a <code class="highlighter-rouge">package.json</code> with a dependency to tabris and a main JavaScript file. If you setup your project manually, you’ll have to run <code class="highlighter-rouge">npm install</code> in this directory to install the tabris module.</p>
-
-<h2 id="run-the-app">Run the app</h2>
-
-<p>In the project directory, type <code class="highlighter-rouge">tabris serve</code>. This will start a server at a free port and print its URL to the console, e.g. <code class="highlighter-rouge">http://&lt;your-ip-address&gt;:8080/</code>. Keep the server running as long as you are testing your app.</p>
-
-<p>In the Developer App, go to the URL tab, enter the URL printed by the CLI and tap <em>Connect</em>. The Developer App will now download the source code and execute it on your mobile device.</p>
-
-<p>Swipe from the right edge of the screen to open the developer console, which lets you restart the script or go back to the Developer App.</p>
-
-<p>Now you can start developing. You may want to have a look at the rest of the documentation and the Tabris.js snippets.</p>
-
-<h2 id="publishing-your-app">Publishing your app</h2>
-
-<p>For submission to the App / Play Stores you will need to bundle, brand and build your app, either using the free online build service (on <a href="http://tabrisjs.com">tabrisjs.com</a>) or using a local build. This process is explained in <a href="/tabris-js-docs/latest/build.html">Build your app</a>.</p>
-
-<h2 id="feedback">Feedback</h2>
-
-<p>Help us improve Tabris.js! <a href="mailto:care@tabrisjs.com?subject=Feedback">Feedback</a> is always welcome. Feel free to invite your friends if you find Tabris.js interesting.</p>
-
-<p><a href="https://twitter.com/tabrisjs"><img src="https://tabrisjs.com/tabris-js-docs/latest/img/social-logo-twitter.png" alt="Tabris.js on Twitter"></a>
-<a href="https://www.linkedin.com/company/eclipsesource"><img src="https://tabrisjs.com/documentation/latest/img/social-logo-linkedin.png" alt="EclipseSource on LinkedIn"></a>
-<a href="https://plus.google.com/+Eclipsesource"><img src="https://tabrisjs.com/documentation/latest/img/social-logo-gplus.png" alt="EclipseSource on Google+"></a>
-<a href="https://www.facebook.com/eclipsesource"><img src="https://tabrisjs.com/documentation/latest/img/social-logo-facebook.png" alt="EclipseSource on Facebook"></a></p>
-
-          </div>
+                
+            </div>
         </div>
 
         <!-- left column -->
@@ -772,5 +702,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KH32LM3');</script>
 <!-- End Google Tag Manager -->
 
+<!-- Load page -->
+<script>
+  $('#doc-body').load('./pages/index.html');
+  $('#main-nav').on('click', 'a', function (e) {
+      e.preventDefault();
+      var $this = $(this);
+      var href =$this .attr('href');
+      if(href){
+          var pageName = href.replace(/.*\//, '');
+          $('#doc-body').load('./pages/' + pageName, function () {
+              $('#main-nav').find('.active').removeClass('active');
+              $this.parent().addClass('active');
+              $this.parent().parent().parent().addClass('active');
+          });
+      }
+  })
+</script>
+<!-- End load page -->
   </body>
 </html>
