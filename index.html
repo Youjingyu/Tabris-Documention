@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-TileImage" content="../assets/img/favicon/mstile-144x144.png">
+
+<title>Quick Start Guide - Tabris.js Documentation</title>
+
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-57x57.png" sizes="57x57">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-60x60.png" sizes="60x60">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-72x72.png" sizes="72x72">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-76x76.png" sizes="76x76">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-114x114.png" sizes="114x114">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-120x120.png" sizes="120x120">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-144x144.png" sizes="144x144">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-152x152.png" sizes="152x152">
+<link rel="apple-touch-icon" href="../assets/img/favicon/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="../assets/img/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="../assets/img/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../assets/img/favicon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="../assets/img/favicon/favicon-160x160.png" sizes="160x160">
+<link rel="icon" type="image/png" href="../assets/img/favicon/favicon-192x192.png" sizes="192x192">
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- global styles -->
+<link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/layout.css">
+<link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/markdown.css">
+<link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/syntax.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+
+  </head>
+  <body>
+    <!-- header bar -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="https://tabrisjs.com/">Tabris.js</a>
+    </div>
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="../latest">Documentation</a></li>
+        <li><a href="https://eclipsesource.com/blogs/tag/tabris-js/">Blog</a></li>
+        <li><a href="../faq/">FAQ</a></li>
+      </ul>
+
+      <form class="navbar-form navbar-right">
+        <input id="search-query" type="text" class="form-control" placeholder="search docs" name="query">
+      </form>
+    </div>
+
+  </div>
+</nav>
+
+
+    <div class="container">
+      <div class="row">
+
+        <!-- right column -->
+        <div class="hidden-xs col-sm-3 col-md-2">
+          <div class="sidebar sidebar-nav">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul id="main-nav">
+  
+    
+    
+    
+    
+  <li class="panel active">
+    <a data-target="#nav-getting-started" data-parent="#main-nav" data-toggle="collapse">Getting Started</a>
+    <ul id="nav-getting-started" class="collapse in">
+    
+    
+      
+      
+      
+      <li><a href="../latest/index.html">Introduction</a></li>
+      
+    
+      
+      
+      
+      <li class="active"><a>Quick Start Guide</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/developer-app.html">The Tabris.js Developer App</a></li>
+      
+    
+    </ul>
+  </li>
+  
+    
+    
+    
+    
+  <li class="panel">
+    <a data-target="#nav-developer-guide" data-parent="#main-nav" data-toggle="collapse">Developer Guide</a>
+    <ul id="nav-developer-guide" class="collapse">
+    
+    
+      
+      
+      
+      <li><a href="../latest/modules.html">Module System</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/widget-basics.html">Widget Basics</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/ui.html">UI Model</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/selector.html">Using Selectors</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/layout.html">Layouts</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/touch.html">Touch Events</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/w3c-api.html">W3C Compatibility</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/cordova.html">Cordova Support</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/lang.html">ES6, TypeScript and JSX</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/windows-support.html">Windows Support</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/build.html">Build your app</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/patch.html">Patch your app</a></li>
+      
+    
+    </ul>
+  </li>
+  
+    
+    
+    
+    
+  <li class="panel">
+    <a data-target="#nav-api-reference" data-parent="#main-nav" data-toggle="collapse">API Reference</a>
+    <ul id="nav-api-reference" class="collapse">
+    
+    
+      
+      
+      
+      <li><a href="../latest/api/app.html">app</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/device.html">device</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/fs.html">fs</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/localStorage.html">localStorage</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ui.html">ui</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ActionSheet.html">ActionSheet</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/AlertDialog.html">AlertDialog</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/CanvasContext.html">CanvasContext</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/InactivityTimer.html">InactivityTimer</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/NativeObject.html">NativeObject</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Popup.html">Popup</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/timer.html">Timer</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/WidgetCollection.html">WidgetCollection</a></li>
+      
+    
+    </ul>
+  </li>
+  
+    
+    
+    
+    
+  <li class="panel">
+    <a data-target="#nav-widgets" data-parent="#main-nav" data-toggle="collapse">Widgets</a>
+    <ul id="nav-widgets" class="collapse">
+    
+    
+      
+      
+      
+      <li><a href="../latest/api/Action.html">Action</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ActivityIndicator.html">ActivityIndicator</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Button.html">Button</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Canvas.html">Canvas</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/CheckBox.html">CheckBox</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/CollectionView.html">CollectionView</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Composite.html">Composite</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Drawer.html">Drawer</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ImageView.html">ImageView</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/NavigationBar.html">NavigationBar</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/NavigationView.html">NavigationView</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Page.html">Page</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Picker.html">Picker</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ProgressBar.html">ProgressBar</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/RadioButton.html">RadioButton</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ScrollView.html">ScrollView</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/SearchAction.html">SearchAction</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Slider.html">Slider</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/StatusBar.html">StatusBar</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Switch.html">Switch</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Tab.html">Tab</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/TabFolder.html">TabFolder</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/TextInput.html">TextInput</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/TextView.html">TextView</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/ToggleButton.html">ToggleButton</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Video.html">Video</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/WebView.html">WebView</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/api/Widget.html">Widget</a></li>
+      
+    
+    </ul>
+  </li>
+  
+    
+    
+    
+    
+  <li class="panel">
+    <a data-target="#nav-custom-widgets" data-parent="#main-nav" data-toggle="collapse">Custom Widgets</a>
+    <ul id="nav-custom-widgets" class="collapse">
+    
+    
+      
+      
+      
+      <li><a href="../latest/custom-widgets.html">Custom Widgets</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/custom-widgets-android.html">Custom Widgets - Android</a></li>
+      
+    
+      
+      
+      
+      <li><a href="../latest/custom-widgets-ios.html">Custom Widgets - iOS</a></li>
+      
+    
+    </ul>
+  </li>
+  
+</ul>
+
+          </div>
+        </div>
+
+        <!-- main content area -->
+        <div class="col-sm-9 col-md-8">
+          <div id="doc-body" class="main markdown-body">
+            <h1 id="quick-start-guide">Quick Start Guide</h1>
+
+<p>This guide will help you create the foundation of a Tabris.js app and test it on a mobile device.</p>
+
+<blockquote>
+  <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> If you want to test a code snippet on your mobile device without creating an app on your development machine, check out the <a href="https://tabrisjs.com/playground">Tabris.js Playground</a> first.</p>
+</blockquote>
+
+<h2 id="set-up-a-mobile-device">Set up a mobile device</h2>
+
+<p>All you need is an Android, iOS, or Windows device, connected to the same network as your development machine.
+Install the <a href="/tabris-js-docs/latest/developer-app.html">Tabris.js 2 Developer App</a>.
+Start the app and (optional) log in with your GitHub account.</p>
+
+<h2 id="set-up-your-development-machine">Set up your development machine</h2>
+
+<p>On your development machine, the following software needs to be installed:</p>
+
+<ul>
+  <li>
+<a href="https://nodejs.org/">Node.js</a> (<a href="https://docs.npmjs.com/getting-started/installing-node">installation guide</a>). You need a version &gt;= 6.0 (type <code class="highlighter-rouge">node -v</code> to check your node version).</li>
+  <li>
+<a href="https://www.npmjs.com/package/tabris-cli">Tabris CLI</a> (type <code class="highlighter-rouge">npm install -g tabris-cli</code>).</li>
+  <li>A text editor or JavaScript IDE of your choice.</li>
+</ul>
+
+<h2 id="create-your-first-app">Create your first app</h2>
+
+<p>Create a new empty directory for your project, open a terminal in this directory and type <code class="highlighter-rouge">tabris init</code>.
+The <em>Tabris CLI</em> will ask you a number of questions including the project’s name and version and the type of project to create: a <em>JavaScript App</em> or a <em>TypeScript App</em>.</p>
+
+<blockquote>
+  <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">  TypeScript projects are more complex, but also provide type safety, better tooling and out-of-the-box declarative UI using JSX. It’s especially recommendable for experienced developers coming from Java or C#.</p>
+</blockquote>
+
+<p>Choose <em>JavaScript App</em> for your first project.
+The CLI will then create a simple example project and install the required dependencies. Let’s have a look at the most important files:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">package.json</code>: This is the central manifest file of your project. It includes your app’s name and version, dependencies, and a pointer to the app’s main module in the <code class="highlighter-rouge">main</code> field. For the details, see the <a href="https://www.npmjs.com/doc/files/package.json.html">npm doc on package.json</a>.</li>
+  <li>
+<code class="highlighter-rouge">src/app.js</code>: That’s your app’s main JS file. You are free to change its name and location, but you have to adjust the <code class="highlighter-rouge">main</code> field in the <code class="highlighter-rouge">package.json</code>.</li>
+  <li>
+<code class="highlighter-rouge">cordova/config.xml</code>: This is the Cordova configuration file. You won’t need this file until you build your app (see <a href="/tabris-js-docs/latest/build.html">build documentation</a>).</li>
+</ul>
+
+<p>Of course, you can also set up your projects manually. At the very least, you need a <code class="highlighter-rouge">package.json</code> with a dependency to tabris and a main JavaScript file. If you setup your project manually, you’ll have to run <code class="highlighter-rouge">npm install</code> in this directory to install the tabris module.</p>
+
+<h2 id="run-the-app">Run the app</h2>
+
+<p>In the project directory, type <code class="highlighter-rouge">tabris serve</code>. This will start a server at a free port and print its URL to the console, e.g. <code class="highlighter-rouge">http://&lt;your-ip-address&gt;:8080/</code>. Keep the server running as long as you are testing your app.</p>
+
+<p>In the Developer App, go to the URL tab, enter the URL printed by the CLI and tap <em>Connect</em>. The Developer App will now download the source code and execute it on your mobile device.</p>
+
+<p>Swipe from the right edge of the screen to open the developer console, which lets you restart the script or go back to the Developer App.</p>
+
+<p>Now you can start developing. You may want to have a look at the rest of the documentation and the Tabris.js snippets.</p>
+
+<h2 id="publishing-your-app">Publishing your app</h2>
+
+<p>For submission to the App / Play Stores you will need to bundle, brand and build your app, either using the free online build service (on <a href="http://tabrisjs.com">tabrisjs.com</a>) or using a local build. This process is explained in <a href="/tabris-js-docs/latest/build.html">Build your app</a>.</p>
+
+<h2 id="feedback">Feedback</h2>
+
+<p>Help us improve Tabris.js! <a href="mailto:care@tabrisjs.com?subject=Feedback">Feedback</a> is always welcome. Feel free to invite your friends if you find Tabris.js interesting.</p>
+
+<p><a href="https://twitter.com/tabrisjs"><img src="https://tabrisjs.com/tabris-js-docs/latest/img/social-logo-twitter.png" alt="Tabris.js on Twitter"></a>
+<a href="https://www.linkedin.com/company/eclipsesource"><img src="https://tabrisjs.com/documentation/latest/img/social-logo-linkedin.png" alt="EclipseSource on LinkedIn"></a>
+<a href="https://plus.google.com/+Eclipsesource"><img src="https://tabrisjs.com/documentation/latest/img/social-logo-gplus.png" alt="EclipseSource on Google+"></a>
+<a href="https://www.facebook.com/eclipsesource"><img src="https://tabrisjs.com/documentation/latest/img/social-logo-facebook.png" alt="EclipseSource on Facebook"></a></p>
+
+          </div>
+        </div>
+
+        <!-- left column -->
+        <div class="col-sm-12 col-md-2">
+          <div class="sidebar">
+            <div class="box hidden-xs hidden-sm">
+              <h4 class="toc-header">In this article</h4>
+              <div id="toc">
+              </div>
+            </div>
+
+            <div class="box">
+              <h4>Get involved</h4>
+              <p>Help us improve Tabris.js!</p>
+              <ul>
+                <li>
+                  <a href="https://stackoverflow.com/questions/ask?tags=tabris">
+                    <img width="28" height="28" src="https://tabrisjs.com/documentation/assets/img/social-logo-stackoverflow.png" alt="Stack Overflow">
+                    <span>Ask questions</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/eclipsesource/tabris-js/issues">
+                    <img width="28" height="28" src="https://tabrisjs.com/documentation/assets/img/social-logo-github.png" alt="GitHub">
+                    <span>Report issues</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/tabrisjs">
+                    <img width="28" height="28" src="https://tabrisjs.com/documentation/assets/img/social-logo-twitter.png" alt="Twitter">
+                    <span>Follow @tabrisjs</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://tabrisjs.herokuapp.com/">
+                    <img width="28" height="28" src="https://tabrisjs.com/documentation/assets/img/social-logo-slack.png" alt="Slack">
+                    <span>Join the community chat</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h4>Install the app</h4>
+              <p>Use the <a href="../latest/developer-app.html">Tabris.js 2 app</a> to try examples and run <a href="https://tabrisjs.com/playground">your own snippets</a>.</p>
+              <ul>
+                <li>
+                  <a href="https://play.google.com/store/apps/details?id=com.eclipsesource.tabrisjs2">
+                    <img width="120" src="https://tabrisjs.com/documentation/assets/img/play-store-badge.png" alt="Tabris.js 2 on Google Play">
+                  </a>
+                </li>
+                <li>
+                  <a href="https://itunes.apple.com/us/app/tabris.js-2/id1166468326?mt=8">
+                    <img width="120" src="https://tabrisjs.com/documentation/assets/img/app-store-badge.png" alt="Tabris.js 2 on Apple App Store">
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.microsoft.com/store/apps/9n8z4pp9chtx">
+                    <img width="120" src="https://tabrisjs.com/documentation/assets/img/windows-badge.png" alt="Tabris.js 2 on Windows Store">
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+
+      <div class="left col-xs-7">
+        <ul>
+          <li>
+            <a href="https://github.com/eclipsesource/tabris-js/">Github</a>
+          </li>
+          <li>
+            <a href="https://eclipsesource.com/blogs/tag/tabris-js/">Blog</a>
+          </li>
+          <li>
+            <a href="mailto:care@tabrisjs.com">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="right col-xs-5">
+        <a href="https://eclipsesource.com/"><img src="https://tabrisjs.com/documentation/assets/img/es-logo-white.png" alt="EclipseSource logo" height="36px"></a>
+      </div>
+
+      <div class="left copyright col-xs-12">
+        <span>©️ 2017 <a href="https://eclipsesource.com/">EclipseSource</a></span>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap core JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Algolia docsearch -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script>
+  docsearch({
+    apiKey: '18eb7cad98edf7d6fc8cd6d459e39baa',
+    indexName: 'tabrisjs',
+    inputSelector: '#search-query',
+    algoliaOptions: {
+      hitsPerPage: 9,
+      typoTolerance: 'min'
+    }
+  });
+</script>
+
+<!-- Tocbot TOC generator -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/tocbot/3.0.2/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '#toc',
+    contentSelector: '#doc-body',
+    headingSelector: 'h2, h3',
+    headingsOffset: 60
+  });
+</script>
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-382324-12', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KH32LM3');</script>
+<!-- End Google Tag Manager -->
+
+  </body>
+</html>
