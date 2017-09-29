@@ -1,0 +1,163 @@
+
+    <h1 id="modules">Modules</h1>
+
+    <p>All JavaScript files in a Tabris.js project, including the main script, are <em>modules</em>. If you are familiar with the Node.js module system (“CommonJS”), it is exactly the same.</p>
+
+    <p>This means:</p>
+
+    <ul>
+        <li>The code in the file will not be parsed and executed until the file is required.</li>
+        <li>The file has an implicit local scope. A variable declared with <code class="highlighter-rouge">var</code> will never be global. Global variables should be avoided completely.</li>
+        <li>There are three pre-defined local variables: <code class="highlighter-rouge">require</code>, <code class="highlighter-rouge">module</code> and <code class="highlighter-rouge">exports</code>. These allow you to import/export data from/to other modules.</li>
+    </ul>
+
+    <p>When the application starts, it will load the main module that is defined in the <code class="highlighter-rouge">main</code> field of your project’s <code class="highlighter-rouge">package.json</code>. For example:</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-app"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-main-script.js"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>The main module will usually import other modules of your application, which again may import other modules.</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> This article describes the plain JavaScript syntax for importing and exporting modules. If you are creating a TypeScript app you should use the syntax described in the <a href="http://www.typescriptlang.org/docs/handbook/modules.html">TypeScript Handbook</a>.</p>
+    </blockquote>
+
+    <h2 id="importing-modules">Importing Modules</h2>
+
+    <p>The local <code class="highlighter-rouge">require</code> function is used to load and import another module. It accepts a module identifier string and returns whatever that module exports.
+        Most commonly, the identifier string is the path to the module (without the file extension), relative to the current script file.</p>
+
+    <p>A module may be a <code class="highlighter-rouge">.js</code> file, a <code class="highlighter-rouge">.json</code> file, or a folder. The <code class="highlighter-rouge">require</code> function will look for these different types of modules in this order. So to import <code class="highlighter-rouge">mymodule.js</code> from the same folder as the current script, write:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kr">const</span> <span class="nx">myModule</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./mymodule'</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> You may also include the file extension or a trailing slash if the required module is a folder. Usually, it’s left out.</p>
+    </blockquote>
+
+    <blockquote>
+        <p><img class="emoji" title=":warning:" alt=":warning:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png" height="20" width="20" align="absmiddle"> The leading dot is mandatory. Without it, the module is looked for elsewhere (see <a href="#npm-support">npm Support</a>).</p>
+    </blockquote>
+
+    <p>Your modules may also be located in a different folder:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kr">const</span> <span class="nx">module1</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./subfolder/module1'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">module2</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../sibling_folder/module2'</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>Every module is loaded exactly once, no matter how often it is imported. Therefore:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">require</span><span class="p">(</span><span class="s1">'./mymodule'</span><span class="p">)</span> <span class="o">===</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./mymodule'</span><span class="p">)</span>
+</code></pre>
+    </div>
+
+    <p>This is also true when the module is imported using different identifier strings, i.e. with and without extension, or from different scripts.</p>
+
+    <h2 id="module-exports">Module Exports</h2>
+
+    <p>Modules should export functions, classes, or other data to be used by other modules.
+        They should not use the global JavaScript scope to expose such data.
+        In fact, you should implement your modules as if there were no global scope.</p>
+
+    <p>Since each module is loaded only once, no matter how often it is imported, the loading of a module should not have any side-effects.
+        In particular, a module should not change the state of the app (e.g. by adding widgets to the UI) on load time, but export a function that does this.
+        The main module is, obviously, an exception to this rule.</p>
+
+    <h3 id="script-modules">Script Modules</h3>
+
+    <p>Any JavaScript file is a module and may be imported by other modules.
+        By default, the export of a module is a plain, empty object.
+        This object is present in the module script as a local variable called <code class="highlighter-rouge">exports</code>.
+        The module may attach any fields to it, for example:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">exports</span><span class="p">.</span><span class="nx">PI</span> <span class="o">=</span> <span class="mf">3.1416</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">circumference</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="mf">3.1416</span> <span class="o">*</span> <span class="nx">r</span><span class="p">;</span>
+</code></pre>
+    </div>
+
+    <p>To export another object (or any other type of data), you can override the <code class="highlighter-rouge">exports</code> object by assigning <code class="highlighter-rouge">module.exports</code>. For example:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kr">class</span> <span class="nx">Circle</span> <span class="p">{</span>
+
+<span class="p">};</span>
+</code></pre>
+    </div>
+
+    <p>The <code class="highlighter-rouge">require</code> function that imports this module will return this class:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kr">const</span> <span class="nx">Circle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./circle'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">circle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">();</span>
+</code></pre>
+    </div>
+
+    <p>The main module can not have any useful exports. The <code class="highlighter-rouge">module</code> and <code class="highlighter-rouge">exports</code> objects are present, but completely ignored.</p>
+
+    <h3 id="json-modules">JSON Modules</h3>
+
+    <p>When a <code class="highlighter-rouge">.json</code> file is imported as a module, the file will be parsed and the module will export its JSON content. For example:</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"foo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"bar"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>Request this file in another module:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./myjson'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">foo</span> <span class="o">===</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">bar</span> <span class="o">===</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h3 id="folder-modules">Folder Modules</h3>
+
+    <p>A folder can be used as a module if it contains one of the following files:</p>
+
+    <ul>
+        <li>A <code class="highlighter-rouge">package.json</code> with a <code class="highlighter-rouge">main</code> entry pointing to a <code class="highlighter-rouge">.js</code> or <code class="highlighter-rouge">.json</code> file.</li>
+        <li>An <code class="highlighter-rouge">index.js</code>
+        </li>
+        <li>An <code class="highlighter-rouge">index.json</code>
+        </li>
+    </ul>
+
+    <p>A folder module may contain multiple internal file modules, but only the first file found out of the above list will be exported directly.</p>
+
+    <h2 id="npm-support">npm Support</h2>
+
+    <p>Tabris.js supports loading <a href="https://www.npmjs.com">npm</a> modules, though the compatibility of the module depends on the API it expects.</p>
+
+    <p>Use the <a href="https://www.npmjs.com/doc/">npm command line interface</a> to install any Tabris.js compatible module into your project folder.</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> Tabris.js does <em>not</em> support globally installed npm modules, only those installed locally in the projects <code class="highlighter-rouge">node_modules</code> folder.</p>
+    </blockquote>
+
+    <p>To load a locally installed npm module, use its name as the identifier string, with no leading dot. For example:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kr">const</span> <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'underscore'</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>Modules that have been tested with Tabris.js are tracked as <a href="https://github.com/eclipsesource/tabris-js/issues?q=label%3A%22compatibility+npm%22">GitHub issues</a>. If the module is confirmed to work the issue is closed. Please feel free to add issues for modules that you tested.</p>
