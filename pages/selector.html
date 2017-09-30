@@ -1,0 +1,216 @@
+    <h1 id="selector-api">选择器 API</h1>
+
+    <p>编辑控件通常需要直接访问控件对象。然而, 把所有可变对象分配给变量会将UI代码弄得一团乱。因此，Tabris.js API 提供了通过某些属性查找控件的方法，甚至一次操作多个控件。可以通过<em>类型</em>、<em>ID</em>、<em>class</em> 属性或 基于CSS的格式来选择控件。</p>
+
+    <h2 id="selecting-widgets-by-type">通过类型选择控件</h2>
+
+    <p>根据控件类型选择控件是最简单的方法。例如，下面的代码会取消页面中所有选择框的选中状态：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'CheckBox'</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">'selection'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="selecting-widgets-by-id">通过ID选择控件</h2>
+
+    <p>控件的<code class="highlighter-rouge">id</code>属性和其他属性一样。它的初始值是undefined，因此你需要自己为控件指定ID。通常在创建控件时需要这样做：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="k">new</span> <span class="nx">Button</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="s1">'submit'</span><span class="p">});</span>
+</code></pre>
+    </div>
+
+    <p>为了使用ID选择控件，可以使用选择器表达式<code class="highlighter-rouge">'#id'</code>，其中 <code class="highlighter-rouge">id</code> 是控件的ID：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'#submit'</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">'enabled'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>ID应该是唯一的。尽管这不是框架强制要求的，但在组件中不使用相同的ID是比较好的实践，以避免混淆。</p>
+
+    <h2 id="selecting-widgets-by-class-attribute">通过class属性选择控件</h2>
+
+    <p><code class="highlighter-rouge">class</code>是用空格分割“classes”列表的一个字符串。class是一个状态或类别的名字，从而使控件能够被辨识。它只能包含字母、数字、<code class="highlighter-rouge">'_'</code> 和 <code class="highlighter-rouge">'-'</code>。</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span><span class="na">class</span><span class="p">:</span> <span class="s1">'label important'</span><span class="p">});</span>
+</code></pre>
+    </div>
+
+    <p>Class可以混用、复用，并且可以在任何控件上、在任何时间改变。使用<code class="highlighter-rouge">classList</code>属性是比较方便的方式：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">textView</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'important'</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>为了使用class选择控件，使用选择器表达式<code class="highlighter-rouge">'.class'</code>，其中 <code class="highlighter-rouge">class</code> 是class名：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.important'</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">'textColor'</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="selector-expressions">选择器表达式</h2>
+
+    <p>支持下面的选择器表达式：</p>
+
+    <ul>
+        <li>
+            <code class="highlighter-rouge">'*'</code> 匹配全部控件。</li>
+        <li>
+            <code class="highlighter-rouge">'Type'</code> 匹配类型是所提供的类型的控件，比如<code class="highlighter-rouge">'Button'</code> 匹配全部Button控件。</li>
+        <li>
+            <code class="highlighter-rouge">'.class'</code> 匹配class列表中具有所提供class的控件，比如<code class="highlighter-rouge">'.foo'</code> 匹配<code class="highlighter-rouge">class</code>被设置为<code class="highlighter-rouge">'foo'</code>的控件，但也匹配<code class="highlighter-rouge">'foo bar</code>。</li>
+        <li>
+            <code class="highlighter-rouge">'#id'</code> 匹配具有所提供ID的控件，例如<code class="highlighter-rouge">'#foo'</code> 匹配所有ID是<code class="highlighter-rouge">'foo'</code>的控件。</li>
+    </ul>
+
+    <h2 id="selector-functions">选择器函数</h2>
+
+    <p>所有接受选择器表达式的方法也可以以一个函数作为参数来调用，从而检测集合中的每一个控件。为每个控件调用该函数，如果函数返回<code class="highlighter-rouge">true</code>就包含控件，返回<code class="highlighter-rouge">false</code>则跳过。比如，下面的代码片段会选择页面中所有可见的控件：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kd">let</span> <span class="nx">visibleChildren</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="nx">widget</span> <span class="o">=&gt;</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">visible</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="working-with-selectors">使用选择器</h2>
+
+    <p>下面的控件方法接收选择器表达式作为参数：</p>
+
+    <ul>
+        <li>
+            <code class="highlighter-rouge">widget.find(selector)</code> 选择匹配选择器的所有后代。</li>
+        <li>
+            <code class="highlighter-rouge">widget.children(selector)</code> 选择匹配选择器的所有直接子控件，但不包括更深层次的控件。</li>
+        <li>
+            <code class="highlighter-rouge">widget.siblings(selector)</code> 选择匹配选择器的所有兄弟控件。</li>
+    </ul>
+
+    <p>这些方法返回一个<a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a>。你可以使用<code class="highlighter-rouge">first()</code> 和 <code class="highlighter-rouge">last()</code>，或者使用数组索引获取集合中的控件：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kd">let</span> <span class="nx">submitButton</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'#submit'</span><span class="p">).</span><span class="nx">first</span><span class="p">();</span> <span class="c1">// or</span>
+<span class="kd">let</span> <span class="nx">submitButton</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'#submit'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+</code></pre>
+    </div>
+
+    <p>你也可以为选择的控件设置属性，而不用获取它们：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.input'</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">'enabled'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="the-apply-method">apply方法</h2>
+
+    <p>配置组件中的多个控件的高效方式是，在父控件中使用 <code class="highlighter-rouge">apply()</code> 方法。</p>
+
+    <h3 id="how-it-works">apply方法的原理</h3>
+
+    <ul>
+        <li><code class="highlighter-rouge">apply({&lt;selector: properties&gt;*})</code></li>
+    </ul>
+
+    <p>apply方法只需调用一次，就用选择器将不同的属性集合应用到不用的控件上。比如，将背景颜色应用到页面中的所有控件，可以这样调用：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">({</span><span class="s1">'*'</span><span class="p">:</span> <span class="p">{</span><span class="na">background</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">}});</span>
+</code></pre>
+    </div>
+
+    <p>你可以将不用的属性设置到不同的控件上：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">({</span>
+  <span class="s1">'#okbutton'</span><span class="p">:</span> <span class="p">{</span><span class="na">text</span><span class="p">:</span> <span class="s1">'OK!'</span><span class="p">,</span> <span class="na">background</span><span class="p">:</span> <span class="s1">'yellow'</span><span class="p">},</span>
+  <span class="s1">'#cancelbutton'</span><span class="p">:</span> <span class="p">{</span><span class="na">text</span><span class="p">:</span> <span class="s1">'Cancel!'</span><span class="p">,</span> <span class="na">textColor</span><span class="p">:</span> <span class="s1">'red'</span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+
+    <p>这些属性被应用的顺序，取决于选择器的类型。顺序是：</p>
+
+    <ul>
+        <li>
+            <code class="highlighter-rouge">'*'</code> &gt; <code class="highlighter-rouge">'Type'</code> &gt; <code class="highlighter-rouge">'.class'</code> &gt; <code class="highlighter-rouge">'#id'</code>
+        </li>
+    </ul>
+
+    <p>例如，下面的调用会把所有的控件设置为蓝色，但<code class="highlighter-rouge">Button</code>是绿色、<code class="highlighter-rouge">'#mybutton'</code>是红色。</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">({</span>
+  <span class="s1">'#mybutton'</span><span class="p">:</span> <span class="p">{</span><span class="na">background</span><span class="p">:</span> <span class="s1">'red'</span><span class="p">},</span>
+  <span class="s1">'Button'</span><span class="p">:</span> <span class="p">{</span><span class="na">background</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">},</span>
+  <span class="s1">'*'</span><span class="p">:</span> <span class="p">{</span><span class="na">background</span><span class="p">:</span> <span class="s1">'blue'</span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> The on-screen order of the properties in the object literal is meaningless. According to the EcmaScript standard the members of a JavaScript object do not have a defined order.</p>
+    </blockquote>
+
+    <h3 id="how-to-use-it">如何使用</h3>
+
+    <p>虽然我们在上面的示例中使用了对象字面量，但是apply方法可以非常有效地与<a href="/tabris-js-docs/latest/modules.html">模块</a>一起使用，允许从代码中提取大多数或所有属性值（除了ID）。While we used object literals in the examples above, the apply method can be very effectively used with , allowing most or all property values (except IDs) to be extracted from your code.</p>
+
+    <p>Imagine, for example, that you want to apply different texts to your widgets depending on your locale. You could do it like this:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kd">let</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">language</span><span class="p">;</span>
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">'./texts-'</span> <span class="o">+</span> <span class="nx">lang</span><span class="p">));</span>
+<span class="p">}</span> <span class="k">catch</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// fallback if the desired language file does not exist:</span>
+  <span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">'./texts-en'</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+
+    <p>Since JSON files can be used as modules, your language file (e.g. <code class="highlighter-rouge">texts-en.json</code>) could simply look like this:</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">'#okbutton':</span><span class="w"> </span><span class="err">{'text':</span><span class="w"> </span><span class="err">'OK'</span><span class="p">}</span><span class="err">,</span><span class="w">
+  </span><span class="err">'#cancelbutton':</span><span class="w"> </span><span class="p">{</span><span class="err">'text':</span><span class="w"> </span><span class="err">'Cancel'</span><span class="p">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>An alternative pattern would be to always use the same module…</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">'./texts'</span><span class="p">));</span>
+</code></pre>
+    </div>
+
+    <p>But use scripting within the module to calculate the actual values:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="kd">let</span> <span class="nx">texts</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">en</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'#okbutton'</span><span class="p">:</span> <span class="p">{</span><span class="na">text</span><span class="p">:</span> <span class="s1">'OK!'</span><span class="p">}</span>
+    <span class="s1">'#cancelbutton'</span><span class="p">:</span> <span class="p">{</span><span class="na">text</span><span class="p">:</span> <span class="s1">'Cancel!'</span><span class="p">}</span>
+  <span class="p">},</span>
+  <span class="c1">//...</span>
+<span class="p">};</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">texts</span><span class="p">[</span><span class="nx">device</span><span class="p">.</span><span class="nx">language</span><span class="p">]</span> <span class="o">||</span> <span class="nx">texts</span><span class="p">.</span><span class="nx">en</span><span class="p">;</span>
+</code></pre>
+    </div>
+
+    <p>The same pattern can be applied for platform-specific colors, font-sizes based on screen width, or layout data depending on device orientation:</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'resize'</span><span class="p">,</span> <span class="p">({</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">page</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'./layout-'</span> <span class="o">+</span> <span class="p">(</span><span class="nx">width</span> <span class="o">&gt;</span> <span class="nx">height</span><span class="p">)</span> <span class="p">?</span> <span class="s1">'landscape'</span> <span class="p">:</span> <span class="s1">'portrait'</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> It is better to use the aspect ratio of the page as a basis for selecting a layout than the device orientation. This is because when the device is re-oriented, the page is first re-sized, and then rotated in an animation. Also, in future Tabris.js versions a page may not always have the same aspect ratio as the screen.</p>
+    </blockquote>
