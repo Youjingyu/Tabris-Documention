@@ -1,10 +1,10 @@
     <h1 id="widget-basics">控件基础知识</h1>
 
-    <p>Tabris.js app的UI用原生控件构成，并用JavaScript对象来描述。有各种不同的控件可以使用，比如<code class="highlighter-rouge">Button</code>、<code class="highlighter-rouge">TextView</code> 或 <code class="highlighter-rouge">ScrollView</code>。Every widget type is a subtype of <a href="/tabris-js-docs/latest/api/Widget.html">Widget</a> which provides common methods to get and set properties, be notified of events, and append widgets to a parent widget. Most of these methods return the widget itself to allow method chaining.</p>
+    <p>Tabris.js app的UI界面用原生控件构成，并用JavaScript对象来描述。有各种不同的控件可以使用，比如<code class="highlighter-rouge">Button</code>、<code class="highlighter-rouge">TextView</code> 或 <code class="highlighter-rouge">ScrollView</code>。每个控件类都是<a href="/tabris-js-docs/latest/api/Widget.html">Widget</a>的子类， Widget类提供了共通方法来获取属性、设置属性、事件监听以及向父控件添加控件。大多数方法都返回控件本身，便于链式调用。</p>
 
-    <h2 id="creating-native-widgets">Creating Native Widgets</h2>
+    <h2 id="creating-native-widgets">创建原生控件</h2>
 
-    <p>Every widget constructor accepts an object with initial property values to create the native widget with. Here’s how you create and initialize a widget in Tabris.js:</p>
+    <p>每个控件类都接受一个具有初始值的对象来创建原生控件。下面展示了如何用 Tabris.js 创建并初始化控件：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="kd">let</span> <span class="nx">button</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
@@ -15,11 +15,11 @@
 </code></pre>
     </div>
 
-    <p>If you prefer declarative UI, you may also <a href="/tabris-js-docs/latest/lang.html#JSX">use <code class="highlighter-rouge">JSX</code> to create widgets</a>. When you <a href="/tabris-js-docs/latest/getting-started.html#create-your-first-app">generate a Tabris.js TypeScript project</a>, JSX support is already set up.</p>
+    <p>如果你更喜欢声明式UI，你也可以<a href="/tabris-js-docs/latest/lang.html#JSX">用 <code class="highlighter-rouge">JSX</code> 来创建控件</a>。当你 <a href="/tabris-js-docs/latest/getting-started.html#create-your-first-app">生成一个 TypeScript 项目</a>时，JSX的支持已经配置好了。</p>
 
-    <h2 id="widget-properties">Widget Properties</h2>
+    <h2 id="widget-properties">控件属性</h2>
 
-    <p>Every native widget supports a set of properties (e.g. a text or a color). These properties can be read and written directly or using the Widget’s <code class="highlighter-rouge">get()</code> and <code class="highlighter-rouge">set()</code> methods.</p>
+    <p>每个原生控件都支持一组属性（比如 text 或color）。这些属性可读并且可以直接覆写，或者使用控件的<code class="highlighter-rouge">get()</code> 和 <code class="highlighter-rouge">set()</code> 方法。</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">widget</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'Hello World'</span><span class="p">;</span>
@@ -27,7 +27,7 @@
 </code></pre>
     </div>
 
-    <p>Example with <code class="highlighter-rouge">get()</code> and <code class="highlighter-rouge">set()</code>:</p>
+    <p><code class="highlighter-rouge">get()</code> 和 <code class="highlighter-rouge">set()</code> 的例子:</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">widget</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'text'</span><span class="p">,</span> <span class="s1">'Hello World'</span><span class="p">);</span>
@@ -35,7 +35,7 @@
 </code></pre>
     </div>
 
-    <p>Like with the constructor, it’s also possible to set multiple property values:</p>
+    <p>和构造函数一样，也可以一次设置多个属性：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">button</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
@@ -45,13 +45,13 @@
 </code></pre>
     </div>
 
-    <p>When trying to set an invalid value (e.g. a value of the wrong type), the value will be converted if possible, otherwise it will be ignored with a warning printed to the developer console. The <code class="highlighter-rouge">set()</code> method will also print a warning for unsupported properties.</p>
+    <p>当设置非法值时（比如错误的值类型），如果可以的话，设置的值会被转换，否则会被忽略并在控制台输出警告。<code class="highlighter-rouge">set()</code> 方法也会输出警告来说明不支持的属性。</p>
 
-    <h2 id="events">Events</h2>
+    <h2 id="events">事件</h2>
 
-    <p>Widgets can notify listeners of events such as a user interaction or a property change. Event listeners can be added using the methods <code class="highlighter-rouge">on()</code> and <code class="highlighter-rouge">once()</code>, and removed using <code class="highlighter-rouge">off()</code>.</p>
+    <p>控件可以监听事件，比如交互或属性改变。事件监听可以用 <code class="highlighter-rouge">on()</code> 和 <code class="highlighter-rouge">once()</code>方法添加，并用<code class="highlighter-rouge">off()</code>移除。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="kd">function</span> <span class="nx">selectionHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
@@ -61,22 +61,22 @@
 </code></pre>
     </div>
 
-    <p>The listener function is called with an event object that contains a number of properties depending on the event type. All events have the following common properties:</p>
+    <p>监听函数被调用时，会将一个包含多个属性的事件对象作为其参数，属性内容视不同的事件类型而定。但所有的事件都有下面的共通属性：</p>
 
     <ul>
         <li>
-            <code class="highlighter-rouge">type</code>: the event type</li>
+            <code class="highlighter-rouge">type</code>: 事件类型</li>
         <li>
-            <code class="highlighter-rouge">target</code>: the widget that received the event</li>
+            <code class="highlighter-rouge">target</code>: 接收事件的控件</li>
         <li>
-            <code class="highlighter-rouge">timeStamp</code>: the time at which the event was created, in milliseconds</li>
+            <code class="highlighter-rouge">timeStamp</code>: 事件创建的时间，用毫秒表示</li>
     </ul>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> Event types are case sensitive.</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> 事件类形式是大小写敏感的。</p>
     </blockquote>
 
-    <p>A <em>context</em> object may be given as the third parameter to <code class="highlighter-rouge">on()</code>. This object will then be available as <code class="highlighter-rouge">this</code> inside the listener function.</p>
+    <p>一个<em>上下文</em>对象可以作为<code class="highlighter-rouge">on()</code>方法的第三个参数。然后这个对象可以在监听函数中用<code class="highlighter-rouge">this</code>访问。</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="kd">function</span> <span class="nx">selectionHandler</span><span class="p">()</span> <span class="p">{</span>
@@ -86,17 +86,17 @@
 </code></pre>
     </div>
 
-    <p>The method <code class="highlighter-rouge">once()</code> does the same as <code class="highlighter-rouge">on()</code>, but it removes the listener after it has been invoked by an event.</p>
+    <p><code class="highlighter-rouge">once()</code>方法和<code class="highlighter-rouge">on()</code> 一样，但它在触发事件后会移除事件监听。</p>
 
-    <p>To remove a listener, use the method <code class="highlighter-rouge">off()</code>.</p>
+    <p>使用<code class="highlighter-rouge">off()</code>方法移除事件监听。</p>
 
-    <h3 id="change-events">Change Events</h3>
+    <h3 id="change-events">Change事件</h3>
 
-    <p>All widgets support property change events that are fired when a property value changes. All change events are named <code class="highlighter-rouge">[propertyName]Changed</code> and provide a <code class="highlighter-rouge">ChangeEvent</code>.</p>
+    <p>全部控件都支持属性改变事件，当属性改变时该事件会被触发。全部change事件都以 <code class="highlighter-rouge">[propertyName]Changed</code> 命名并且提供了一个<code class="highlighter-rouge">ChangeEvent</code>。</p>
 
-    <p>In addition to the common event properties, change events have a property <code class="highlighter-rouge">value</code> that contains the new value of the property.</p>
+    <p>除了共通的事件属性外，change 事件包含一个<code class="highlighter-rouge">value</code>属性，其值为改变属性的当前值。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="k">new</span> <span class="nx">TextInput</span><span class="p">().</span><span class="nx">on</span><span class="p">(</span><span class="s1">'textChanged'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -105,7 +105,7 @@
 </code></pre>
     </div>
 
-    <p>It’s often convenient to use the <a href="http://exploringjs.com/es6/ch_destructuring.html">ES6 destructuring syntax</a> for the event parameter, which allows to extract event properties as named variables:</p>
+    <p>使用 <a href="http://exploringjs.com/es6/ch_destructuring.html">ES6 解构语法</a>作为事件参数，通常比较方便，解构语法可以用事件属性来作为变量名：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">checkBox</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'selectionChanged'</span><span class="p">,</span> <span class="p">({</span><span class="nx">target</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="nx">checked</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -114,15 +114,15 @@
 </code></pre>
     </div>
 
-    <h2 id="animations">Animations</h2>
+    <h2 id="animations">动画</h2>
 
-    <p>All widgets have the method <a href="/tabris-js-docs/latest/api/Widget.html#animateproperties-options"><code class="highlighter-rouge">animate(properties, options)</code></a>. It expects a map of properties to animate (akin to the <code class="highlighter-rouge">set</code> method), and a set of options for the animation itself.
-        All animated properties are set to their target value as soon as the animation starts. Therefore, calling <code class="highlighter-rouge">get</code> will always return either the start or target value, never one in between.
-        Only the properties <code class="highlighter-rouge">transform</code> and <code class="highlighter-rouge">opacity</code> can be animated.</p>
+    <p>所有控件都有<a href="/tabris-js-docs/latest/api/Widget.html#animateproperties-options"><code class="highlighter-rouge">animate(properties, options)</code></a>方法。它接受一个要进行动画的属性组成的对象（类似于 <code class="highlighter-rouge">set</code> 方法），以及动画本身需要的一组配置作为参数。
+        动画开始时，所有动画属性都会被设置为目标值。因此，调用 <code class="highlighter-rouge">get</code> 方法只会返回动画的初始值或者目标值。
+        只有 <code class="highlighter-rouge">transform</code> 和 <code class="highlighter-rouge">opacity</code> 属性才可以做动画。</p>
 
-    <p>The <code class="highlighter-rouge">animate</code> method returns a Promise that is resolved once the animation is completed. If the animation is aborted, e.g. by disposing the widget, the promise is rejected.</p>
+    <p><code class="highlighter-rouge">animate</code> 方法会返回一个 Promise 对象，并在动画完成后 resolve。如果动画中止，比如清除控件，promise 会被 rejecte。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">label</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span>
@@ -138,13 +138,13 @@
 </code></pre>
     </div>
 
-    <h2 id="the-widget-tree">The Widget Tree</h2>
+    <h2 id="the-widget-tree">控件树</h2>
 
-    <h3 id="setting-the-parent">Setting the Parent</h3>
+    <h3 id="setting-the-parent">设置父控件</h3>
 
-    <p>To become visible, a widget needs a parent. The top-level parent of all widgets is the content view (<code class="highlighter-rouge">ui.contentView</code>). Widgets can be included in the widget hierarchy using <code class="highlighter-rouge">append()</code> or <code class="highlighter-rouge">appendTo()</code>.</p>
+    <p>控件需要一个父控件使其可见。容器视图(<code class="highlighter-rouge">ui.contentView</code>)是所有控件的顶级父控件。可以使用<code class="highlighter-rouge">append()</code> 或 <code class="highlighter-rouge">appendTo()</code>方法将控件添加到控件的层次结构中。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="kd">let</span> <span class="nx">button</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
@@ -154,23 +154,23 @@
 </code></pre>
     </div>
 
-    <p>If the widget already has a parent, it is removed from the actual parent and appended to the new one. An <em>addChild</em> event is triggered on the parent.</p>
+    <p>如果控件已经有一个父控件了，它会从当前的父控件中被删除然后添加到新的父控件中。在添加控件的父控件中，<em>addChild</em> 事件会被触发。</p>
 
-    <p>It’s also possible to add multiple widgets to the same parent using <code class="highlighter-rouge">append()</code>:</p>
+    <p>也可以使用<code class="highlighter-rouge">append()</code>一次添加多个控件到父控件：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">page</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">okButton</span><span class="p">,</span> <span class="nx">cancelButton</span><span class="p">);</span>
 </code></pre>
     </div>
 
-    <h3 id="traversing">Traversing</h3>
+    <h3 id="traversing">遍历</h3>
 
-    <p>See also: <a href="/tabris-js-docs/latest/selector.html">Selector API</a></p>
+    <p>参考：<a href="https://tabrisjs.com/tabris-js-docs/latest/selector.html">Selector API</a></p>
 
-    <p>The current parent of a widget is returned by the <a href="/tabris-js-docs/latest/api/Widget.html#parent"><code class="highlighter-rouge">parent</code></a> method,
-        and the children by the <a href="/tabris-js-docs/latest/api/Widget.html#children"><code class="highlighter-rouge">children</code></a> method.</p>
+    <p><a href="/tabris-js-docs/latest/api/Widget.html#parent"><code class="highlighter-rouge">parent</code></a> 方法返回控件当前的父控件，
+        <a href="/tabris-js-docs/latest/api/Widget.html#children"><code class="highlighter-rouge">children</code></a> 方法返回子控件。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="kd">let</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">parent</span><span class="p">();</span>
@@ -179,13 +179,13 @@
 </code></pre>
     </div>
 
-    <p>The result list of children is an array-like object of the type <a href="/tabris-js-docs/latest/api/WidgetCollection.html"><code class="highlighter-rouge">WidgetCollection</code></a>.</p>
+    <p>子控件结果列表是一个类数组的<a href="/tabris-js-docs/latest/api/WidgetCollection.html"><code class="highlighter-rouge">WidgetCollection</code></a>对象。</p>
 
-    <h2 id="disposing-of-a-widget">Disposing of a Widget</h2>
+    <h2 id="disposing-of-a-widget">清除控件</h2>
 
-    <p>The <code class="highlighter-rouge">dispose</code> method disposes of the widget and all of its children. It triggers a <em>removeChild</em> event on the parent and a <em>dispose</em> event on itself.</p>
+    <p><code class="highlighter-rouge">dispose</code> 会清除控件以及其所有子控件。它会在其父控件上触发<em>removeChild</em>事件，并在其自身上触发<em>dispose</em>事件。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge">
 <pre class="highlight"><code><span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'dispose'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Button disposed!'</span><span class="p">));</span>
@@ -193,4 +193,4 @@
 </code></pre>
     </div>
 
-    <p>After a widget is disposed none of its methods will work except <code class="highlighter-rouge">isDisposed()</code>, which returns <code class="highlighter-rouge">true</code> if the widget has been disposed, otherwise <code class="highlighter-rouge">false</code>.</p>
+    <p>在清除控件后，除了<code class="highlighter-rouge">isDisposed()</code>之外的控件方法都不会生效， 如果控件已经被清除了，<code class="highlighter-rouge">isDisposed()</code>返回<code class="highlighter-rouge">true</code>，否则返回<code class="highlighter-rouge">false</code>。</p>
