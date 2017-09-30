@@ -7,7 +7,7 @@
 <meta name="msapplication-TileColor" content="#00aba9">
 <meta name="msapplication-TileImage" content="../assets/img/favicon/mstile-144x144.png">
 
-<title>Quick Start Guide - Tabris.js Documentation</title>
+<title>Tabris.js Documentation</title>
 
 <link rel="apple-touch-icon" href="https://tabrisjs.com/documentation/assets/img/favicon/apple-touch-icon-57x57.png" sizes="57x57">
 <link rel="apple-touch-icon" href="https://tabrisjs.com/documentation/assets/img/favicon/apple-touch-icon-60x60.png" sizes="60x60">
@@ -716,10 +716,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   $('#main-nav').find('.active').removeClass('active');
                   $this.parent().addClass('active');
                   $this.parent().parent().parent().addClass('active');
+                  $('#doc-body').find('a').each(function () {
+                      var $this = $(this);
+                      var href = $this.attr('href');
+                      if(!/http/.test(href)){
+                          $this.attr('href', 'https://tabrisjs.com' + href);
+                      }
+                  });
               }
           });
       }
-  })
+  });
 </script>
 <!-- End load page -->
   </body>
