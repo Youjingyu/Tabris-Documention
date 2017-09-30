@@ -704,24 +704,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Load page -->
 <script>
-  $('#doc-body').load('./pages/index.html');
+  var $docBody = $('#doc-body');
+  $docBody.load('./pages/index.html');
   $('#main-nav').on('click', 'a', function (e) {
       e.preventDefault();
       var $this = $(this);
       var href =$this .attr('href');
       if(href){
           var pageName = href.replace(/.*\//, '');
-          $('#doc-body').load('./pages/' + pageName, function (response, status) {
+          $docBody.load('./pages/' + pageName, function (response, status) {
               if(status === 'success'){
                   $('#main-nav').find('.active').removeClass('active');
                   $this.parent().addClass('active');
                   $this.parent().parent().parent().addClass('active');
-                  $('#doc-body').find('a').each(function () {
+                  $docBody.find('a,img').each(function () {
                       var $this = $(this);
                       var href = $this.attr('href');
-                      if(!/http/.test(href)){
-                          $this.attr('href', 'https://tabrisjs.com' + href);
+                      var src = $this.attr('src');
+                      if(href){
+                          if(!/http/.test(href)){
+                              $this.attr('href', 'https://tabrisjs.com' + href);
+                          }
+                      } else if(src){
+                          if(!/http/.test(src)){
+                              $this.attr('src', 'https://tabrisjs.com' + src);
+                          }
                       }
+
                   });
               }
           });
