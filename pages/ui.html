@@ -1,0 +1,99 @@
+    <h1 id="the-widget-tree">The Widget Tree</h1>
+
+    <p>Tabris.js app的UI界面由原生<a href="/tabris-js-docs/latest/widget-basics.html">控件</a>组成。这些控件在原生代码里执行，并用JavaScript对象来描述。为了在屏幕上可见，每个控件都必须有一个父控件。可以使用 <code class="highlighter-rouge">appendTo</code> 方法向父控件添加控件。</p>
+
+    <h2 id="the-ui-root">UI根节点</h2>
+
+    <p>所有控件的顶级父控件用对象 <code class="highlighter-rouge">ui</code> 表示。该对象包含一些固定的子控件，用于表示app用户界面的不同部分：</p>
+
+    <ul>
+        <li><code class="highlighter-rouge">ui.statusBar</code> - 显示时间和一些系统图标</li>
+        <li><code class="highlighter-rouge">ui.navigationBar</code> - 包含<em>Back</em>、<em>Home</em>等Android中的按钮</li>
+        <li><code class="highlighter-rouge">ui.contentView</code> - 包含app的主界面</li>
+        <li><code class="highlighter-rouge">ui.drawer</code> - 可以从左侧滑入</li>
+    </ul>
+
+    <p>控件可以添加到 content view 以及任意 drawer。</p>
+
+    <h2 id="the-status-bar">Status Bar（状态栏）</h2>
+
+    <p>status bar是屏幕顶部最小的区域，用来显示通知、状态图标和时间。<a href="/tabris-js-docs/latest/api/StatusBar.html">ui.statusBar</a>对象可以控制status bar的外观、体验的各个方面，比如背景颜色和是否可见。</p>
+
+    <p><img src="/tabris-js-docs/latest/img/statusbar.png" alt="StatusBar"></p>
+
+    <h2 id="the-navigation-bar">Navigation Bar（导航栏）</h2>
+
+    <p>navigation bar是包含<em>Back</em>、<em>Home</em>等Android按钮的区域。<a href="/tabris-js-docs/latest/api/NavigationBar.html">ui.navigationBar</a>对象可以控制navigation bar的背景色和是否可见。</p>
+
+    <p><img src="/tabris-js-docs/latest/img/navigationbar.png" alt="NavigationBar"></p>
+
+    <h2 id="the-content-view">The Content View</h2>
+
+    <p>The content view is the container for the widgets that constitute the app’s main UI. It covers the entire app area. Widgets can be appended directly to the content view.</p>
+
+    <p><img src="/tabris-js-docs/latest/img/contentview.png" alt="ContentView"></p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">16</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="the-drawer">The Drawer</h2>
+
+    <p>The “drawer” is a common component of mobile applications. It’s a container that can be slid in from the left edge of the screen, often used for top-level navigation. In Tabris.js, this drawer is disabled by default. To use it in an application, you have to enable it:</p>
+
+    <p><img src="/tabris-js-docs/latest/img/drawer.png" alt="Drawer"></p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">ui</span><span class="p">.</span><span class="nx">drawer</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</code></pre>
+    </div>
+
+    <p>The drawer can be opened by a swipe from the left edge of the screen or by tapping the action on the left side of a NavigationView (so called “burger menu”). To open and close the drawer programmatically, you can use its <code class="highlighter-rouge">open()</code> and <code class="highlighter-rouge">close()</code> methods, respectively.</p>
+
+    <p>A drawer may contain any kind of widgets:</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">ImageView</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="na">image</span><span class="p">:</span> <span class="s1">'buddy-icon.png'</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">drawer</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="navigation-patters">Navigation Patters</h2>
+
+    <p>Common navigation patterns for apps are based on pages or on tabs. Both approaches can also be combined.</p>
+
+    <h3 id="using-pages">Using Pages</h3>
+
+    <p>To implement a page navigation pattern, you can use a full-screen <a href="/tabris-js-docs/latest/api/NavigationView.html">NavigationView</a>. A navigation view contains <a href="/tabris-js-docs/latest/api/Page.html">Pages</a> that are arranged on a stack, so that only the topmost page is visible. A header displays the topmost page’s title and a button to navigate back to the previous page. On Android, the system back button can also be used to navigate back.</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">navigationView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NavigationView</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>When a new page is appended to the NavigationView, it is put on top and becomes visible:</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">Page</span><span class="p">({</span>
+  <span class="na">title</span><span class="p">:</span> <span class="s2">"My Page"</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">navigationView</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>On back navigation, the topmost page will be removed from the stack and disposed. To prevent pages from being automatically disposed on back navigation you can set its <code class="highlighter-rouge">autoDispose</code> property to <code class="highlighter-rouge">false</code>. This allows you to re-use the page later on. If you do so, please ensure that pages are disposed when they are no longer needed to avoid memory leaks.</p>
+
+    <h3 id="using-tabs">Using Tabs</h3>
+
+    <p>The main UI of an app can also be organized in tabs. To do so, use a fullscreen <a href="/tabris-js-docs/latest/api/TabFolder.html">TabFolder</a> as top-level container. A tab folder contains <a href="/tabris-js-docs/latest/api/Tab.html">Tabs</a> that are displayed at the bottom on iOS and at the top on Android.</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">tabFolder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TabFolder</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+<span class="k">new</span> <span class="nx">Tab</span><span class="p">({</span>
+  <span class="na">title</span><span class="p">:</span> <span class="s1">'Cart'</span><span class="p">,</span>
+  <span class="na">image</span><span class="p">:</span> <span class="s1">'cart.png'</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">tabFolder</span><span class="p">);</span>
+</code></pre>
+    </div>
