@@ -1,4 +1,4 @@
-    <h1 id="the-widget-tree">The Widget Tree</h1>
+    <h1 id="the-widget-tree">控件树</h1>
 
     <p>Tabris.js app的UI界面由原生<a href="/tabris-js-docs/latest/widget-basics.html">控件</a>组成。这些控件在原生代码里执行，并用JavaScript对象来描述。为了在屏幕上可见，每个控件都必须有一个父控件。可以使用 <code class="highlighter-rouge">appendTo</code> 方法向父控件添加控件。</p>
 
@@ -27,9 +27,9 @@
 
     <p><img src="/tabris-js-docs/latest/img/navigationbar.png" alt="NavigationBar"></p>
 
-    <h2 id="the-content-view">The Content View</h2>
+    <h2 id="the-content-view">Content View（内容视图）</h2>
 
-    <p>The content view is the container for the widgets that constitute the app’s main UI. It covers the entire app area. Widgets can be appended directly to the content view.</p>
+    <p>content view是组成主界面的控件的容器。它覆盖整个app区域。控件可以直接添加到content view。</p>
 
     <p><img src="/tabris-js-docs/latest/img/contentview.png" alt="ContentView"></p>
 
@@ -39,9 +39,9 @@
 </code></pre>
     </div>
 
-    <h2 id="the-drawer">The Drawer</h2>
+    <h2 id="the-drawer">Drawer（抽屉）</h2>
 
-    <p>The “drawer” is a common component of mobile applications. It’s a container that can be slid in from the left edge of the screen, often used for top-level navigation. In Tabris.js, this drawer is disabled by default. To use it in an application, you have to enable it:</p>
+    <p>drawer是移动应用的通用组件，是一个可以从屏幕左侧边缘滑出的容器，常常作为顶级导航。在Tabris.js中， drawer是默认禁用的。在应用中使用drawer，需要启用它：</p>
 
     <p><img src="/tabris-js-docs/latest/img/drawer.png" alt="Drawer"></p>
 
@@ -49,9 +49,9 @@
 </code></pre>
     </div>
 
-    <p>The drawer can be opened by a swipe from the left edge of the screen or by tapping the action on the left side of a NavigationView (so called “burger menu”). To open and close the drawer programmatically, you can use its <code class="highlighter-rouge">open()</code> and <code class="highlighter-rouge">close()</code> methods, respectively.</p>
+    <p>drawer可以通过从屏幕左侧边缘划入打开，或者通过点击NavigationView左侧的动作打开（因此也叫“burger menu”）。你可以在程序中分别使用drawer的<code class="highlighter-rouge">open()</code> 和 <code class="highlighter-rouge">close()</code>方法打开和关闭它。</p>
 
-    <p>A drawer may contain any kind of widgets:</p>
+    <p>drawer可以包含任意控件：</p>
 
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">ImageView</span><span class="p">({</span>
   <span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
@@ -60,13 +60,13 @@
 </code></pre>
     </div>
 
-    <h2 id="navigation-patters">Navigation Patters</h2>
+    <h2 id="navigation-patters">Navigation Patters（导航模式）</h2>
 
-    <p>Common navigation patterns for apps are based on pages or on tabs. Both approaches can also be combined.</p>
+    <p>app的常见导航模式是基于 pages（分页）和 tabs（选项卡）的。两种方式可以组合使用。</p>
 
-    <h3 id="using-pages">Using Pages</h3>
+    <h3 id="using-pages">使用 Pages（分页）</h3>
 
-    <p>To implement a page navigation pattern, you can use a full-screen <a href="/tabris-js-docs/latest/api/NavigationView.html">NavigationView</a>. A navigation view contains <a href="/tabris-js-docs/latest/api/Page.html">Pages</a> that are arranged on a stack, so that only the topmost page is visible. A header displays the topmost page’s title and a button to navigate back to the previous page. On Android, the system back button can also be used to navigate back.</p>
+    <p>为了使用分页导航模式，你可以使用全屏 <a href="/tabris-js-docs/latest/api/NavigationView.html">NavigationView</a>。导航视图包含的<a href="/tabris-js-docs/latest/api/Page.html">Pages（分页）</a>排列在栈中，因此只有最顶层的页面可见。页面顶部显示最顶层页面的标题和一个导航到前一页的按钮。在Android上，系统后退按钮也可以用来导航返回。</p>
 
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">navigationView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NavigationView</span><span class="p">({</span>
   <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span>
@@ -74,7 +74,7 @@
 </code></pre>
     </div>
 
-    <p>When a new page is appended to the NavigationView, it is put on top and becomes visible:</p>
+    <p>新添加到NavigationView的页面，会放在栈的最顶层并可见：</p>
 
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">Page</span><span class="p">({</span>
   <span class="na">title</span><span class="p">:</span> <span class="s2">"My Page"</span>
@@ -82,11 +82,11 @@
 </code></pre>
     </div>
 
-    <p>On back navigation, the topmost page will be removed from the stack and disposed. To prevent pages from being automatically disposed on back navigation you can set its <code class="highlighter-rouge">autoDispose</code> property to <code class="highlighter-rouge">false</code>. This allows you to re-use the page later on. If you do so, please ensure that pages are disposed when they are no longer needed to avoid memory leaks.</p>
+    <p>返回导航时，栈中最顶层的页面会被移除并销毁。你可以设置<code class="highlighter-rouge">autoDispose</code>为<code class="highlighter-rouge">false</code>来阻止自动销毁页面。这样你可以复用页面。但你必须确保不再使用时销毁页面，防止内存溢出。</p>
 
-    <h3 id="using-tabs">Using Tabs</h3>
+    <h3 id="using-tabs">使用 Tabs（选项卡）</h3>
 
-    <p>The main UI of an app can also be organized in tabs. To do so, use a fullscreen <a href="/tabris-js-docs/latest/api/TabFolder.html">TabFolder</a> as top-level container. A tab folder contains <a href="/tabris-js-docs/latest/api/Tab.html">Tabs</a> that are displayed at the bottom on iOS and at the top on Android.</p>
+    <p>app主界面也可tabs来组织。要使用tabs来组织界面，你需要使用全屏 <a href="/tabris-js-docs/latest/api/TabFolder.html">TabFolder</a> 作为顶级容器。tab文件夹包含显示在iOS底部、Android顶部的标签<a href="/tabris-js-docs/latest/api/Tab.html">标签</a>。</p>
 
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">tabFolder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TabFolder</span><span class="p">({</span>
   <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span>
