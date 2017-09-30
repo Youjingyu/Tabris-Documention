@@ -1,0 +1,269 @@
+    <h1 id="app">app</h1>
+
+    <p>继承自 <a href="/tabris-js-docs/latest/api/NativeObject.html">NativeObject</a></p>
+
+    <p>提供应用信息。</p>
+
+    <p>通过 “<code class="highlighter-rouge">const {app} = require('tabris');</code>” 引入</p>
+
+    <p>示例：</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"pause"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">pauseVideo</span><span class="p">());</span>
+</code></pre>
+    </div>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="getresourcelocationpath">getResourceLocation(path)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of a resource relative to the application root.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>string</em></p>
+
+    <p>Returns the URL for a given resource that is bundled with the app. Can be used to access app resources like images, videos, etc. Note that these resources can only be accessed in read-only mode.</p>
+
+    <h3 id="installpatchurl-callback">installPatch(url, callback)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>url: <em>string</em>
+            <ul>
+                <li>the URL to fetch a patch from.</li>
+            </ul>
+        </li>
+        <li>
+            <table>
+                <tbody>
+                <tr>
+                    <td>callback: *(error: Error</td>
+                    <td>null, patch: any</td>
+                    <td>null) =&gt; void*</td>
+                </tr>
+                </tbody>
+            </table>
+            <ul>
+                <li>a callback function to be called when the installation has finished or failed. In case of a failure, the callback will receive a parameter <code class="highlighter-rouge">error</code> that contains an Error object. If the installation succeeds, this parameter will be <code class="highlighter-rouge">null</code> and a second parameter will contain the parsed content of the file <code class="highlighter-rouge">patch.json</code> from the installed patch.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Note:</strong> this API is provisional and may change in a future release.</p>
+
+    <p>Installs a patch from the given URL. When the patch is successfully installed, it will remain inactive until the application is reloaded. Not supported on Windows.</p>
+
+    <h3 id="launchurl">launch(url)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>url: <em>string</em>
+            <ul>
+                <li>the URL to launch.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<void>*</void></p>
+
+    <p>Asks the operating system to open the given URL in an external app. Operating systems usually support a variety of URL schemes including <code class="highlighter-rouge">http</code>, <code class="highlighter-rouge">https</code>, <code class="highlighter-rouge">mailto</code>, <code class="highlighter-rouge">tel</code>, and <code class="highlighter-rouge">sms</code>. Apps can also register for custom URL schemes.</p>
+
+    <h3 id="reload">reload()</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Forces the running application to reload the main module and start over.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="id">id</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>Uniquely identifies the app.</p>
+
+    <h3 id="pinnedcertificates">pinnedCertificates</h3>
+
+    <p>Type: <em>any[]</em></p>
+
+    <p>Enables certificate pinning for HTTP requests. When pinned certificates are defined for a host, connections to this host will only be permitted if the server provides a matching certificate. Connections to hosts that are not in the list are not affected.</p>
+
+    <p>Certificate pinning affects the following components: XHR/fetch, WebSockets, image loading and app patching. It does <em>not</em> affect WebViews.</p>
+
+    <p>The list of pinned certificates has to be in the form of <code class="highlighter-rouge">[{host: &lt;string&gt;, hash: &lt;string&gt;, algorithm: &lt;RSA2048|RSA4096|ECDSA256&gt;}, ..]</code>.</p>
+
+    <ul>
+        <li>The <code class="highlighter-rouge">host</code> attribute denotes the host name (including subdomain) of the host to be pinned (<a href="https://en.wikipedia.org/wiki/Wildcard_DNS_record">wildcards allowed</a>).</li>
+        <li>The <code class="highlighter-rouge">hash</code> attribute is the base64 encoded sha256 fingerprint of the <em>subjectPublicKeyInfo</em>, prefixed with <code class="highlighter-rouge">sha256/</code>.</li>
+        <li>The <code class="highlighter-rouge">algorithm</code> attribute denotes the public key algorithm of the SSL certificate and can have the values <code class="highlighter-rouge">RSA2048</code>, <code class="highlighter-rouge">RSA4096</code> or <code class="highlighter-rouge">ECDSA256</code>. This attribute is only required on iOS.</li>
+    </ul>
+
+    <p>Example: <code class="highlighter-rouge">[{host: 'freegeoip.net', hash: 'sha256/+SVYjThgePRQxQ0e8bWTQDRtPYR/xBRufqyMoeaWteo=', algorithm: 'ECDSA256'}]</code></p>
+
+    <p>For further details see https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning.</p>
+
+    <h3 id="version">version</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>The user facing version number, e.g. ‘2.1-beta3’.</p>
+
+    <h3 id="versioncode">versionCode</h3>
+
+    <p>Type: <em>number</em></p>
+
+    <p>An alternative version number used in app stores to identify different versions of an app. Usually incremented with each release. This property reflects the <code class="highlighter-rouge">versionCode</code> on Android and <code class="highlighter-rouge">CFBundleVersion</code> on iOS.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="background">background</h3>
+
+    <p>Fired when the app becomes invisible. Either because another app is in the foreground or the user has returned to the home screen.</p>
+    <h3 id="backnavigation">backNavigation</h3>
+
+    <p>Fired when the back button is pressed on Android.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>preventDefault</strong>: <em>() =&gt; void</em>
+                Call to suppress the default back navigation behavior.</p>
+        </li>
+    </ul>
+
+    <h3 id="foreground">foreground</h3>
+
+    <p>The event is fired when the app starts or when it returns from the background.</p>
+    <h3 id="idchanged">idChanged</h3>
+
+    <p>Fired when the <a href="#id"><em>id</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#id"><em>id</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="pause">pause</h3>
+
+    <p>Fired when the app is not the interaction target of the user anymore. Usually preceded by <code class="highlighter-rouge">resume</code>.</p>
+    <h3 id="pinnedcertificateschanged">pinnedCertificatesChanged</h3>
+
+    <p>Fired when the <a href="#pinnedCertificates"><em>pinnedCertificates</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>any[]</em>
+                The new value of <a href="#pinnedCertificates"><em>pinnedCertificates</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="resume">resume</h3>
+
+    <p>Fired when the app is visible and ready to interact with the user. The event is preceded by either <code class="highlighter-rouge">foreground</code> (the app becomes visible again) or <code class="highlighter-rouge">pause</code> (the app regains ability to interact with user).</p>
+    <h3 id="terminate">terminate</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+    <p>Fired when the app is being destroyed. After this callback no more interaction with the app is possible.</p>
+    <h3 id="versionchanged">versionChanged</h3>
+
+    <p>Fired when the <a href="#version"><em>version</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#version"><em>version</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="versioncodechanged">versionCodeChanged</h3>
+
+    <p>Fired when the <a href="#versionCode"><em>versionCode</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-4">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#versionCode"><em>versionCode</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Composite</span><span class="p">,</span> <span class="nx">TextView</span><span class="p">,</span> <span class="nx">Button</span><span class="p">,</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="c1">// React to application hibernation, resume and back navigation</span>
+
+<span class="kd">let</span> <span class="nx">paused</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="nx">createTextView</span><span class="p">(</span><span class="s1">'Id'</span><span class="p">,</span> <span class="nx">app</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="nx">createTextView</span><span class="p">(</span><span class="s1">'Version'</span><span class="p">,</span> <span class="nx">app</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span>
+<span class="nx">createTextView</span><span class="p">(</span><span class="s1">'Version Code'</span><span class="p">,</span> <span class="nx">app</span><span class="p">.</span><span class="nx">versionCode</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Composite</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'prev() 16'</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="na">height</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="s1">'#E8E8E8'</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">label</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'prev() 16'</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="na">font</span><span class="p">:</span> <span class="s1">'italic 14px'</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">'You can press home and reopen the app to it to see how long you were away.'</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">'Reload app'</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">app</span><span class="p">.</span><span class="nx">reload</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'pause'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">paused</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'resume'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">paused</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">diff</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">paused</span><span class="p">;</span>
+      <span class="nx">label</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">' Welcome back!\n You were gone for '</span> <span class="o">+</span> <span class="p">(</span><span class="nx">diff</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' seconds.'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'backNavigation'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="nx">label</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'Back navigation prevented.'</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">createTextView</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">composite</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Composite</span><span class="p">({</span><span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'prev() 8'</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">16</span><span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+  <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span><span class="na">text</span><span class="p">:</span> <span class="nx">key</span><span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">composite</span><span class="p">);</span>
+  <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span><span class="na">text</span><span class="p">:</span> <span class="nx">value</span><span class="p">,</span> <span class="na">left</span><span class="p">:</span> <span class="mi">128</span><span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">composite</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
