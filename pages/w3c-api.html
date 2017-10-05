@@ -1,0 +1,100 @@
+    <h1 id="w3c-apis">W3C APIs</h1>
+
+    <p>Tabris实现了流行的W3C标准的一个子集。除了为Web开发人员提供熟悉的API之外，还可以使用为浏览器环境开发的库。</p>
+
+    <h2 id="window-object">window对象</h2>
+
+    <p>在JavaScript中总是有一个表示全局范围的对象。所有全局变量都是此对象的成员。在Web浏览器中，该对象在Tabris.js中被命名为<code class="highlighter-rouge">window</code>。 例如，tabris对象可以通过<code class="highlighter-rouge">tabris</code> 或 <code class="highlighter-rouge">window.tabris</code>访问。</p>
+
+    <h2 id="console-object">console对象</h2>
+
+    <p>与浏览器一样，可以使用全局<code class="highlighter-rouge">console</code>对象记录信息到<a href="getting-started#the-developer-console">开发者控制台</a>：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"A log message"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"An error Message"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">"A warning message"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"An info message"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">"A debug Message"</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>调用<code class="highlighter-rouge">console.error</code>也会输出信息（即使开发者控制台关闭），但它不会中断脚本的执行。</p>
+
+    <h2 id="timer">计时器</h2>
+
+    <p>Tabris支持计时器方法<code class="highlighter-rouge">setTimeout</code>、<code class="highlighter-rouge">setInterval</code>、<code class="highlighter-rouge">clearTimeout</code> 和 <code class="highlighter-rouge">clearInterval</code>。参考<a href="api/window.md">window</a>。</p>
+
+    <p>参考<a href="http://www.w3.org/TR/2011/WD-html5-20110525/timers.html#timers">W3C</a> / <a href="https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers">MDN</a></p>
+
+    <h2 id="xmlhttprequest">XMLHttpRequest</h2>
+
+    <p>Tabris支持使用<code class="highlighter-rouge">XMLHttpRequest</code>来进行HTTP请求并读取作为应用一部分的资源。</p>
+
+    <p>参考<a href="http://www.w3.org/TR/XMLHttpRequest/">W3C</a> / <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">MDN</a></p>
+
+    <p><em>Tabris.js具体细节：</em></p>
+
+    <ul>
+        <li>只支持异步请求。尝试同步请求将导致错误。</li>
+        <li>当使用相对路径时，Tabris.js会将其解析为相对于应用程序的<code class="highlighter-rouge">package.json</code>的路径。这允许你读取静态资源（项目文件夹中的文件）。</li>
+        <li>当使用定制的开发者客户端时，可以使用相对路径来访问本地文件（作为资源与客户端打包）以及在远程项目文件夹中（来自通过HTTP加载的代码）的那些文件。本地文件优先。</li>
+        <li>要启用对使用自签名证书的SSL保护资源的访问，请使用config.xml中的<code class="highlighter-rouge">UseStrictSSL</code>首选项。参见<a href="/tabris-js-docs/latest/cordova.html#preferences">Cordova文档</a>。</li>
+    </ul>
+
+    <h2 id="fetch">Fetch</h2>
+
+    <p>作为XHR更强大和更灵活的替代方案，你还可以使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>。从Tabris.js 1.7开始，包括了这个API的实现。</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">要加载静态资源，使用相对于当前<a href="/tabris-js-docs/latest/modules.html">模块</a>的URL可能更为方便。对于JSON文件，可以通过使用<code class="highlighter-rouge">require</code>方法而不是XHR来完成此操作。对于其他类型的文件，请使用<code class="highlighter-rouge">__dirname</code>变量，例如<code class="highlighter-rouge">xhr.open("GET", __dirname + "/foo.txt");</code>。</p>
+    </blockquote>
+
+    <h2 id="websocket">WebSocket</h2>
+
+    <p>WebSockets是一种先进的技术，可以在用户的客户端和服务器之间打开交互式通信会话。使用此API，你可以将消息发送到服务器并接收事件驱动的响应，而无需轮询服务器获取回复。</p>
+
+    <p>截至Tabris.js 1.10，包含了该API的实现。</p>
+
+    <blockquote>
+        <p>Tabris.js支持以<code class="highlighter-rouge">TypedArray</code> 和 <code class="highlighter-rouge">ArrayBuffer</code>的形式发送和接收文本消息以及二进制数据。目前不支持以<code class="highlighter-rouge">Blob</code>的形式接收数据。</p>
+    </blockquote>
+
+    <p>更多文档：</p>
+
+    <ul>
+        <li>https://tools.ietf.org/html/rfc6455</li>
+        <li>https://html.spec.whatwg.org/multipage/comms.html#websocket</li>
+    </ul>
+
+    <h2 id="persistent-storage">持久存储</h2>
+
+    <p>Tabris支持全局对象<code class="highlighter-rouge">localStorage</code>，它允许在持久存储中存储键值对。键和值都作为字符串存储。</p>
+
+    <p>在iOS上，在全局作用域内还有一个额外的<code class="highlighter-rouge">secureStorage</code>对象。这是将数据保存在加密的iOS钥匙链中的<code class="highlighter-rouge">localStorage</code>的替代品。</p>
+
+    <p>参考<a href="http://dev.w3.org/html5/webstorage/">W3C</a> / <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage">MDN</a></p>
+
+    <p><em>Tabris.js具体细节：</em></p>
+
+    <ul>
+        <li>目前，<code class="highlighter-rouge">localStorage</code> 和 <code class="highlighter-rouge">secureStorage</code>支持<code class="highlighter-rouge">setItem</code>、<code class="highlighter-rouge">getItem</code>、<code class="highlighter-rouge">removeItem</code>和<code class="highlighter-rouge">clear</code>方法。</li>
+        <li>不支持<code class="highlighter-rouge">sessionStorage</code>，因为他它在非浏览器环境中没有应用场景。</li>
+        <li>目前不支持存储事件。</li>
+    </ul>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"><code class="highlighter-rouge">localStorage</code>仅用于存储较短的字符串。要存储大量数据，建议使用cordova <a href="https://www.npmjs.com/package/cordova-plugin-file"><code class="highlighter-rouge">FileSystem</code></a>插件。</p>
+    </blockquote>
+
+    <h2 id="canvas-context">Canvas Context</h2>
+
+    <p><code class="highlighter-rouge">Canvas</code>控件兼容HTML5 canvas的“2D Context”对象。参考<a href="/tabris-js-docs/latest/api/Canvas.html">Canvas</a>。</p>
+
+    <p>参考<a href="http://www.w3.org/TR/2dcontext/">W3C</a> / <a href="https://developer.mozilla.org/en/docs/Web/API/CanvasRenderingContext2D">MDN</a></p>
+
+    <h2 id="random-source-crypto">Random Source (Crypto)</h2>
+
+    <p>全局对象<code class="highlighter-rouge">crypto</code>提供了<a href="https://developer.mozilla.org/en/docs/Web/API/RandomSource">RandomSource</a>接口的实现。它可以用于生成加密安全随机数。</p>
+
+    <p>参考<a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html#crypto-interface">W3C</a> / <a href="https://developer.mozilla.org/en/docs/Web/API/RandomSource/getRandomValues">MDN</a></p>
