@@ -1,0 +1,87 @@
+    <h1 id="gesture-and-touch-events">手势和触摸事件</h1>
+
+    <h2 id="gesture-events">手势事件</h2>
+
+    <p>Tabris.js有基于4种手势类型的13种手势事件：</p>
+
+    <ul>
+        <li><code class="highlighter-rouge">tap</code> - 手指短暂地触摸控件时，触发一次。</li>
+        <li><code class="highlighter-rouge">longpress</code> - 手指触摸控件一定时间（约一秒，取决于平台），抬起手指时触发。</li>
+        <li><code class="highlighter-rouge">pan</code> - 当手指向任一方向移动一定距离（约5px，取决于平台）时，就开始连续触发。事件始终在触摸的第一个元素上触发，即使手指移动到控件之外。</li>
+        <li><code class="highlighter-rouge">panLeft</code> - 当手指向左移动一定距离时，就开始连续触发。</li>
+        <li><code class="highlighter-rouge">panRight</code> - 当手指向右移动一定距离时，就开始连续触发。</li>
+        <li><code class="highlighter-rouge">panUp</code> - 当手指向上移动一定距离时，就开始连续触发。</li>
+        <li><code class="highlighter-rouge">panDown</code> - 当手指向下移动一定距离时，就开始连续触发。</li>
+        <li><code class="highlighter-rouge">panHorizontal</code> - 当手指向左或向右移动一定距离时，就开始连续触发。</li>
+        <li><code class="highlighter-rouge">panVertical</code> - 当手指向上或向下移动一定距离时，就开始连续触发。</li>
+        <li><code class="highlighter-rouge">swipeLeft</code> - 当手指快速向左移动一定（较长）距离（可能取决于平台）时，触发一次。</li>
+        <li><code class="highlighter-rouge">swipeRight</code> - 当手指快速向右移动一定（较长）距离（可能取决于平台）时，触发一次。</li>
+        <li><code class="highlighter-rouge">swipeUp</code> - 当手指快速向上移动一定（较长）距离（可能取决于平台）时，触发一次。</li>
+        <li><code class="highlighter-rouge">swipeDown</code> - 当手指快速向下移动一定（较长）距离（可能取决于平台）时，触发一次。</li>
+    </ul>
+
+    <p>示例：</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">widget</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"swipeLeft"</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">moveWidgetLeft</span><span class="p">());</span>
+</code></pre>
+    </div>
+
+    <p>所有手势事件都有下面的共同属性：</p>
+
+    <ul>
+        <li><strong>target</strong>: <em>Widget</em> - 接收事件的控件</li>
+        <li><strong>timeStamp</strong>: <em>number</em> - 事件产生时间，以毫秒表示</li>
+        <li><strong>state</strong>: <em>string</em> - 包含事件的状态（见下文）。</li>
+        <li><strong>touches</strong>: <em>{x: number, y: number}[]</em> - 相对于控件原点的，所有当前触摸点的坐标的数组。</li>
+    </ul>
+
+    <p>Pan手势事件还包含这些额外的属性：</p>
+
+    <ul>
+        <li><strong>translationX</strong>: <em>number</em> - 相对于第一个触摸点的，当前触摸点的坐标</li>
+        <li><strong>translationY</strong>: <em>number</em> - 相对于第一个触摸点的，当前触摸点的坐标</li>
+        <li><strong>velocityX</strong>: <em>number</em> - 用每秒移动的像素表示的，当前触摸点的速度</li>
+        <li><strong>velocityY</strong>: <em>number</em> - 用每秒移动的像素表示的，当前触摸点的速度</li>
+    </ul>
+
+    <p>事件状态：</p>
+
+    <ul>
+        <li><code class="highlighter-rouge">"recognized"</code>: 只触发一次的手势的状态（<code class="highlighter-rouge">tap</code> 和 <code class="highlighter-rouge">swipe</code>）。</li>
+        <li><code class="highlighter-rouge">"start"</code>: 手势开始，即开始移动（<code class="highlighter-rouge">pan</code>）或已经按压足够时间（<code class="highlighter-rouge">长按</code>）。</li>
+        <li><code class="highlighter-rouge">"change"</code>: 通过移动手指继续手势（只针对<code class="highlighter-rouge">pan</code>）。</li>
+        <li><code class="highlighter-rouge">"end"</code>: 通过抬起所有手势停止手势（<code class="highlighter-rouge">pan</code> 和 <code class="highlighter-rouge">长按</code>）。</li>
+        <li><code class="highlighter-rouge">"cancel"</code>: 手势被打断，比如弹出对话框（<code class="highlighter-rouge">pan</code> 和 <code class="highlighter-rouge">长按</code>）。</li>
+    </ul>
+
+    <h3 id="gestures-in-scrollablepanable-widgets">可滚动/可拖拽（pan）控件的手势</h3>
+
+    <p>在可滚动控件中，比如<code class="highlighter-rouge">ScrollView</code> 或 <code class="highlighter-rouge">CollectionView</code>, 在不可滚动方向识别到的<strong>pan</strong> 或 <strong>swipe</strong>手势会阻止滚动。因此，在垂直滚动的<code class="highlighter-rouge">ScrollView</code>中的控件上添加一个<code class="highlighter-rouge">水平拖拽（pan）</code>监听时，会阻止任何以水平移动手势开始的滚动。当没有添加pan手势监听或从垂直方向开始移动，仍然可以滚动。</p>
+
+    <h2 id="touch-events">触摸事件</h2>
+
+    <p>触摸事件是手势事件的低级替代事件。只有当手势无法准确地表示交互时，才应使用它们。 所有触摸事件的目标对象都是第一个触摸的控件。可用的触摸事件类型有：</p>
+
+    <ul>
+        <li><code class="highlighter-rouge">touchStart</code> - 手指触摸控件时触发。</li>
+        <li><code class="highlighter-rouge">touchMove</code> - 在开始<code class="highlighter-rouge">touchStart</code>事件后，在屏幕上滑动时反复触发。</li>
+        <li><code class="highlighter-rouge">touchEnd</code> - 当交互在接收<code class="highlighter-rouge">touchStart</code>事件的同一个控件上结束（比如抬起手指）时触发。</li>
+        <li><code class="highlighter-rouge">touchCancel</code> - 当触摸交互在另一个控件上结束，而不是在触摸开始的控件上结束时触发，而不触发<code class="highlighter-rouge">touchEnd</code>事件。</li>
+    </ul>
+
+    <p>事件对象包括下面的属性：</p>
+
+    <ul>
+        <li><strong>target</strong>: <em>Widget</em> - 接收事件的控件</li>
+        <li><strong>timeStamp</strong>: <em>number</em> - 事件产生的时间，以毫秒表示</li>
+        <li><strong>touches</strong>: <em>{x: number, y: number, absoluteX: number, absoluteY: number}[]</em> - 所有当前触摸点的触摸坐标数组。x / y坐标是相对于父控件的，而absoluteX / absoluteY坐标相对于<code class="highlighter-rouge">ui.contentView</code>。 由于当前不支持多点触摸，因此数组始终只有一个元素。</li>
+    </ul>
+
+    <p>示例：</p>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">widget</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"touchStart"</span><span class="p">,</span> <span class="p">({</span><span class="na">touches</span><span class="p">:</span> <span class="p">[{</span><span class="nx">absoluteX</span><span class="p">,</span> <span class="nx">absoluteY</span><span class="p">}]})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">absoluteX</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">absoluteY</span><span class="p">;</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+</code></pre>
+    </div>

@@ -177,7 +177,7 @@
       
       
       
-      <li><a href="../latest/touch.html">Touch Events</a></li>
+      <li><a href="../latest/touch.html">触摸事件</a></li>
       
     
       
@@ -709,7 +709,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   $('#main-nav').on('click', 'a', function (e) {
       e.preventDefault();
       var $this = $(this);
-      var href =$this .attr('href');
+      var href =$this.attr('href');
       if(href){
           var pageName = href.replace(/.*\//, '');
           $docBody.load('./pages/' + pageName, function (response, status) {
