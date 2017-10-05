@@ -1,0 +1,32 @@
+    <h1 id="cordova-plug-ins-support">Cordova插件支持</h1>
+
+    <p>Tabris.js API主要是一个UI/控件的库，还有一些<a href="/tabris-js-docs/latest/w3c-api.html">额外的受浏览器启发的API</a>。为了提供它们不涉及的功能，Tabris.js可以使用<a href="http://cordova.apache.org/">Apache Cordova</a>插件进行扩展。</p>
+
+    <p>Cordova插件的JavaScript API文档在Tabris.js中也是有效的，只有一个小例外：在访问插件API之前，<strong>无需</strong>监听<code class="highlighter-rouge">deviceready</code>事件。当加载应用程序主模块时，所有插件都将准备就绪。</p>
+
+    <h2 id="default-plug-ins">默认插件</h2>
+
+    <p>当使用<a href="/tabris-js-docs/latest/getting-started.html">Tabris.js开发者app</a>时，你的应用可以直接访问以下预打包的插件：</p>
+
+    <ul>
+        <li><a href="https://www.npmjs.com/package/de.appplant.cordova.plugin.badge">Badge</a></li>
+        <li><a href="https://www.npmjs.com/package/cordova-plugin-camera">Camera</a></li>
+        <li><a href="https://www.npmjs.com/package/cordova-plugin-device-motion">Device Motion</a></li>
+        <li><a href="https://www.npmjs.com/package/cordova-plugin-network-information">Network Information</a></li>
+        <li><a href="https://www.npmjs.com/package/cordova-plugin-x-toast">Toast</a></li>
+        <li><a href="https://www.npmjs.com/package/phonegap-plugin-barcodescanner">BarcodeScanner</a></li>
+        <li><a href="https://www.npmjs.com/package/com.cmackay.plugins.googleanalytics">Google Analytics</a></li>
+        <li><a href="https://www.npmjs.com/package/cordova-plugin-googleplayservices">Google Play Services</a></li>
+    </ul>
+
+    <p>这些插件已经使用Tabris.js进行了测试，并且可以在Tabris.js<a href="https://github.com/eclipsesource/tabris-js/tree/master/examples/cordova">示例</a>中找到演示。</p>
+
+    <p>请注意，默认插件仅包含在应用程序的调试版本中。如果要在发行版中使用它们，你应该通过Cordova <code class="highlighter-rouge">config.xml</code>文件中的<code class="highlighter-rouge">&lt;plugin&gt;</code>标签来添加它们：<a href="/tabris-js-docs/latest/build.html#integrating-cordova-plugins">集成Cordova插件</a>。</p>
+
+    <h2 id="other-cordova-plug-ins">其他插件</h2>
+
+    <p>要使用不在Tabris.js开发者应用程序中的Cordova插件，你需要在<a href="/tabris-js-docs/latest/build.html">build</a>过程中添加它们。你也可以创建自己的应用程序的发行版本，或者包含附加插件（将<em>debug</em>模式设置为<code class="highlighter-rouge">ON</code>）的开发者App的增强版本。</p>
+
+    <p>由于Tabris.js使用<strong>原生UI</strong>并且不使用<strong>HTML5</strong>，所以大部分插件都可以开箱即用，但并非全部。操纵DOM的插件将无法正常工作。</p>
+
+    <p>已经使用Tabris.js测试的插件被标记为<a href="https://github.com/eclipsesource/tabris-js/issues?utf8=%E2%9C%93&amp;q=label%3A%22compatibility+cordova%22">GitHub issues</a>。如果确认插件可用，issue就是关闭的。请随意添加你测试的插件的issue。</p>
