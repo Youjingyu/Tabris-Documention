@@ -1,0 +1,145 @@
+    <h1 id="ecmascript-6-typescript-and-jsx">EcmaScript 6，TypeScript 和 JSX</h1>
+
+    <h2 id="ecmascript-6">EcmaScript 6</h2>
+
+    <p>Tabris.js 2支持所有ES5和大多数ES6 / ES7（又名ES2015 / ES2016）特性，并且无需像Babel这样的编译器。包括：</p>
+
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">Classes</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">const</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters">Default parameters</a> (除了iOS 9)</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring assignment</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Exponentiation_(**)">Exponentiation operator</a>(除了iOS 9)</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/statements/for...of">for…of</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generators">Generators</a> (除了9)</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Iterators">Iterators</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">let</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions">Methods</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015">Object property shorthands</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect">Reflect</a> (除了iOS 9)</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">Rest parameters</a> (除了iOS 9)</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a> (除了iOS 9)</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">set</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">get</a> literals</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread operator</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Template literals</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">Typed Arrays and ArrayBuffer</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeakMap</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet">WeakSet</a></li>
+    </ul>
+
+    <p>不支持的是（不使用编译器时）：</p>
+    <ul>
+        <li>async/await: 使用 <code class="highlighter-rouge">then</code> 替代。</li>
+        <li>import/export: <a href="/tabris-js-docs/latest/modules.html">使用 <code class="highlighter-rouge">require</code> 方法和 <code class="highlighter-rouge">exports</code> 对象替代</a>。</li>
+    </ul>
+
+    <h2 id="typescript">TypeScript</h2>
+
+    <p>Tabris.js 2针对TypeScript 2进行了优化。TypeScript是一个<em>类型安全</em>的JavaScript/EcmaScript超集，并且还支持<em>ES6模块语法</em> (<code class="highlighter-rouge">import</code> 和 <code class="highlighter-rouge">export</code> 语句) 和 <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code>。可以在<a href="http://www.typescriptlang.org/docs/home.html">typescriptlang.org</a>上找到有关TypeScript的完整指南。对于IDE，我们推荐支持<a href="https://marketplace.visualstudio.com/items?itemName=eg2.tslint">tslint</a>扩展名的<a href="https://code.visualstudio.com/">Visual Studio Code</a>，但也有<a href="https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support">很多其它合适的TypeScript IDE</a>。</p>
+
+    <p>在执行之前，必须将“TypeScript”文件“编译”为JavaScript。当使用<code class="highlighter-rouge">tabris init</code>命令生成新的Tabris.js应用程序时，已经包含了编译器，因此不需要额外的安装步骤。在给定的选项中，只需选择<code class="highlighter-rouge">TypeScript App</code>即可。应用生成后，执行<code class="highlighter-rouge">npm start</code>，以JavaScript的形式向你的Tabris开发者app提供TypeScript代码。在Visual Studio Code中，你也可以使用预先配置的<code class="highlighter-rouge">启动</code>任务。</p>
+
+    <p>只要任务仍在运行，你的TypeScript代码（<code class="highlighter-rouge">src</code>中的任何<code class="highlighter-rouge">.ts</code>文件）的更改将自动由TypeScript编译器检测。不需要重新启动。</p>
+
+    <h3 id="stay-safe">注意类型安全</h3>
+
+    <p>在TypeScript中，并不是所有的API，甚至不是所有的Tabris.js API都是完全类型安全的。 因此建议遵循以下一般准则：</p>
+
+    <p><b>转换</b>：避免显式转换，因为它可以静默失败。使用<a href="http://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types">type guards</a>替代。</p>
+
+    <p><b>隐式的“any”类型</b>：在TypeScript中<code class="highlighter-rouge">any</code>类型的值本质上和JavaScript值相同。编译器将接受对该值的任何操作，包括将其分配给确定类型的变量。如果你不给变量、字段或参数指定类型，并且不能通过赋值来推断，则可能会出现隐式的<code class="highlighter-rouge">any</code>类型。
+        <em>始终给出函数参数的类型。字段和变量只有在声明时赋了值才是安全的。</em></p>
+
+    <p><b>控件属性访问：</b><em>不要</em>使用<code class="highlighter-rouge">widget.set(key, value)</code> 或 <code class="highlighter-rouge">widget.get(key)</code>。而是<em>直接</em>像这样访问属性：<code class="highlighter-rouge">widget.key = value</code>。你还可以安全地<em>使用属性对象</em>：比如<code class="highlighter-rouge">widget.set({key: value})</code> 和 <code class="highlighter-rouge">new Widget({key: value})</code>。</p>
+
+    <p><b>控件事件处理：</b>不要使用<code class="highlighter-rouge">widget.on(event, handler)</code>。而是使用<code class="highlighter-rouge">widget.on({event: handler})</code>。</p>
+
+    <p><b>控件apply方法：</b>仅使用<code class="highlighter-rouge">widget.apply</code>设置基础<code class="highlighter-rouge">Widget</code>类的属性，比如<code class="highlighter-rouge">layoutData</code>。</p>
+
+    <p><b>选择器API 和 WidgetCollection：</b>默认情况下，控件的<code class="highlighter-rouge">find</code>、<code class="highlighter-rouge">children</code>、<code class="highlighter-rouge">sibling</code>方法返回一个“混合的”WidgetCollection。这意味着你必须执行类型检查和转换以安全地从集合中获取控件，你也可以使用控件类（构造函数）作为选择器，这会使TypeScript“得到”的集合只包含该类型的实例。在这种情况下，不需要转换。例如： <code class="highlighter-rouge">widget.children(Button).first('.myButton')</code>返回一个button控件（或者 null），而不会是其他内容。应该注意的是，这种WidgetCollection的<code class="highlighter-rouge">set</code>方法仍然不是类型感知的。你可以使用<code class="highlighter-rouge">forEach</code>方法来安全地为集合中的所有控件设置属性。</p>
+
+    <p><b>NPM模块：</b><code class="highlighter-rouge">tabris</code>模块是自动类型安全的，但不是所有可以通过<code class="highlighter-rouge">npm</code>安装的模块都是如此。你可能需要为每个安装的npm模块<em><a href="http://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html">手动安装声明文件</a></em>。</p>
+
+    <h3 id="interfaces">接口</h3>
+
+    <p>在TypeScript中使用tabris模块导出tabris API使用的接口。它们是：</p>
+
+    <ul>
+        <li>属性/参数类型：<a href="/tabris-js-docs/latest/types.html#Image"><code class="highlighter-rouge">Image</code></a>、<a href="/tabris-js-docs/latest/types.html#Color"><code class="highlighter-rouge">Color</code></a>、<a href="/tabris-js-docs/latest/types.html#Font"><code class="highlighter-rouge">Font</code></a>、<a href="/tabris-js-docs/latest/types.html#LayoutData"><code class="highlighter-rouge">LayoutData</code></a>、<a href="/tabris-js-docs/latest/types.html#Bounds"><code class="highlighter-rouge">Bounds</code></a>、<a href="/tabris-js-docs/latest/types.html#Transformation"><code class="highlighter-rouge">Transformation</code></a>、<a href="/tabris-js-docs/latest/types.html#Margin"><code class="highlighter-rouge">margin</code></a>、<a href="/tabris-js-docs/latest/types.html#Dimension"><code class="highlighter-rouge">dimension</code></a>、<a href="/tabris-js-docs/latest/types.html#Offset"><code class="highlighter-rouge">offset</code></a>、<a href="/tabris-js-docs/latest/types.html#BoxDimensions"><code class="highlighter-rouge">BoxDimensions</code></a>、 <a href="/tabris-js-docs/latest/types.html#ImageData"><code class="highlighter-rouge">ImageData</code></a>、<a href="/tabris-js-docs/latest/types.html#Selector"><code class="highlighter-rouge">Selector</code></a> 和 <a href="/tabris-js-docs/latest/types.html#AnimationOptions"><code class="highlighter-rouge">AnimationOptions</code></a></li>
+        <li>通用事件对象：<a href="/tabris-js-docs/latest/widget-basics.html#Events"><code class="highlighter-rouge">EventObject&lt;T&gt;</code></a>，其中<code class="highlighter-rouge">T</code>是目标事件属性的类型。用于没有特定类型属性的事件。也是所有其他事件接口的基础。</li>
+        <li>change事件对象：<a href="/tabris-js-docs/latest/types.html#PropertyChangedEvent"><code class="highlighter-rouge">PropertyChangedEvent&lt;T, U&gt;</code></a>，事件属性和<code class="highlighter-rouge">U</code>是<code class="highlighter-rouge">value</code>属性的类型。用于所有与命名方案<code class="highlighter-rouge"><span class="p">{</span><span class="err">propertyName</span><span class="p">}</span><span class="err">Changed</span></code>匹配的事件，比如<code class="highlighter-rouge">BackgroundChanged</code>。</li>
+        <li>特殊事件对象：所有其他事件使用遵循命名方案<code class="highlighter-rouge"><span class="p">{</span><span class="err">TargetType</span><span class="p">}{</span><span class="err">EventName</span><span class="p">}</span><span class="err">Event</span></code>的特定接口，比如<code class="highlighter-rouge">PickerSelectEvent</code>。你可能想要使用这些来定义不使用参数解构的监听器。</li>
+        <li>属性映射：这些是<a href="/tabris-js-docs/latest/api/NativeObject.html#set"><code class="highlighter-rouge">set</code></a>方法和控件构造函数使用的接口。你可能希望在扩展控件类时使用它们来定义自己的属性映射。它们遵循命名方案<code class="highlighter-rouge"><span class="p">{</span><span class="err">TargetType</span><span class="p">}</span><span class="err">Properties</span></code>，比如<code class="highlighter-rouge">CompositeProperties</code>。</li>
+        <li>监听器映射：这些是<a href="/tabris-js-docs/latest/api/NativeObject.html#on"><code class="highlighter-rouge">on</code></a> 和 <a href="/tabris-js-docs/latest/api/NativeObject.html#off"><code class="highlighter-rouge">off</code></a>方法使用的接口。你可能希望在扩展控件类时使用它们来定义自己的监听器映射。它们遵循命名方案<code class="highlighter-rouge"><span class="p">{</span><span class="err">TargetType</span><span class="p">}</span><span class="err">Events</span></code>比如<code class="highlighter-rouge">CompositeEvents</code>。</li>
+    </ul>
+
+    <h2 id="jsx">JSX</h2>
+
+    <p>JSX是JavaScript / TypeScript语法的扩展，可以将代码与类似XML的声明进行混合。Tabris 2支持使用<em>类型安全的JSX</em>，在任何基于TypeScript的项目中开箱即用。你需要做的只是命名你的文件为<code class="highlighter-rouge">.tsx</code>而不是<code class="highlighter-rouge">.ts</code>。然后，你就可以使用JSX表达式创建控件了。例如</p>
+
+    <pre><code class="language-jsx">ui.contentView.append(
+  &lt;composite left={0} top={0} right={0} bottom={0}&gt;
+    &lt;button centerX={0} top={100} text='Show Message' onSelect={handleButtonSelect}/&gt;
+    &lt;textView centerX={0} top='prev() 50' font='24px'/&gt;
+  &lt;/composite&gt;
+);
+</code></pre>
+
+    <p>与如下代码效果相同</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span>
+  <span class="k">new</span> <span class="nx">Composite</span><span class="p">({</span><span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">}).</span><span class="nx">append</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">Button</span><span class="p">({</span><span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="na">text</span><span class="p">:</span> <span class="s1">'Show Message'</span><span class="p">}).</span><span class="nx">on</span><span class="p">({</span><span class="na">select</span><span class="p">:</span> <span class="nx">handleButtonSelect</span><span class="p">}),</span>
+    <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span><span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'prev() 50'</span><span class="p">,</span> <span class="na">font</span><span class="p">:</span> <span class="s1">'24px'</span><span class="p">})</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+</code></pre>
+    </div>
+
+    <p>Tabris.js TypeScript app中的JSX遵循如下具体规则：</p>
+    <ul>
+        <li>每个JSX元素都是构造函数调用。如果直接嵌入代码中，则需要彼此分隔（见下文）。</li>
+        <li>名称以小写字母开始的元素是内置元素。包括内置在Tabris.js中的所有可实例化控件，以及<code class="highlighter-rouge">WidgetCollection</code>。这些元素的类型不需要显式导入。</li>
+        <li>名称以大写字母开始的元素是用户自定义元素，即扩展Tabris.js控件的任何类。这些元素需要导入。</li>
+        <li>属性可以是字符串（使用单引号或双引号）或JavaScript / TypeScript表达式（使用花括号）。</li>
+        <li>与控件属性名称相同的标签属性，用来通过构造函数设置该控件的属性。</li>
+        <li>遵循<code class="highlighter-rouge">on{EventType}</code>命名方案的的属性用于向该事件注册监听器。</li>
+        <li>每个元素可以有任何数量的子元素（如果该类型支持子元素），所有子元素都以给定的顺序添加到其父元素。</li>
+        <li>要支持对用户定义的元素进行属性检查，需要在自定义控件上添加名为<code class="highlighter-rouge">jsxProperties</code>的字段。该类型必须与第一个构造函数参数的类型相匹配。你不必为该字段赋任何值。</li>
+        <li>虽然JSX表达式本身是类型安全的，<em>但是它们的返回类型不是</em>（是<code class="highlighter-rouge">any</code>类型），因此请按照上面的转换说明进行操作。一般认为在<code class="highlighter-rouge">widget.append()</code>中使用未经检查的JSX表达式是安全的，因为所有JSX元素都是可<code class="highlighter-rouge">append</code>类型。</li>
+    </ul>
+
+    <p>注意，这是<em>不</em>合法的：</p>
+
+    <pre><code class="language-jsx">ui.contentView.append(
+  &lt;button centerX={0} top={100} text='Show Message'/&gt;
+  &lt;textView centerX={0} top='prev() 50' font='24px'/&gt;
+);
+</code></pre>
+
+    <p>直接嵌套在代码中的JSX元素必须像表达式一样分隔，比如下面这种情况用逗号分隔：</p>
+
+    <pre><code class="language-jsx">ui.contentView.append(
+  &lt;button centerX={0} top={100} text='Show Message'/&gt;,
+  &lt;textView centerX={0} top='prev() 50' font='24px'/&gt;
+);
+</code></pre>
+
+    <p>为了避免这种情况，你可以将控件包裹在<code class="highlighter-rouge">WidgetCollection</code>中。这个例子与上面的例子效果相同：</p>
+
+    <pre><code class="language-jsx">ui.contentView.append(
+  &lt;widgetCollection&gt;
+    &lt;button centerX={0} top={100} text='Show Message'/&gt;
+    &lt;textView centerX={0} top='prev() 50' font='24px'/&gt;
+  &lt;/widgetCollection&gt;
+);
+</code></pre>
+
+    <h3 id="jsx-without-typescript">在TypeScript之外使用JSX</h3>
+
+    <p>如果要在不编写TypeScript的情况下使用JSX，仍然可以使用TypeScript编译器将<code class="highlighter-rouge">.jsx</code>文件转换为<code class="highlighter-rouge">.js</code>。简单创建一个TypeScript app，并在<code class="highlighter-rouge">tsconfig.json</code>的<code class="highlighter-rouge">compilerOptions</code>对象中添加一个条目<code class="highlighter-rouge">"allowJs": true</code>。然后将<code class="highlighter-rouge">include</code>对象中的文件名从<code class="highlighter-rouge">.ts</code> 和 <code class="highlighter-rouge">.tsx</code> 修改为 <code class="highlighter-rouge">.js</code> 何 <code class="highlighter-rouge">.jsx</code>。如果你使用<code class="highlighter-rouge">any</code>类型，你可能还需要调整你的校验设置。</p>
