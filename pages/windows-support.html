@@ -1,0 +1,83 @@
+    <h1 id="notes-on-windows-10-support">Windows 10支持说明</h1>
+
+    <h2 id="developer-app">开发者app</h2>
+
+    <p>开发者app可以在你开发Tabris.js app的同一台机器上运行，不需要模拟器或者Windows SDK。这时，你需要注意下面的点：</p>
+
+    <ol>
+        <li>
+            <p>鼠标并不总能替代触摸屏。某些手势无法通过鼠标输入来识别。笔记本电脑/平板电脑混合设备的用户在这里有一定优势。</p>
+        </li>
+        <li>
+            <p>用单指滑动屏幕边缘的手势来打开开发者控制台将不起作用：因为操作系统保留该手势来打开操作中心。作为替代，你可以使用鼠标或笔来做手势，也可以使用两根手指（可能需要更精确）来打开控制台，或者只需按键盘上的F12即可。</p>
+        </li>
+        <li>
+            <p>回环地址（<code class="highlighter-rouge">localhost</code>, <code class="highlighter-rouge">127.0.0.1</code>）并不是开箱即用的。要允许开发者应用访问在同一台机器上运行的tabris http服务器，你需要在管理员命令行窗口中使用此命令启用它：</p>
+        </li>
+    </ol>
+
+    <p><code class="highlighter-rouge">CheckNetIsolation.exe LoopbackExempt -a -p="S-1-15-2-2113086592-2161398931-2814723024-3165814665-986162242-220195364-2881192403"</code></p>
+
+    <h2 id="api">API</h2>
+
+    <p>在Android和iOS之后才添加了Windows 10（UWP / Store Apps）支持。 因此，这些平台上的一些API在Windows上尚未得到支持。有关详细信息，请参阅API参考文档。另外，还有一些特定于Windows平台特性的新API。这些API都以<code class="highlighter-rouge">win_</code>为前缀，并在API参考文档中有说明。</p>
+
+    <h2 id="building-an-app">构建app</h2>
+
+    <p>要使tabris-CLI找到正确的Visual Studio版本（2017），你需要设置具有安装目录路径的<code class="highlighter-rouge">VSINSTALLDIR</code> 环境变量。对于Visual Studio的Community Edition，通常是<code class="highlighter-rouge">C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\</code>.</p>
+
+    <p>为了在<a href="https://tabrisjs.com/documentation/latest/build.md">本地构建</a>期间避免打包问题（特定于Windows平台），你应该单独创建针对不同CPU架构的包，例如：</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>tabris clean
+tabris build windows --release -- --archs="&lt;cpu&gt;"
+</code></pre>
+    </div>
+
+    <p>其中<code class="highlighter-rouge">&lt;cpu&gt;</code>可以是‘x64’、‘x86’ 或 ‘arm’。将包复制到单独的目录中，并为下一个架构重复此步骤。</p>
+
+    <p>windows特定的<code class="highlighter-rouge">config.xml</code>配置项在<a href="./build.html#windows-specific-preferences">这里</a>说明。</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js的Windows构建还不能为Windows Store签署包。现在，如果你需要将应用程序上传到Windows Store，则必须通过tabris CLI进行本地构建，并<a href="https://docs.microsoft.com/en-us/windows/uwp/packaging/packaging-uwp-apps#create-an-app-package">使用Visual Studio创建<code class="highlighter-rouge">.appxupload</code>包</a>。 建议不要将它们打包，因为这可能会在以后使用Tabris.js构建服务创建的包更新store提交时引起问题。</p>
+    </blockquote>
+
+    <h2 id="sideloading-apps-on-windows-10-pc">在Windows 10上加载app(PC)：</h2>
+
+    <ul>
+        <li>如果加载没有完成，将PC设置为开发者模式：<code class="highlighter-rouge">Settings -&gt; Update &amp; security -&gt; For developers -&gt; Developer mode</code>.</li>
+        <li>如果存在旧版app，先卸载它。</li>
+        <li>你可能需要安装用于签署app的证书。获取<code class="highlighter-rouge">.cer</code> 或 <code class="highlighter-rouge">.pfx</code>并双击它。将其安装在“受信任的根证书颁发机构”组中的“本地计算机”上。</li>
+        <li>然后双击<code class="highlighter-rouge">Add-AppDevPackage.ps1</code>文件。开始安装。</li>
+        <li>安装完成后，app会显示在开始菜单中。</li>
+    </ul>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">目前，tabris构建服务始终使用cordova密钥来签署app。在将来，你将能够使用自己的密钥来构建已经为Windows Store配置好的软件包。</p>
+    </blockquote>
+
+    <h2 id="sideloading-apps-on-windows-10-mobile">在Windows 10上加载app(Mobile)：</h2>
+
+    <ul>
+        <li>如果加载没有完成，将手机设置为开发者模式：<code class="highlighter-rouge">Settings -&gt; Update &amp; security -&gt; For developers -&gt; Developer mode</code>.</li>
+        <li>如果存在旧版app，先卸载它。</li>
+    </ul>
+
+    <p>现在有两种选择。你可以通过USB将<code class="highlighter-rouge">.appx</code>复制到手机，然后从中安装：</p>
+    <ul>
+        <li>移动<code class="highlighter-rouge">.appx</code>到你的手机。</li>
+        <li>在文件浏览器app中查找该文件。</li>
+        <li>点击app，确认你要安装该app。</li>
+        <li>该app会在后台安装。不幸的是，当安装过程完成时，你不会得到任何反馈。该app应当在一分钟左右后显示在“所有应用程序”的屏幕上。</li>
+    </ul>
+
+    <p>另一个选择是从Windows PC安装该app。这需要安装Windows 10 SDK。</p>
+    <ul>
+        <li>使用USB数据线将手机连接到Windows PC。</li>
+        <li>打开命令行（<code class="highlighter-rouge">cmd.exe</code>）。</li>
+        <li>输入<code class="highlighter-rouge">"C:\Program Files (x86)\Windows Kits\10\bin\x86\WinAppDeployCmd.exe" devices</code>
+        </li>
+        <li>复制手机的GUID。</li>
+        <li>输入<code class="highlighter-rouge">"C:\Program Files (x86)\Windows Kits\10\bin\x86\WinAppDeployCmd.exe" install -file "&lt;path-to-your-appx&gt;" -g &lt;GUID-of-your-phone&gt;</code>
+        </li>
+    </ul>
