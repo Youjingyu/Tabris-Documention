@@ -1,0 +1,432 @@
+    <h1 id="building-a-tabrisjs-app">构建Tabris.js App</h1>
+
+    <p>Tabris.js利用<a href="http://cordova.apache.org">Apache Cordova</a>构建和打包app。可以使用tabrisjs.com上的<a href="#build-service">免费在线构建服务</a>构建app，不需要任何本地配置。要在<a href="#local-build">本地机器上构建app</a>，你需要安装Xcode，Visual Studio或Android SDK等开发工具。 两种不同构建方式支持以下功能。</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th style="text-align: left">&nbsp;</th>
+            <th style="text-align: center">构建服务</th>
+            <th style="text-align: center">本地构建</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="text-align: left">构建iOS App</td>
+            <td style="text-align: center">✓</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left">构建Android App</td>
+            <td style="text-align: center">✓</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left">构建Windows App</td>
+            <td style="text-align: center">✓</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left"><a href="/tabris-js-docs/latest/cordova.html">集成Cordova插件</a></td>
+            <td style="text-align: center">✓</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left"><a href="http://cordova.apache.org/docs/en/edge/guide_appdev_hooks_index.md.html#Hooks%20Guide">Cordova构建钩子</a></td>
+            <td style="text-align: center">✓</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left">自定义项目结构</td>
+            <td style="text-align: center">✓</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left">自己的构建脚本</td>
+            <td style="text-align: center">&nbsp;</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left">使用自己的构建硬件</td>
+            <td style="text-align: center">&nbsp;</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        <tr>
+            <td style="text-align: left">其他SCM除了Git</td>
+            <td style="text-align: center">&nbsp;</td>
+            <td style="text-align: center">✓</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">在线构建服务对于无限制的公共GitHub仓库和1个私有仓库是免费的。要从无限制的私人仓库构建，你需要一个<a href="https://tabrisjs.com/pricing/">专业帐户</a>。 每个人都可以免费使用<a href="#local-build">本地构建</a>。</p>
+    </blockquote>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">在构建Windows app时，请阅读有关该内容的<a href="/tabris-js-docs/latest/windows-support.html">Windows支持文档</a>。</p>
+    </blockquote>
+
+    <h2 id="project-layout">项目目录结构</h2>
+
+    <p>要为构建做准备，必须创建一个名为<code class="highlighter-rouge">cordova</code>的子目录，其中包含构建配置。Tabris.js项目的目录结构可能如下所示：</p>
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>/
+|- cordova/
+    |- config.xml
+|- src/
+    |- &lt;.js files&gt;
+|- test/
+    |- &lt;.spec.js files&gt;
+|- package.json
+|- .tabrisignore
+</code></pre>
+    </div>
+
+    <h3 id="the-packagejson-file">package.json文件</h3>
+
+    <table>
+        <tbody>
+        <tr>
+            <td>参见package.json</td>
+            <td>npm文档(https://docs.npmjs.com/files/package.json)，了解有关package.json格式的信息。</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>除了其他配置之外，<code class="highlighter-rouge">package.json</code>还包含对app主脚本和npm模块依赖关系的说明：</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"src/app.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"tabris"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"left-pad"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.1.3"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>依赖关系会在构建过程中自动安装。</p>
+
+    <h4 id="build-scripts">构建脚本</h4>
+
+    <p>当构建Tabris.js app时，<code class="highlighter-rouge">package.json</code>中的<code class="highlighter-rouge">build</code>脚本会在JavaScript代码打包到app内之前执行。它们可以用来编译JavaScript app代码。</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nt">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>支持的打包脚本钩子：</p>
+
+    <ul>
+        <li>
+            <code class="highlighter-rouge">"build"</code>：执行所有平台的构建</li>
+        <li>
+            <code class="highlighter-rouge">"build:android"</code>：执行Android构建</li>
+        <li>
+            <code class="highlighter-rouge">"build:ios"</code>：执行iOS构建</li>
+        <li>
+            <code class="highlighter-rouge">"build:windows"</code>：执行Windows构建</li>
+    </ul>
+
+    <p>确保<code class="highlighter-rouge">"build"</code>脚本在<code class="highlighter-rouge">tabris serve</code>执行之前执行（当在本地运行app时）。这个步骤可以使用编译器的watch模式实现自动化，该模式会在文件更改时编译文件（参阅你的编译器文档）。像<a href="https://www.npmjs.com/package/npm-run-all">npm-run-all</a>这样的模块可以帮助编译器在watch模式下运行并且同时运行<code class="highlighter-rouge">tabris serve</code>。</p>
+
+    <p>对于较大的项目，你可能需要使用像<a href="https://rollupjs.org">rollup.js</a>这样的模块打包工具。它避免了加载多个模块的开销，并使用静态分析从打包的文件中删除未使用的代码。</p>
+
+    <h4 id="example-transpiling-es6-code">示例：编译ES6代码</h4>
+
+    <p>安装Babel编译器以及必要的插件。<code class="highlighter-rouge">--save-dev</code>选项会将依赖添加到<code class="highlighter-rouge">package.json</code>：</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>npm install --save-dev babel-cli babel-plugin-transform-es2015-modules-commonjs
+</code></pre>
+    </div>
+
+    <p>在项目根目录创建一个<code class="highlighter-rouge">.babelrc</code>文件：</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"transform-es2015-modules-commonjs"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>在<code class="highlighter-rouge">package.json</code>的<code class="highlighter-rouge">scripts</code>部分包含下面的构建脚本：</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"babel --compact false --out-dir dist/ src/"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>让<code class="highlighter-rouge">main</code>字段指向<code class="highlighter-rouge">dist/</code>中<em>编译后的</em> <code class="highlighter-rouge">app.js</code>：</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dist/app.js"</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>如果需要支持iOS 9，可以添加更多的Babel插件来支持缺少的ES6特性。有关iOS 9中支持的ES6特性的详细信息，请参阅<a href="/tabris-js-docs/latest/lang.html#ecmascript-6">EcmaScript 6</a>。</p>
+
+    <h4 id="example-transpiling-typescript-code">示例：编译TypeScript代码</h4>
+
+    <p>安装TypeScript编译器：</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>npm install --save-dev typescript
+</code></pre>
+    </div>
+
+    <p>在<code class="highlighter-rouge">package.json</code>中的<code class="highlighter-rouge">scripts</code>部分包含如下的构建脚本：</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tsc -p ."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <p>让<code class="highlighter-rouge">main</code>字段指向<code class="highlighter-rouge">dist/</code>中<em>编译后的</em> <code class="highlighter-rouge">app.js</code>：</p>
+
+    <div class="language-json highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dist/app.js"</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+    </div>
+
+    <h3 id="the-configxml-file">config.xml文件</h3>
+
+    <p>你需要的描述app的简单配置是一个<code class="highlighter-rouge">cordova/config.xml</code>文件。它包含app的ID、版本、图标和启动页等信息。<code class="highlighter-rouge">config.xml</code>格式与标准的<a href="https://cordova.apache.org/docs/en/4.0.0/config_ref_index.md.html#The%20config.xml%20File">Cordova config.xml</a>文件相同。一个简单的示例配置如下所示：</p>
+
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="cp">&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
+<span class="nt">&lt;widget</span> <span class="na">id=</span><span class="s">"my.first.app"</span> <span class="na">version=</span><span class="s">"1.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>HelloWorld<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;description&gt;</span>
+    A sample Tabris.js application.
+  <span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;author</span> <span class="na">email=</span><span class="s">"dev@tabrisjs.com"</span> <span class="na">href=</span><span class="s">"https://tabrisjs.com"</span><span class="nt">&gt;</span>
+    Tabris.js Team
+  <span class="nt">&lt;/author&gt;</span>
+<span class="nt">&lt;/widget&gt;</span>
+</code></pre>
+    </div>
+
+    <h4 id="integrating-cordova-plugins">集成Cordova插件</h4>
+
+    <p>要添加一套Apache Cordova插件，只需要使用<code class="highlighter-rouge">&lt;plugin /&gt;</code>标签将其添加到<code class="highlighter-rouge">config.xml</code>。允许通过使用ID、HTTP URL或git URL添加插件。</p>
+
+    <p>例如，要添加<a href="http://plugins.cordova.io/#/package/org.apache.cordova.camera">Cordova Camera Plugin</a>，需要添加这一行：</p>
+
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">"cordova-plugin-camera"</span> <span class="na">spec=</span><span class="s">"^2.3.0"</span> <span class="nt">/&gt;</span>
+</code></pre>
+    </div>
+
+    <p>你可以通过<code class="highlighter-rouge">config.xml</code>集成所有可用的<a href="http://plugins.cordova.io/#/">Cordova Plugins</a>。</p>
+
+    <p><strong>重要提示：</strong> 你可以安装所有可用的Cordova插件。大多数插件都是开箱即用的。但是，由于Tabris.js使用<strong>原生UI</strong>并且不使用<strong>HTML5</strong>，所以依赖HTML5 UI（即DOM）的插件将无法正常工作。</p>
+
+    <h4 id="the-content-element">content元素</h4>
+
+    <p>可选的<code class="highlighter-rouge">&lt;content&gt;</code>元素定义了普通Cordova app的启动页。在Tabris.js中，你可以使用它来定义<code class="highlighter-rouge">package.json</code>文件的另一个位置。例如：</p>
+
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;content</span> <span class="na">src=</span><span class="s">"mySubFolder/package.json"</span> <span class="nt">/&gt;</span>
+</code></pre>
+    </div>
+
+    <h4 id="preferences">首选项</h4>
+
+    <p>除了<a href="http://cordova.apache.org/docs/en/dev/config_ref/">Cordova config.xml向导</a>中说明的配置外，Tabris.js还接受以下自定义首选项：</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>名字</th>
+            <th>允许值</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>EnableDeveloperConsole</td>
+            <td>true/false</td>
+            <td>false</td>
+            <td>启用/禁用<a href="/tabris-js-docs/latest/getting-started.html#the-developer-console">Tabris.js开发者控制台</a>。将值设置为<code class="highlighter-rouge">$IS_DEBUG</code>，会使该值与<a href="#settings">调试模式</a>的值一致。
+            </td>
+        </tr>
+        <tr>
+            <td>UseStrictSSL</td>
+            <td>true/false</td>
+            <td>true</td>
+            <td>当禁用的自签名SSL证书被接受时，激活/停用<a href="/tabris-js-docs/latest/w3c-api.html#xmlhttprequest">XHR</a>上的SSL证书验证。 应当在生产环境中启用。</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>示例：</p>
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;preference</span> <span class="na">name=</span><span class="s">"EnableDeveloperConsole"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+</code></pre>
+    </div>
+
+    <h4 id="android-specific-preferences">Android特定首选项</h4>
+
+    <table>
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>值</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Theme</td>
+            <td><ul><li><code class="highlighter-rouge">@style/Theme.Tabris</code></li><li><code class="highlighter-rouge">@style/Theme.Tabris.Light</code></li><li><code class="highlighter-rouge">@style/Theme.Tabris.Light.DarkAppBar</code>（默认）</ul>除了打包好的Tabris主题之外，还可以指定对自定义Android主题资源的引用。自定义主题必须继承自Tabris基础主题之一。<br><br>示例：<code class="highlighter-rouge">&lt;preference name="Theme" value="@style/Theme.MyAppTheme" /&gt;</code>
+            </td>
+        </tr>
+        <tr>
+            <td>ThemeSplash</td>
+            <td><ul><li><code class="highlighter-rouge">@style/Theme.Tabris.SplashScreen</code></li><li><code class="highlighter-rouge">@style/Theme.Tabris.Light.SplashScreen</code> (Default)</ul>启动页会在app启动时显示给用户。默认情况下，此启动页是白色背景。<code class="highlighter-rouge">ThemeSplash</code>首选项允许设置打包好的主题或提供自定义主题。<br><br>示例：<code class="highlighter-rouge">&lt;preference name="ThemeSplash" value="@style/Theme.Tabris.SplashScreen" /&gt;</code><br><br>注意，<code class="highlighter-rouge">config.xml</code>的<code class="highlighter-rouge">&lt;splash .. /&gt;</code>元素可以用来设置启动屏图片。对于样式指南，参阅<a href="https://material.google.com/patterns/launch-screens.html">launch screens</a>中的material design指南。</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4 id="windows-specific-preferences">Windows特定首选项</h4>
+
+    <p>Windows app总是有一个启动页。如果不配置，则使用默认的Tabris.js启动页。要配置自己的启动页，必须以三种不同的分辨率和背景颜色给出一个logo。文件的命名必须与这里给出的命名相匹配：</p>
+
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;platform</span> <span class="na">name=</span><span class="s">"windows"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;splash</span> <span class="na">src=</span><span class="s">"resources/windows/splash/SplashScreen.scale-100.png"</span> <span class="na">width=</span><span class="s">"620"</span> <span class="na">height=</span><span class="s">"300"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;splash</span> <span class="na">src=</span><span class="s">"resources/windows/splash/SplashScreen.scale-150.png"</span> <span class="na">width=</span><span class="s">"930"</span> <span class="na">height=</span><span class="s">"450"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;splash</span> <span class="na">src=</span><span class="s">"resources/windows/splash/SplashScreen.scale-200.png"</span> <span class="na">width=</span><span class="s">"1240"</span> <span class="na">height=</span><span class="s">"600"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;preference</span> <span class="na">name=</span><span class="s">"SplashScreenBackgroundColor"</span> <span class="na">value=</span><span class="s">"#009688"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+</code></pre>
+    </div>
+
+    <p>要替换启动器、Windows store和任务图标上的tabris logo，必须提供以下所有文件。同样的，命名必须相匹配：</p>
+
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;platform</span> <span class="na">name=</span><span class="s">"windows"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/windows/storelogo.png"</span> <span class="na">target=</span><span class="s">"StoreLogo"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/windows/smalllogo.png"</span> <span class="na">target=</span><span class="s">"Square30x30Logo"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/Windows/Square44x44Logo.png"</span> <span class="na">target=</span><span class="s">"Square44x44Logo"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/Windows/Small71x71Logo.png"</span> <span class="na">target=</span><span class="s">"Square71x71Logo"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/Windows/Square150x150Logo.png"</span> <span class="na">target=</span><span class="s">"Square150x150Logo"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/Windows/Large310x310Logo.png"</span> <span class="na">target=</span><span class="s">"Square310x310Logo"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;icon</span> <span class="na">src=</span><span class="s">"res/Windows/Wide310x150Logo.png"</span> <span class="na">target=</span><span class="s">"Wide310x150Logo"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+</code></pre>
+    </div>
+
+    <h3 id="the-tabrisignore-file">.tabrisignore文件</h3>
+
+    <p>tabris.js会将项目内容打包到app中。你可以把不需要打包到app中的某些文件或目录排除，例如测试或开发人员文档。构建中需要排除的文件和目录可以列在名为<code class="highlighter-rouge">.tabrisignore</code>的文件中。此文件与<a href="http://git-scm.com/docs/gitignore"><code class="highlighter-rouge">.gitignore</code></a>文件遵循相同的规则。</p>
+
+    <p>默认排除以下文件夹，不必在<code class="highlighter-rouge">.tabrisignore</code>中列出：</p>
+
+    <ul>
+        <li><code class="highlighter-rouge">.git/</code></li>
+        <li><code class="highlighter-rouge">node_modules/</code></li>
+        <li><code class="highlighter-rouge">build/</code></li>
+        <li>The file <code class="highlighter-rouge">.tabrisignore</code> itself</li>
+    </ul>
+
+    <h2 id="build-service">构建服务</h2>
+
+    <p><a href="https://tabrisjs.com">Tabrisjs.com</a>为Tabris.js app提供免费的在线构建服务。登录后，可以在“My Apps”中点击“Create App”来创建应用。 然后，在仓库列表中选择GitHub仓库（如果不可见，则可能需要按“synchronize”按钮）。<a href="https://tabrisjs.com/pricing/">Pro plan</a>中的用户也可以使用自己托管的Git仓库。
+        <img src="/tabris-js-docs/latest/img/build-create-app.png" alt="Create an App">
+        选择仓库后，该仓库会被验证。验证会检查选定的仓库是否包含有效的Tabris.js<a href="/tabris-js-docs/latest/build.html#project-layout">项目目录结构</a>。如果该仓库具有有效的项目结构和<code class="highlighter-rouge">config.xml</code>，你的app很快就会变得有效。 如果是无效的，网站会告诉你出了什么问题。 在这种情况下，请按照显示的说明操作。
+        <img src="/tabris-js-docs/latest/img/build-valid-app.png" alt="Valid App">
+        在你的app生效后，就可以执行第一个构建了。只需选择新创建的app，然后单击“Start Android Build”按钮。几分钟之后，你将得到一个可以在你的设备上安装的Android .apk文件。但是，iOS、生产环境构建和签名呢？可以使用“Settings”配置这些东西。</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">构建服务将从npm（devDependencies除外）安装package.json中指定的依赖项。因此，不必将<code class="highlighter-rouge">node_modules</code>文件夹加入版本控制。</p>
+    </blockquote>
+
+    <h3 id="settings">Settings</h3>
+
+    <p><img src="/tabris-js-docs/latest/img/build-app-settings.png" alt="App Settings"></p>
+
+    <ul>
+        <li>
+            <strong>Repository URL：</strong>这是你的git仓库的URL。如果你正在使用免费版本，则应指向GitHub仓库。在<a href="https://tabrisjs.com/pricing/">Pro plan</a>中的用户可以使用自定义仓库位置。</li>
+        <li>
+            <strong>SSH Private Key：</strong>访问你的仓库的SSH私钥。仅与没有托管在GitHub的git仓库有关。</li>
+        <li>
+            <strong>Branch：</strong>从git的某个分支构建。默认值是<code class="highlighter-rouge">master</code>。如果你想从其它分支构建，需要在这里指定。</li>
+        <li>
+            <strong>App Directory：</strong>仓库中包含Tabris.js app的目录。该值必须相对于仓库根目录。</li>
+        <li>
+            <strong>iOS Signing Key：</strong>iOS app无法在未签名时安装到移动设备。如果你要构建iOS app，需要一个Apple Developer帐户，并将该证书与provisioning profile文件一起提供。可以在<a href="http://docs.build.phonegap.com/en_US/signing_signing-ios.md.html#iOS%20Signing">Phonegap构建文档</a>中找到有关如何获取这些文件的教程。</li>
+        <li>
+            <strong>Android Signing Key：</strong>仅当你要将其部署到Play Store时，才需要使用证书签署Android app。你也可以在<a href="http://docs.build.phonegap.com/en_US/signing_signing-ios.md.html#iOS%20Signing">Phonegap构建文档</a>中找到相关教程。</li>
+        <li>
+            <strong>Windows Architecure：</strong>选择要构建软件包的CPU架构。</li>
+        <li>
+            <strong>Environment Variables：</strong>键/值对会被存储并加密传输到构建设备。它们可以在config.xml或自定义钩子中使用。使用场景是，用于从私有git仓库中添加插件或处理访问密钥。</li>
+        <li>
+            <strong>Builds to keep：</strong>指定在自动删除前保留的构建包的数量。</li>
+        <li>
+            <strong>Tabris.js Version：</strong>app中使用的Tabris.js <em>客户端</em>版本。与定义JavaScript模块版本的<code class="highlighter-rouge">package.json</code>中的“tabris”依赖不同，此设置定义了用来执行JavaScript代码的本机Tabris.js客户端的版本。 大多数情况下，最新的版本是更好的。但是如果你想使用一个固定的Tabris.js版本，可以在这里进行配置。</li>
+        <li>
+            <strong>Debug：</strong>启用<em>调试模式</em>。如果设置为<code class="highlighter-rouge">ON</code>，构建的app将包含调试符，并将其打包到Tabris.js开发开发者app中，使开发更加容易。这允许你使用开发模式下的所有功能，比如开发者控制台或重新加载，你也可以使用自己的app。请注意，调试版本无法提交到app store。设置为<code class="highlighter-rouge">OFF</code>表示你的app会被打包来发布：没有开发者app、没有控制台、没有重新加载。 只有你的JavaScript代码才能执行。</li>
+    </ul>
+
+    <h2 id="local-build">本地构建</h2>
+
+    <p>你可以使用<a href="https://www.npmjs.com/package/tabris-cli">Tabris CLI</a>在本地计算机上构建Tabris.js app。</p>
+
+    <h3 id="prerequisites">前提条件</h3>
+
+    <p>要在你的计算机上构建app，必须安装目标平台的开发环境。如果目标平台是iOS，则需要使用具有最新版本Xcode的macOS。对于Windows，你需要使用具有Visual Studio 2017的Windows PC。可以在安装最新Android SDK的任何操作系统上构建Android app。</p>
+
+    <p>Tabris CLI必须全局安装在你的系统中：</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>npm install -g tabris-cli
+</code></pre>
+    </div>
+
+    <p>你需要一个<a href="https://tabrisjs.com">tabrisjs.com</a>上的账户。免费账户就足够了。</p>
+
+    <h3 id="building-an-app">构建app</h3>
+
+    <p>在第一次启动时，Tabris CLI会要求建立密钥。你可以在<a href="https://tabrisjs.com/settings/account">profile page</a>上找到该密钥。</p>
+
+    <p>构建app，运行</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>tabris build [android|ios|windows]
+</code></pre>
+    </div>
+
+    <p>更多命令行选项，请参阅<a href="https://www.npmjs.com/package/tabris-cli">CLI文档</a>。</p>
