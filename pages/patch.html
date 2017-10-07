@@ -1,0 +1,77 @@
+    <h1 id="patching-a-tabrisjs-app">Tabris.js App补丁</h1>
+
+    <p>向app store发布新的app版本可能需要一些时间。Tabris.js允许直接向你的用户发布热更新，而无需等待app store更新。</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">为了符合Apple App Store的规则，修补程序必须<em>“[…] not change the primary purpose of the app by providing features or functionality that are inconsistent with the intended and advertised purpose”（iOS开发者计划许可协议第3.3.2节）</em>。</p>
+    </blockquote>
+
+    <h2 id="the-patch-format">补丁格式</h2>
+
+    <p>补丁是一个zip文件，其中包含要修改或添加的app文件，以及名为<code class="highlighter-rouge">patch.json</code>的可选描述文件。 有关<em>patch.json</em>描述文件的更多信息，请参见下文。</p>
+
+    <p>你可以修改app中的任何文件，包括脚本、图片，甚至<code class="highlighter-rouge">node_modules</code>文件夹中的模块。 zip文件的根目录对应于Tabris.js项目的根目录。例如，要更新文件<em>app.js</em>并添加另一个文件<em>img/image.jpg</em>，修补程序可以如下所示：</p>
+
+    <p><strong>示例项目结构</strong></p>
+
+    <div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>src
+├── app.js
+└── …
+…
+package.json
+</code></pre>
+    </div>
+
+    <p><strong>相应的补丁zip内容</strong></p>
+
+    <div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>src
+└── app.js
+img
+└── image.jpg
+patch.json
+</code></pre>
+    </div>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">如果你有本地的cordova版本，在将源文件复制到文件夹<code class="highlighter-rouge">cordova/www</code>中之前，你可能已经进行了预处理。在这种情况下，补丁必须对应于最终在<code class="highlighter-rouge">cordova/www</code>中的文件。</p>
+    </blockquote>
+
+    <h2 id="discovering-a-patch">发现补丁</h2>
+
+    <p>创建补丁后，你必须在你选择的URL上使其可以下载。然后，应用程序可以发现补丁并下载。</p>
+
+    <p>你可以用适合你的方式实现补丁检测。例如，可以设置一个REST服务，为给定的应用程序、平台和版本提供可用的补丁信息。 应用程序可以定期检查此服务。你还可以使用推送通知来通知app可用的补丁。</p>
+
+    <h2 id="installing-a-patch">安装补丁</h2>
+
+    <p>要安装修补程序，需要调用<code class="highlighter-rouge">app.installPatch</code>方法，并传递补丁文件的URL和具有两个参数的回调函数（<em>error</em> 和 <em>patch</em>）作为参数。补丁文件会在后台下载并安装，但在app重新加载之前不会有影响。</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js支持cache-control header。 如果Tabris.js没有找到新的更新，请检查HTTP服务器的缓存无效设置。</p>
+    </blockquote>
+
+    <p>在出现错误的情况下，使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error对象</a>作为第一个参数来调用回调函数。<code class="highlighter-rouge">error.message</code>字段会包含错误消息。如果补丁成功安装，则第二个参数将包含补丁文件中的<em>patch.json</em>文件的解析内容（如果有的话）。</p>
+
+    <p>Tabris.js不强制要求<em>patch.json</em>描述文件的格式和内容。你可以使用它来包含补丁的详细信息，例如要显示的版本号或确认消息。</p>
+
+    <p>在下一次app启动时，补丁中存在的文件将覆盖app文件。你可以使用回调来确认并重新加载app。这是一个简单的例子：</p>
+
+    <div class="language-js highlighter-rouge">
+<pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">installPatch</span><span class="p">(</span><span class="nx">patchUrl</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">patch</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// show error dialog</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// confirm reload</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">reload</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+    </div>
+
+    <p>多个补丁可以彼此覆盖。如果app已经打好补丁了，则后续的补丁会覆盖以前的补丁。</p>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">此功能是临时性的，并且此处的API说明可能会在将来的版本中进行调整。</p>
+    </blockquote>
