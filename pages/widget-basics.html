@@ -142,7 +142,7 @@
 
     <h3 id="setting-the-parent">设置父控件</h3>
 
-    <p>控件需要一个父控件使其可见。容器视图(<code class="highlighter-rouge">ui.contentView</code>)是所有控件的顶级父控件。可以使用<code class="highlighter-rouge">append()</code> 或 <code class="highlighter-rouge">appendTo()</code>方法将控件添加到控件的层次结构中。</p>
+    <p>控件需要一个父控件使其可见。容器视图(<code class="highlighter-rouge">ui.contentView</code>)是所有控件的顶级父控件。可以使用<code class="highlighter-rouge">append()</code> 或 <code class="highlighter-rouge">appendTo()</code>方法将控件添加到对应控件的层次结构中。</p>
 
     <p>示例：</p>
 
@@ -154,7 +154,7 @@
 </code></pre>
     </div>
 
-    <p>如果控件已经有一个父控件了，它会从当前的父控件中被删除然后添加到新的父控件中。在添加控件的父控件中，<em>addChild</em> 事件会被触发。</p>
+    <p>如果控件已经有一个父控件了，它会从当前的父控件中删除然后添加到新的父控件中。在添加控件的父控件中，<em>addChild</em> 事件会被触发。</p>
 
     <p>也可以使用<code class="highlighter-rouge">append()</code>一次添加多个控件到父控件：</p>
 
