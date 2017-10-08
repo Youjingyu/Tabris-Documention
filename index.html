@@ -33,7 +33,25 @@
 <link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/syntax.css">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-
+<style>
+  .loading-modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+  }
+  .loading-modal img{
+    display: block;
+    margin: 0 auto;
+    width: 233px;
+    height: 197px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>
   </head>
   <body>
     <!-- header bar -->
@@ -640,7 +658,9 @@
     </div>
   </div>
 </footer>
-
+    <div class="loading-modal" id="loading">
+      <img src="img/loading.gif">
+    </div>
 
 
 
@@ -705,15 +725,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Load page -->
 <script>
   var $docBody = $('#doc-body');
-  $docBody.load('./pages/index.html');
+  var $loading = $('#loading');
+  $docBody.load('./pages/index.html', function () {
+      $loading.fadeOut();
+  });
   $('#main-nav').on('click', 'a', function (e) {
       e.preventDefault();
       var $this = $(this);
       var href =$this.attr('href');
       if(href){
           var pageName = href.replace(/.*\//, '');
+          $loading.show();
           $docBody.load('./pages/' + pageName, function (response, status) {
               if(status === 'success'){
+                  setTimeout(function () {
+                      $loading.fadeOut();
+                  }, 1000)
                   $('#main-nav').find('.active').removeClass('active');
                   $this.parent().addClass('active');
                   $this.parent().parent().parent().addClass('active');
