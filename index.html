@@ -127,15 +127,15 @@
     
     
     
-  <li class="panel active">
+  <li class="panel">
     <a data-target="#nav-getting-started" data-parent="#main-nav" data-toggle="collapse">入门</a>
-    <ul id="nav-getting-started" class="collapse in">
+    <ul id="nav-getting-started" class="collapse">
     
     
       
       
       
-      <li class="active"><a href="../latest/index.html">简介</a></li>
+      <li><a href="../latest/index.html">简介</a></li>
       
     
       
@@ -724,12 +724,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Load page -->
 <script>
-  var $docBody = $('#doc-body');
-  var $loading = $('#loading');
-  $docBody.load('./pages/index.html', function () {
-      $loading.fadeOut();
+  var $docBody = $('#doc-body'), $loading = $('#loading'), $mainNav = $('#main-nav');
+  var menuArr = [];
+  $mainNav.children().each(function () {
+      menuArr.push($(this).find('ul').find('a'));
   });
-  $('#main-nav').on('click', 'a', function (e) {
+
+  $mainNav.on('click', 'a', function (e) {
       e.preventDefault();
       var $this = $(this);
       var href =$this.attr('href');
@@ -761,6 +762,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           });
       }
   });
+
+  $docBody.on('click', 'a', function (e) {
+      var href = $(this).attr('href');
+      var urlPrefix = 'https://tabrisjs.com/tabris-js-docs/latest/';
+      if(new RegExp(urlPrefix).test(href)){
+          var fileName = href.replace(urlPrefix, '');
+          var $listItem;
+          for(var i = 0; i < menuArr.length; i++){
+              for(var j = 0; j < menuArr[i].length; j++){
+                  $listItem = $(menuArr[i][j]);
+                  if(new RegExp(fileName).test($listItem.attr('href'))){
+                      $(window).scrollTop(0);
+                      e.preventDefault();
+                      var $prev = $listItem.parent().parent().prev();
+                      if($prev.attr('class') === 'collapsed'){
+                          $prev.trigger('click');
+                      }
+                      $listItem.trigger('click');
+                      return false;
+                  }
+              }
+          }
+      }
+  });
+
+  $(menuArr[0][0]).parent().parent().prev().trigger('click')
+  $(menuArr[0][0]).trigger('click');
 </script>
 <!-- End load page -->
   </body>
