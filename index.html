@@ -738,9 +738,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           $loading.show();
           $docBody.load('./pages/' + pageName, function (response, status) {
               if(status === 'success'){
-                  setTimeout(function () {
-                      $loading.fadeOut();
-                  }, 1000)
+                  $loading.fadeOut();
                   $('#main-nav').find('.active').removeClass('active');
                   $this.parent().addClass('active');
                   $this.parent().parent().parent().addClass('active');
