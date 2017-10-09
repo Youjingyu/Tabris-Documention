@@ -1,0 +1,160 @@
+    <h1 id="fs">fs</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/NativeObject.html">NativeObject</a></p>
+
+    <p>The <code class="highlighter-rouge">fs</code> object provides methods to read and write files. All methods are asynchronous and return a promise.</p>
+
+    <p>Import this object with “<code class="highlighter-rouge">const {fs} = require('tabris');</code>”</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="readdirpath">readDir(path)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of the directory to read.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>Promise&lt;string[]&gt;</em></p>
+
+    <p>Reads the contents of a given directory. Returns a promise that resolves on success to an array of the names of the files in the directory excluding ‘.’ and ‘..’. In case of failure, the Promise rejects with an Error.</p>
+
+    <h3 id="readfilepath">readFile(path)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of the file to read.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<arraybuffer>*</arraybuffer></p>
+
+    <p>Reads the given file and returns a promise that resolves to the contents of the file on success and rejects with an Error in case of a failure. The file contents are returned as an ArrayBuffer.</p>
+
+    <h3 id="readfilepath-encoding">readFile(path, encoding)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of the file to read.</li>
+            </ul>
+        </li>
+        <li>encoding: <em>string</em>
+            <ul>
+                <li>the encoding to use to read text files.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<string>*</string></p>
+
+    <p>Reads the given text file and returns a promise that resolves to the contents of the file on success and rejects with an Error in case of a failure. The file contents are returned as a string.</p>
+
+    <h3 id="removefilepath">removeFile(path)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of the file to remove.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<void>*</void></p>
+
+    <p>Removes the given file. Returns a promise that resolves on success and rejects with an Error in case of a failure.</p>
+
+    <h3 id="writefilepath-data">writeFile(path, data)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of the file to write.</li>
+            </ul>
+        </li>
+        <li>data: <em>ArrayBuffer</em>
+            <ul>
+                <li>the contents to write to the file.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<void>*</void></p>
+
+    <p>Writes the given binary contents to the given file. If the file exists, it is overwritten, otherwise it is created. Returns a promise that resolves on success and rejects with an Error in case of a failure.</p>
+
+    <h3 id="writefilepath-text-encoding">writeFile(path, text, encoding)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>path: <em>string</em>
+            <ul>
+                <li>the path of the file to write.</li>
+            </ul>
+        </li>
+        <li>text: <em>string</em>
+            <ul>
+                <li>the text to write to the file.</li>
+            </ul>
+        </li>
+        <li>encoding: <em>string</em> [<strong>Optional</strong>]
+            <ul>
+                <li>the encoding to use to write a text file. When omitted, <code class="highlighter-rouge">utf-8</code> will be used.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<void>*</void></p>
+
+    <p>Writes the given text to the given file using the given encoding or <code class="highlighter-rouge">utf-8</code> if no encoding is specified. If the file exists, it is overwritten, otherwise it is created. Returns a promise that resolves on success and rejects with an Error in case of a failure.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="cachedir">cacheDir</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>string</em></p>
+
+    <p>The path of a directory that the app may use to store cached files. The OS may delete files in this directory when the device runs low on storage. Only use this location for data that can easily be re-created.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="filesdir">filesDir</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>string</em></p>
+
+    <p>The path of a directory that the app may use to store persistent files.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">ImageView</span><span class="p">,</span> <span class="nx">fs</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">cacheDir</span> <span class="o">+</span> <span class="s1">'/test.png'</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">imageView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ImageView</span><span class="p">({</span>
+  <span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">centerY</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">width</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="na">height</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="s1">'#aaaaaa'</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'http://lorempixel.com/400/200/'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">arrayBuffer</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">data</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">imageView</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">file</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'image:'</span><span class="p">,</span> <span class="nx">file</span><span class="p">))</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</code></pre>
+    </div>

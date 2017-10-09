@@ -1,0 +1,77 @@
+    <h1 id="inactivitytimer">InactivityTimer</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/NativeObject.html">NativeObject</a></p>
+
+    <p>A timer that triggers when the app has not been interacted with for a configurable interval.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {InactivityTimer} = require('tabris');</code>”</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="cancel">cancel()</h3>
+
+    <p>Stops and resets the timer.</p>
+
+    <h3 id="start">start()</h3>
+
+    <p>Starts the timer with the currently configured delay. After the first <code class="highlighter-rouge">timeout</code> event, the timer will stop but it can be started again.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="delay">delay</h3>
+
+    <p>Type: <em>number</em>, default: <code class="highlighter-rouge">0</code></p>
+
+    <p>The interval of user inactivity that will trigger the timer. Given in milliseconds. Changes to this property will not affect a running timer.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="delaychanged">delayChanged</h3>
+
+    <p>Fired when the <a href="#delay"><em>delay</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#delay"><em>delay</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="timeout">timeout</h3>
+
+    <p>Fired when the app has not been interacted with since the configured delay.</p>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">InactivityTimer</span><span class="p">,</span> <span class="nx">TextView</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InactivityTimer</span><span class="p">({</span>
+  <span class="na">delay</span><span class="p">:</span> <span class="mi">2000</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'timeout'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">label</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'inactive!'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">label</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span>
+  <span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">''</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
+  <span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'prev()'</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">'Start'</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">timer</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+  <span class="nx">label</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'started'</span><span class="p">;</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
+  <span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'prev()'</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">'Cancel'</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">timer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
+  <span class="nx">label</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'cancelled'</span><span class="p">;</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+</code></pre>
+    </div>

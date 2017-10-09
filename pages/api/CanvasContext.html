@@ -1,0 +1,618 @@
+    <h1 id="canvascontext">CanvasContext</h1>
+
+    <p>The CanvasContext is used for drawing onto the <a href="/tabris-js-docs/latest/api/Canvas.html">canvas</a>. It is a subset of the HTML5 <a href="https://developer.mozilla.org/en/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {CanvasContext} = require('tabris');</code>”</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="arcx-y-radius-startangle-endangle-anticlockwise">arc(x, y, radius, startAngle, endAngle, anticlockwise)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x coordinate of the arc’s center.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y coordinate of the arc’s center.</li>
+            </ul>
+        </li>
+        <li>radius: <em>number</em>
+            <ul>
+                <li>the arc’s radius.</li>
+            </ul>
+        </li>
+        <li>startAngle: <em>number</em>
+            <ul>
+                <li>the angle in radians at which the arc starts, measured clockwise from the positive x axis.</li>
+            </ul>
+        </li>
+        <li>endAngle: <em>number</em>
+            <ul>
+                <li>the angle in radians at which the arc ends, measured clockwise from the positive x axis.</li>
+            </ul>
+        </li>
+        <li>anticlockwise: <em>boolean</em> [<strong>Optional</strong>]
+            <ul>
+                <li>if true, causes the arc to be drawn counter-clockwise between the two angles.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Adds an arc to the path which is centered at <em>(x, y)</em> position with radius <em>r</em> starting at <em>startAngle</em> and ending at <em>endAngle</em> going in the given direction by <em>anticlockwise</em> (defaulting to clockwise).</p>
+
+    <h3 id="beginpath">beginPath()</h3>
+
+    <p>Starts a new path by emptying the list of sub-paths.</p>
+
+    <h3 id="beziercurvetocp1x-cp1y-cp2x-cp2y-x-y">bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>cp1x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the first control point.</li>
+            </ul>
+        </li>
+        <li>cp1y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the first control point.</li>
+            </ul>
+        </li>
+        <li>cp2x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the second control point.</li>
+            </ul>
+        </li>
+        <li>cp2y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the second control point.</li>
+            </ul>
+        </li>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the end point.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the end point.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Adds a cubic Bézier curve to the path. The starting point is the last point in the current path.</p>
+
+    <h3 id="clearrectx-y-width-height">clearRect(x, y, width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the rectangle’s width.</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the rectangles height.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Sets all pixels in the rectangle defined by starting point <em>(x, y)</em> and size <em>(width, height)</em> to transparent, erasing any previously drawn content.</p>
+
+    <h3 id="closepath">closePath()</h3>
+
+    <p>Adds a straight line from the current point to the start of the current sub-path.</p>
+
+    <h3 id="createimagedatawidth-height">createImageData(width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the width of the new ImageData object.</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the height of the new ImageData object.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/types.html#imagedata">ImageData</a></em></p>
+
+    <p>creates a new, blank ImageData object with the specified dimensions. All of the pixels in the new object are transparent black.</p>
+
+    <h3 id="createimagedataimagedata">createImageData(imageData)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>imageData: <em><a href="/tabris-js-docs/latest/types.html#imagedata">ImageData</a></em>
+            <ul>
+                <li>an existing ImageData object from which to copy the width and height.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/types.html#imagedata">ImageData</a></em></p>
+
+    <p>creates a new, blank ImageData object with the same dimensions as the specified existing ImageData object. All of the pixels in the new object are transparent black.</p>
+
+    <h3 id="fill">fill()</h3>
+
+    <p>Fills the current or path with the current fill style.</p>
+
+    <h3 id="fillrectx-y-width-height">fillRect(x, y, width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the rectangle’s width.</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the rectangles height.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>draws a filled rectangle at <em>(x, y)</em> position whose size is determined by <em>width</em> and <em>height</em>. and whose color is determined by the fillStyle attribute.</p>
+
+    <h3 id="filltexttext-x-y">fillText(text, x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>text: <em>string</em>
+            <ul>
+                <li>the text to render.</li>
+            </ul>
+        </li>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the text starting point.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the text starting point.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Fills a given text at the given <em>(x, y)</em> position using the current <em>textAlign</em> and <em>textBaseline</em> values.</p>
+
+    <h3 id="getimagedatax-y-width-height">getImageData(x, y, width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the rectangle’s width.</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the rectangle’s height.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/types.html#imagedata">ImageData</a></em></p>
+
+    <p>Returns an ImageData object representing the underlying pixel data for the area of the canvas denoted by the given rectangle.</p>
+
+    <h3 id="linetox-y">lineTo(x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the end of the line.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the end of the line.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Connects the last point in the sub-path to the <em>(x, y)</em> coordinates with a straight line.</p>
+
+    <h3 id="movetox-y">moveTo(x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the point.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the point.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Moves the starting point of a new sub-path to the <em>(x, y)</em> coordinates.</p>
+
+    <h3 id="putimagedataimagedata-x-y">putImageData(imageData, x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>imageData: <em><a href="/tabris-js-docs/latest/types.html#imagedata">ImageData</a></em>
+            <ul>
+                <li>an ImageData object containing the array of pixel values.</li>
+            </ul>
+        </li>
+        <li>x: <em>number</em>
+            <ul>
+                <li>x-coordinate of the upper-left corner of the image data rectangle</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>y-coordinate of the upper-left corner of the image data rectangle</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Paints data from the given ImageData object onto the bitmap at coordinates (x, y).</p>
+
+    <h3 id="quadraticcurvetocpx-cpy-x-y">quadraticCurveTo(cpx, cpy, x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>cpx: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the control point.</li>
+            </ul>
+        </li>
+        <li>cpy: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the control point.</li>
+            </ul>
+        </li>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the end point.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the end point.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Adds a quadratic Bézier curve to the path. The starting point is the last point in the current path.</p>
+
+    <h3 id="rectx-y-width-height">rect(x, y, width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the rectangle’s width.</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the rectangles height.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Creates a path for a rectangle with the top-left corner at <em>(x, y)</em></p>
+
+    <h3 id="restore">restore()</h3>
+
+    <p>Restores the most recently saved canvas state by popping the top entry in the drawing state stack.</p>
+
+    <h3 id="rotateangle">rotate(angle)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>angle: <em>number</em>
+            <ul>
+                <li>The angle to rotate clockwise in radians.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Adds a rotation to the transformation matrix.</p>
+
+    <h3 id="save">save()</h3>
+
+    <p>Saves the entire state of the canvas by pushing the current state onto a stack.</p>
+
+    <h3 id="scalex-y">scale(x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>scaling factor in the horizontal direction.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>scaling factor in the vertical direction.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Adds a scaling transformation to the canvas units by x horizontally and by y vertically.</p>
+
+    <h3 id="settransforma-b-c-d-e-f">setTransform(a, b, c, d, e, f)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>a: <em>number</em>
+            <ul>
+                <li>horizontal scaling.</li>
+            </ul>
+        </li>
+        <li>b: <em>number</em>
+            <ul>
+                <li>horizontal skewing.</li>
+            </ul>
+        </li>
+        <li>c: <em>number</em>
+            <ul>
+                <li>vertical skewing.</li>
+            </ul>
+        </li>
+        <li>d: <em>number</em>
+            <ul>
+                <li>vertical scaling.</li>
+            </ul>
+        </li>
+        <li>e: <em>number</em>
+            <ul>
+                <li>horizontal moving.</li>
+            </ul>
+        </li>
+        <li>f: <em>number</em>
+            <ul>
+                <li>vertical moving.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>resets (overrides) the current transformation to the identity matrix and then invokes a transformation described by the arguments of this method. The matrix has the following format:
+        [[a, c, e],
+        [b, d, f],
+        [0, 0, 1]]</p>
+
+    <h3 id="stroke">stroke()</h3>
+
+    <p>Strokes the current path with the current stroke style.</p>
+
+    <h3 id="strokerectx-y-width-height">strokeRect(x, y, width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the rectangle’s upper-left corner.</li>
+            </ul>
+        </li>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the rectangle’s width.</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the rectangles height.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>draws the outline of a rectangle at <em>(x, y)</em> position whose size is determined by <em>width</em> and <em>height</em> using the current stroke style.</p>
+
+    <h3 id="stroketexttext-x-y">strokeText(text, x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>text: <em>string</em>
+            <ul>
+                <li>the text to render.</li>
+            </ul>
+        </li>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the x axis of the coordinate for the text starting point.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the y axis of the coordinate for the text starting point.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Strokes a given text at the given <em>(x, y)</em> position using the current <em>textAlign</em> and <em>textBaseline</em> values.</p>
+
+    <h3 id="transforma-b-c-d-e-f">transform(a, b, c, d, e, f)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>a: <em>number</em>
+            <ul>
+                <li>horizontal scaling.</li>
+            </ul>
+        </li>
+        <li>b: <em>number</em>
+            <ul>
+                <li>horizontal skewing.</li>
+            </ul>
+        </li>
+        <li>c: <em>number</em>
+            <ul>
+                <li>vertical skewing.</li>
+            </ul>
+        </li>
+        <li>d: <em>number</em>
+            <ul>
+                <li>vertical scaling.</li>
+            </ul>
+        </li>
+        <li>e: <em>number</em>
+            <ul>
+                <li>horizontal moving.</li>
+            </ul>
+        </li>
+        <li>f: <em>number</em>
+            <ul>
+                <li>vertical moving.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Multiplies the current transformation with the matrix described by the arguments of this method. The matrix has the following format:
+        [[a, c, e],
+        [b, d, f],
+        [0, 0, 1]]</p>
+
+    <h3 id="translatex-y">translate(x, y)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>x: <em>number</em>
+            <ul>
+                <li>the distance to move in the horizontal direction.</li>
+            </ul>
+        </li>
+        <li>y: <em>number</em>
+            <ul>
+                <li>the distance to move in the vertical direction.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Adds a translation transformation by moving the canvas and its origin <em>x</em> horizontally and <em>y</em> vertically on the grid.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="fillstyle">fillStyle</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>Specifies the color to use inside shapes.</p>
+
+    <h3 id="font">font</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#font">Font</a></em></p>
+
+    <p>Specifies the current text style being used when drawing text.</p>
+
+    <h3 id="linecap">lineCap</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">butt</code>, <code class="highlighter-rouge">round</code>, <code class="highlighter-rouge">square</code></p>
+
+    <p>Determines how the end points of every line are drawn.</p>
+
+    <h3 id="linejoin">lineJoin</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">bevel</code>, <code class="highlighter-rouge">round</code>, <code class="highlighter-rouge">miter</code></p>
+
+    <p>Determines how two connecting segments in a shape are joined together.</p>
+
+    <h3 id="linewidth">lineWidth</h3>
+
+    <p>Type: <em>number</em></p>
+
+    <p>The thickness of lines in space units.</p>
+
+    <h3 id="strokestyle">strokeStyle</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>Specifies the color to use for the lines around shapes.</p>
+
+    <h3 id="textalign">textAlign</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">left</code>, <code class="highlighter-rouge">right</code>, <code class="highlighter-rouge">center</code>, <code class="highlighter-rouge">start</code>, <code class="highlighter-rouge">end</code></p>
+
+    <p>Specifies the current text alignment being used when drawing text.</p>
+
+    <h3 id="textbaseline">textBaseline</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">top</code>, <code class="highlighter-rouge">hanging</code>, <code class="highlighter-rouge">middle</code>, <code class="highlighter-rouge">alphabetic</code>, <code class="highlighter-rouge">ideographic</code>, <code class="highlighter-rouge">bottom</code></p>
+
+    <p>Specifies the current text baseline being used when drawing text.</p>

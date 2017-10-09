@@ -1,0 +1,102 @@
+    <h1 id="timer">Timer</h1>
+
+    <p>This API is available in the global namespace. You do not need to import it explicitly.</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="clearintervalid">clearInterval(id)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>id: <em>any</em>
+            <ul>
+                <li>the ID that was returned by <code class="highlighter-rouge">setInterval</code>.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Cancels the running interval associated with the given ID. When given an invalid ID, nothing happens.</p>
+
+    <h3 id="cleartimeoutid">clearTimeout(id)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>id: <em>any</em>
+            <ul>
+                <li>the ID that was returned by <code class="highlighter-rouge">setTimeout</code>.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Cancels the running timeout associated with the given ID. When given an invalid ID, nothing happens.</p>
+
+    <h3 id="setintervalcallback-delay-params">setInterval(callback, delay, …params)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>callback: <em>Function</em>
+            <ul>
+                <li>the function to call.</li>
+            </ul>
+        </li>
+        <li>delay: <em>number</em> [<strong>Optional</strong>]
+            <ul>
+                <li>the delay in milliseconds.</li>
+            </ul>
+        </li>
+        <li>…params: <em>any[]</em>
+            <ul>
+                <li>one or more values passed on to the callback.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>any</em></p>
+
+    <p>Calls the given function repeatedly, each times waiting the given delay. The actual delay may be slightly longer than the given one.</p>
+
+    <h3 id="settimeoutcallback-delay-params">setTimeout(callback, delay, …params)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>callback: <em>Function</em>
+            <ul>
+                <li>the function to call.</li>
+            </ul>
+        </li>
+        <li>delay: <em>number</em> [<strong>Optional</strong>]
+            <ul>
+                <li>the delay in milliseconds.</li>
+            </ul>
+        </li>
+        <li>…params: <em>any[]</em>
+            <ul>
+                <li>one or more values passed on to the callback.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>any</em></p>
+
+    <p>Calls the given function with <code class="highlighter-rouge">param</code> (and all following parameters) after the specified delay. The actual delay may be slightly longer than the given one.</p>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
+  <span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">centerY</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">'Press me!'</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="p">({</span><span class="nx">target</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">target</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'Please wait...'</span><span class="p">;</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">sayThanks</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">sayThanks</span><span class="p">(</span><span class="nx">widget</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">widget</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">'Thank you!'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+    </div>

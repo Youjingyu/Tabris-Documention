@@ -1,0 +1,308 @@
+    <h1 id="widgetcollection">WidgetCollection</h1>
+
+    <p>A <code class="highlighter-rouge">WidgetCollection</code> is an array-like object representing a set of widgets, as returned by the widget methods <code class="highlighter-rouge">children</code> and <code class="highlighter-rouge">find</code>.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {WidgetCollection} = require('tabris');</code>”</p>
+
+    <p>A <code class="highlighter-rouge">WidgetCollection</code> is an array-like object that represents any number of widgets - it can also be empty.</p>
+
+    <p>It combines a subset of the JavaScript Array API with a subset of the Tabris.js Widget API. Like an array, the widgets within the collection may be accessed directly using the <code class="highlighter-rouge">[index]</code> syntax. The number of widgets is stored in the <code class="highlighter-rouge">length</code> field. Instances of <em>WidgetCollection</em> are immutable.</p>
+
+    <p>Example:</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">children</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">child</span> <span class="nx">of</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+
+    <p>Calls to <code class="highlighter-rouge">set</code> or <code class="highlighter-rouge">animate</code> change the given properties for all widgets in the collection. Similarly, the <code class="highlighter-rouge">on</code>, <code class="highlighter-rouge">off</code> and <code class="highlighter-rouge">once</code> methods will add/remove the given listener to/from all widgets. When <code class="highlighter-rouge">get</code> is used, the value of the first widget in the collection is returned.</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="animateproperties-options">animate(properties, options)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>properties: <em>{transform?: Transformation, opacity?: number}</em>
+            <ul>
+                <li>the properties and target values to animate.</li>
+            </ul>
+        </li>
+        <li>options: <em><a href="/tabris-js-docs/latest/types.html#animationoptions">AnimationOptions</a></em>
+            <ul>
+                <li>configures the animation itself.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Animates all widgets in this collection.</p>
+
+    <h3 id="appendtoparent">appendTo(parent)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>parent: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em>
+            <ul>
+                <li>the parent widget to append to.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Appends all widgets in this collection to the given parent widget.</p>
+
+    <h3 id="childrenselector">children(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a collection containing all children of all widgets in this collection that match the given selector.</p>
+
+    <h3 id="dispose">dispose()</h3>
+
+    <p>Disposes all widgets in this collection.</p>
+
+    <h3 id="filterselector">filter(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em>
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a new <em>WidgetCollection</em> containing all widgets in this collection that match the given selector.</p>
+
+    <h3 id="findselector">find(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a collection containing all descendants of all widgets in this collection that match the given selector.</p>
+
+    <h3 id="firstselector">first(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></p>
+
+    <p>Returns the first widget in the collection that is matched by the selector. Without selector, it is the same as <code class="highlighter-rouge">collection[0]</code>.</p>
+
+    <h3 id="foreachcallback">forEach(callback)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>callback: <em>(widget: Widget, index: number, collection: WidgetCollection) =&gt; void</em>
+            <ul>
+                <li>the function to call for each widget. The arguments are: <em>widget</em>, <em>index</em>, <em>collection</em></li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Calls the given callback function once for each widget in the collection.</p>
+
+    <h3 id="getproperty">get(property)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>property: <em>string</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>any</em></p>
+
+    <p>Returns the value of the given property of the first widget in this collection.</p>
+
+    <h3 id="includeswidget">includes(widget)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em>
+            <ul>
+                <li>the widget to search in the collection.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>boolean</em></p>
+
+    <p>Returns <code class="highlighter-rouge">true</code> if the given widget is included in the collection, <code class="highlighter-rouge">false</code> otherwise.</p>
+
+    <h3 id="indexofwidget">indexOf(widget)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em>
+            <ul>
+                <li>the widget to locate in the collection.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>number</em></p>
+
+    <p>Returns the index of the given widget within the collection, or <code class="highlighter-rouge">-1</code> if the widget is not present.</p>
+
+    <h3 id="lastselector">last(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></p>
+
+    <p>Returns the last widget in the collection that is matched by the selector. Without selector, it is the same as <code class="highlighter-rouge">collection[collection.length - 1]</code>.</p>
+
+    <h3 id="offevent-listener-context">off(event, listener, context)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>event: <em>string</em></li>
+        <li>listener: <em>Function</em></li>
+        <li>context: <em>this</em> [<strong>Optional</strong>]</li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Removes the given listener from all widgets in this collection. See also <code class="highlighter-rouge">Widget.off()</code>.</p>
+
+    <h3 id="onevent-listener-context">on(event, listener, context)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>event: <em>string</em></li>
+        <li>listener: <em>Function</em></li>
+        <li>context: <em>this</em> [<strong>Optional</strong>]
+            <ul>
+                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Adds the given listener to all widgets in this collection. See also <code class="highlighter-rouge">Widget.on()</code>.</p>
+
+    <h3 id="onceevent-listener-context">once(event, listener, context)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>event: <em>string</em></li>
+        <li>listener: <em>Function</em></li>
+        <li>context: <em>this</em> [<strong>Optional</strong>]
+            <ul>
+                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Adds the given listener for single execution on all widgets in this collection. See also <code class="highlighter-rouge">Widget.once()</code>.</p>
+
+    <h3 id="parent">parent()</h3>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a collection containing all direct parents of the widgets in this collection.</p>
+
+    <h3 id="setproperty-value">set(property, value)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>property: <em>string</em></li>
+        <li>value: <em>any</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Sets the given property on all widgets in this collection. See also <code class="highlighter-rouge">Widget.set()</code>.</p>
+
+    <h3 id="setproperties">set(properties)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>properties: <em>Object</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Sets all key-value pairs in the properties object on all widgets in this collection. See also <code class="highlighter-rouge">Widget.set()</code>.</p>
+
+    <h3 id="toarray">toArray()</h3>
+
+    <p><strong>Returns:</strong> <em>Widget[]</em></p>
+
+    <p>Returns an Array containing all widgets in the collection.</p>
+
+    <h3 id="triggerevent-params">trigger(event, …params)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>event: <em>string</em></li>
+        <li>…params: <em>any[]</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Triggers an event of the given type on all widgets in this collection. See also <code class="highlighter-rouge">Widget.trigger()</code></p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="length">length</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>number</em></p>
+
+    <p>Contains the number of widgets in the collection.</p>

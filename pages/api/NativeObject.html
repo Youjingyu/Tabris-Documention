@@ -1,0 +1,200 @@
+    <h1 id="nativeobject">NativeObject</h1>
+
+    <p>Base class for all objects with a native implementation.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {NativeObject} = require('tabris');</code>”</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="getproperty">get(property)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>property: <em>string</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>any</em></p>
+
+    <p>Gets the current value of the given <em>property</em>.</p>
+
+    <h3 id="offtype-listener-context">off(type, listener, context)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>type: <em>string</em>
+            <ul>
+                <li>the type of events to remove listeners for.</li>
+            </ul>
+        </li>
+        <li>listener: <em>(event: any) =&gt; void</em>
+            <ul>
+                <li>the listener function to remove.</li>
+            </ul>
+        </li>
+        <li>context: <em>Object</em> [<strong>Optional</strong>]
+            <ul>
+                <li>the context of the bound listener to remove.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Removes all occurrences of <em>listener</em> that are bound to <em>type</em> and <em>context</em> from this widget.</p>
+
+    <h3 id="offlisteners">off(listeners)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>listeners: <em>EventsObject</em>
+            <ul>
+                <li>a key-value map where the keys are event types and the values are the listeners to deregister from these events, e.g. <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Removes all listeners in the given object from the event type indicated by their key.</p>
+
+    <h3 id="ontype-listener-context">on(type, listener, context)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>type: <em>string</em>
+            <ul>
+                <li>the type of events to listen for.</li>
+            </ul>
+        </li>
+        <li>listener: <em>(event: any) =&gt; void</em>
+            <ul>
+                <li>the listener function to register. This function will be called with an event object.</li>
+            </ul>
+        </li>
+        <li>context: <em>Object</em> [<strong>Optional</strong>]
+            <ul>
+                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object. If not present, the listener will be called in the context of this object.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Registers a <em>listener</em> function to be notified of events of the given <em>type</em>.</p>
+
+    <h3 id="onlisteners">on(listeners)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>listeners: <em>EventsObject</em>
+            <ul>
+                <li>a key-value map where the keys are event types and the values are the listeners to register for these events, e.g. <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Registers all listeners in the given object for the event type indicated by their key.</p>
+
+    <h3 id="oncetype-listener-context">once(type, listener, context)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>type: <em>string</em>
+            <ul>
+                <li>the type of the event to listen for.</li>
+            </ul>
+        </li>
+        <li>listener: <em>(event: any) =&gt; void</em>
+            <ul>
+                <li>the listener function to register. This function will be called with an event object.</li>
+            </ul>
+        </li>
+        <li>context: <em>Object</em> [<strong>Optional</strong>]
+            <ul>
+                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object. If not present, the listener will be called in the context of this object.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Same as <code class="highlighter-rouge">on</code>, but removes the listener after it has been invoked by an event.</p>
+
+    <h3 id="oncelisteners">once(listeners)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>listeners: <em>EventsObject</em>
+            <ul>
+                <li>a key-value map where the keys are event types and the values are the listeners to register for these events, e.g. <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Same as <code class="highlighter-rouge">on</code>, but removes the listener after it has been invoked by an event.</p>
+
+    <h3 id="setproperty-value">set(property, value)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>property: <em>string</em></li>
+        <li>value: <em>any</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Sets the given property.</p>
+
+    <h3 id="setproperties">set(properties)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>properties: <em>PropertiesObject</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Sets all key-value pairs in the properties object as widget properties.</p>
+
+    <h3 id="triggertype-event">trigger(type, event)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>type: <em>string</em>
+            <ul>
+                <li>the type of event to trigger</li>
+            </ul>
+        </li>
+        <li>event: <em>Object</em>
+            <ul>
+                <li>the event object to pass to listener functions.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Notifies all registered listeners for the given <em>type</em> and passes the <em>event</em> object to the listeners.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="cid">cid</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>string</em></p>
+
+    <p>An application-wide unique identifier automatically assigned to all native objects on creation.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>

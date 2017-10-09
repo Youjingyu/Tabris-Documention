@@ -1,0 +1,33 @@
+    <h1 id="ui">ui</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+
+    <p>Represents the top-level parent for all widgets. It provides access to the status bar, the navigation bar, the drawer and the content view.</p>
+
+    <p>Import this object with “<code class="highlighter-rouge">const {ui} = require('tabris');</code>”</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="contentview">contentView</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em></p>
+
+    <p>The content view is the container for the widgets that constitute the app’s main UI. It covers the entire app area. Widgets can be appended directly to the content view.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="drawer">drawer</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/api/Drawer.html">Drawer</a></em></p>
+
+    <p>A drawer that can be swiped in from the left edge of the screen. The drawer is locked by default. To use it in an application, set the property <code class="highlighter-rouge">locked</code> to <code class="highlighter-rouge">false</code>. The drawer can contain any kind of widgets.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="navigationbar">navigationBar</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/api/NavigationBar.html">NavigationBar</a></em></p>
+
+    <p>Represents the system navigation bar is the onscreen area where <em>Back</em>, <em>Home</em> and similar buttons are displayed. It is only supported on Android.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="statusbar">statusBar</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/api/StatusBar.html">StatusBar</a></em></p>
+
+    <p>Represents the system status bar. This is the area where notifications, status icons and device time are displayed.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>

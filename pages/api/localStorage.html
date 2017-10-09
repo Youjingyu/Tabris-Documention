@@ -1,0 +1,48 @@
+    <h1 id="localstorage">localStorage</h1>
+
+    <p>The <code class="highlighter-rouge">localStorage</code> object allows storing key-value pairs in a persistent store. Both keys and values are stored as strings.</p>
+
+    <p>On iOS, there is an additional object <code class="highlighter-rouge">secureStorage</code> available in the global scope. This is a drop-in replacement for <code class="highlighter-rouge">localStorage</code> that keeps data in the encrypted iOS Keychain.</p>
+
+    <p>The <code class="highlighter-rouge">localStorage</code> is only meant to store relatively short strings. To store larger amounts of data it is recommended to use the <a href="./fs.html">FileSystem</a> API.</p>
+
+    <p>This object is available in the global namespace. You do not need to import it explicitly.</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="clear">clear()</h3>
+
+    <p>Remove all key/value pairs from the storage.</p>
+
+    <h3 id="getitemkey">getItem(key)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>key: <em>string</em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>string</em></p>
+
+    <p>Retrieves the value associated with the given key.</p>
+
+    <h3 id="removeitemkey">removeItem(key)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>key: <em>string</em></li>
+    </ul>
+
+    <p>Removes the given key/value pair from the storage.</p>
+
+    <h3 id="setitemkey-value">setItem(key, value)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>key: <em>string</em></li>
+        <li>value: <em>string</em></li>
+    </ul>
+
+    <p>Stores a string value using the given key.</p>
