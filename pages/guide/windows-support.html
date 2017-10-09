@@ -36,7 +36,7 @@ tabris build windows --release -- --archs="&lt;cpu&gt;"
 
     <p>其中<code class="highlighter-rouge">&lt;cpu&gt;</code>可以是‘x64’、‘x86’ 或 ‘arm’。将包复制到单独的目录中，并为下一个架构重复此步骤。</p>
 
-    <p>windows特定的<code class="highlighter-rouge">config.xml</code>配置项在<a href="./build.html#windows-specific-preferences">这里</a>说明。</p>
+    <p>windows特定的<code class="highlighter-rouge">config.xml</code>配置项在<a href="build.html#windows-specific-preferences">这里</a>说明。</p>
 
     <blockquote>
         <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js的Windows构建还不能为Windows Store签署包。现在，如果你需要将应用程序上传到Windows Store，则必须通过tabris CLI进行本地构建，并<a href="https://docs.microsoft.com/en-us/windows/uwp/packaging/packaging-uwp-apps#create-an-app-package">使用Visual Studio创建<code class="highlighter-rouge">.appxupload</code>包</a>。 建议不要将它们打包，因为这可能会在以后使用Tabris.js构建服务创建的包更新store提交时引起问题。</p>

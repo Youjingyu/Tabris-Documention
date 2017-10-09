@@ -735,9 +735,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       var $this = $(this);
       var href =$this.attr('href');
       if(href){
-          var pageName = href.replace(/.*\//, '');
+          var hrefArr = href.split('/');
+          var folderName = hrefArr[hrefArr.length - 2], pageName = hrefArr[hrefArr.length - 1];
           $loading.show();
-          $docBody.load('./pages/' + pageName, function (response, status) {
+          $docBody.load('./pages/' + folderName +  '/' + pageName, function (response, status) {
               if(status === 'success'){
                   $('html,body').animate({scrollTop: 0}, 500, 'linear');
                   $loading.fadeOut();
