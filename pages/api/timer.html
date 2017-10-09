@@ -1,90 +1,90 @@
     <h1 id="timer">Timer</h1>
 
-    <p>This API is available in the global namespace. You do not need to import it explicitly.</p>
+    <p>该API在全局命名空间中可用。不需要明确的导入。</p>
 
-    <h2 id="methods">Methods</h2>
+    <h2 id="methods">方法</h2>
 
     <h3 id="clearintervalid">clearInterval(id)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>id: <em>any</em>
             <ul>
-                <li>the ID that was returned by <code class="highlighter-rouge">setInterval</code>.</li>
+                <li>此ID值由 <code class="highlighter-rouge">setInterval</code> 返回。</li>
             </ul>
         </li>
     </ul>
 
-    <p>Cancels the running interval associated with the given ID. When given an invalid ID, nothing happens.</p>
+    <p>取消与ID关联的定时器的运行。当给定无效的ID时，什么都不会发生。</p>
 
     <h3 id="cleartimeoutid">clearTimeout(id)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>id: <em>any</em>
             <ul>
-                <li>the ID that was returned by <code class="highlighter-rouge">setTimeout</code>.</li>
+                <li>此ID值由 <code class="highlighter-rouge">setTimeout</code>返回。</li>
             </ul>
         </li>
     </ul>
 
-    <p>Cancels the running timeout associated with the given ID. When given an invalid ID, nothing happens.</p>
+    <p>取消与ID关联的延时器的运行。当给定无效的ID时，什么都不会发生。</p>
 
     <h3 id="setintervalcallback-delay-params">setInterval(callback, delay, …params)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>callback: <em>Function</em>
             <ul>
-                <li>the function to call.</li>
+                <li>回调函数。</li>
             </ul>
         </li>
-        <li>delay: <em>number</em> [<strong>Optional</strong>]
+        <li>delay: <em>number</em> [<strong>可选</strong>]
             <ul>
-                <li>the delay in milliseconds.</li>
+                <li>以毫秒为单位的延迟。</li>
             </ul>
         </li>
         <li>…params: <em>any[]</em>
             <ul>
-                <li>one or more values passed on to the callback.</li>
+                <li>传递给回调函数的一个或多个值。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>any</em></p>
+    <p><strong>返回值：</strong> <em>any</em></p>
 
-    <p>Calls the given function repeatedly, each times waiting the given delay. The actual delay may be slightly longer than the given one.</p>
+    <p>重复调用给定函数，每次等待给定的延迟。实际的延迟可能会比给定的稍长。</p>
 
     <h3 id="settimeoutcallback-delay-params">setTimeout(callback, delay, …params)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>callback: <em>Function</em>
             <ul>
-                <li>the function to call.</li>
+                <li>回调函数。</li>
             </ul>
         </li>
-        <li>delay: <em>number</em> [<strong>Optional</strong>]
+        <li>delay: <em>number</em> [<strong>可选</strong>]
             <ul>
-                <li>the delay in milliseconds.</li>
+                <li>以毫秒为单位的延迟。</li>
             </ul>
         </li>
         <li>…params: <em>any[]</em>
             <ul>
-                <li>one or more values passed on to the callback.</li>
+                <li>传递给回调函数的一个或多个值。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>any</em></p>
+    <p><strong>返回值：</strong> <em>any</em></p>
 
-    <p>Calls the given function with <code class="highlighter-rouge">param</code> (and all following parameters) after the specified delay. The actual delay may be slightly longer than the given one.</p>
+    <p>在指定的延迟后使用<code class="highlighter-rouge">参数</code> (和后续的所有参数) 调用给定的函数。 实际的延迟可能会比给定的稍长。</p>
 
-    <h2 id="example">Example</h2>
+    <h2 id="example">示例</h2>
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
 
 <span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
