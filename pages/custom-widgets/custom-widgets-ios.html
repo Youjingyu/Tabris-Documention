@@ -1,0 +1,126 @@
+    <h1 id="custom-widgets-on-ios">Custom Widgets on iOS</h1>
+
+    <p>A Tabris.js widget consists of a <a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript API</a> and a native client side implementation. This document describes how to create the native implementation for a custom widget on the iOS platform.</p>
+
+    <p>In order to implement a custom widget you will need to <a href="/tabris-js-docs/latest/build.html">build locally</a>.</p>
+
+    <h3 id="building-upon-cordova-infrastructure">Building upon Cordova infrastructure</h3>
+
+    <p>To create a Tabris.js custom widget, we make use of the Cordova build system. Therefore we create a Cordova plugin that ties into Tabris.js specific APIs. In fact creating a Tabris.js custom widget does not require touching any of the Cordova specific APIs. All interaction with the JavaScript parts is enabled through Tabris.js specific APIs.</p>
+
+    <p>By leveraging the Cordova plugin architecture, we make use of the Cordova build chain and provide a <code class="highlighter-rouge">plugin.xml</code> in our plugin to customize the build process. Once a plugin is defined it can be consumed by an app via the regular <code class="highlighter-rouge">cordova plugin add &lt;plugin-id/git-url&gt;</code> shell command or a <code class="highlighter-rouge">&lt;plugin /&gt;</code> entry in the config.xml of an app.</p>
+
+    <p><img class="emoji" title=":information_source:" alt=":information_source:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2139.png" height="20" width="20" align="absmiddle"> A working example of the concepts outlined in this document can be found <a href="https://github.com/eclipsesource/tabris-maps">here</a>.</p>
+
+    <h2 id="implementing-your-new-widget">Implementing your new widget</h2>
+
+    <blockquote>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle"> When implementing and/or overriding a method, check if you need to call <code class="highlighter-rouge">super</code>!</p>
+    </blockquote>
+
+    <h3 id="initializers">Initializers</h3>
+
+    <p>To develop a new widget that can communicate with the JavaScript side, you create a new class that subclasses <code class="highlighter-rouge">BasicWidget</code>. <code class="highlighter-rouge">BasicWidget</code> has two initializers you’ll need to override.</p>
+
+    <p>The first initializer is <code class="highlighter-rouge">- (instancetype)initWithObjectId:(NSString *)objectId andClient:(TabrisClient *)client</code>. It is the designated initializer of all widgets and all other initializers should call it. This initializer should contain all the code that is necessary to run the widget (e.g. create new instance of view) and it should always call its <code class="highlighter-rouge">super</code>.</p>
+
+    <p>The second initializer is <code class="highlighter-rouge">- (instancetype)initWithObjectId:(NSString *)objectId properties:(NSDictionary *)properties andClient:(TabrisClient *)client</code>. This initializer is called directly by the JavaScript and should always call the aforementioned designated initializer (or some other initializer that calls it). The <code class="highlighter-rouge">properties</code> parameter contains all of the parameters that were passed by constructor in JavaScript. You should extract and set those after the designated initializer has been executed.</p>
+
+    <h3 id="required-methods">Required methods</h3>
+
+    <p>Implementation of the following methods is required:</p>
+
+    <div class="language-objc highlighter-rouge">
+<pre class="highlight"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">remoteObjectType</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">NSMutableSet</span> <span class="o">*</span><span class="p">)</span><span class="n">remoteObjectProperties</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="p">)</span><span class="n">view</span><span class="p">;</span>
+</code></pre>
+    </div>
+
+    <p><code class="highlighter-rouge">+ (NSString *)remoteObjectType</code> must return the unique identifier of the widget. Using reverse domain name notation is advised (e.g. <code class="highlighter-rouge">@“com.mydomain.MyWidget”</code>). It must return the same value as type declared in JavaScript (e.g. <code class="highlighter-rouge">_type: “com.mydomain.MyWidget”</code>). This method does not require a <code class="highlighter-rouge">super</code> call.</p>
+
+    <p><code class="highlighter-rouge">+ (NSMutableSet *)remoteObjectProperties</code> contains all of the widget’s properties that can be accessed by JavaScript. You have to call <code class="highlighter-rouge">super</code> of this method first. Afterwards add the names of properties defined by your widget to this set, to expose those to JavaScript.</p>
+
+    <p><code class="highlighter-rouge">- (UIView *)view</code> returns the actual instance of the iOS native widget. You should have property in your class that will be returned by this method. This method does not require a <code class="highlighter-rouge">super</code> call.</p>
+
+    <h3 id="calls-from-the-javascript">Calls from the JavaScript</h3>
+
+    <p>The JavaScript API can invoke methods on the native widget. To do this, you have to register a selector for the specific JavaScript call. Here is an example:</p>
+
+    <div class="language-objc highlighter-rouge">
+<pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithObjectId</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aId</span> <span class="nf">andClient</span><span class="p">:(</span><span class="n">TabrisClient</span> <span class="o">*</span><span class="p">)</span><span class="nv">tabrisClient</span> <span class="p">{</span>
+  <span class="n">self</span> <span class="o">=</span> <span class="p">[</span><span class="n">super</span> <span class="nf">initWithObjectId</span><span class="p">:</span><span class="n">aId</span> <span class="nf">andClient</span><span class="p">:</span><span class="n">tabrisClient</span><span class="p">];</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Prior initialization
+</span>    <span class="p">[</span><span class="n">self</span> <span class="nf">registerSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nf">beep</span><span class="p">:)</span> <span class="n">forCall</span><span class="o">:</span><span class="s">@"beep"</span><span class="p">];</span>
+    <span class="c1">//Following initialization
+</span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">beep</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">parameters</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+
+    <p>If the JavaScript invokes a <code class="highlighter-rouge">beep</code> method, the call will be forwarded to the native <code class="highlighter-rouge">- (void)beep:(NSDictionary *)parameters</code> method. Please note that methods you are registering have to accept <code class="highlighter-rouge">NSDictionary</code> as a parameter. This dictionary contains all of the parameters passed by JavaScript to the native side.</p>
+
+    <h3 id="events">Events</h3>
+
+    <p>Events are notifications sent from the native side to JavaScript. In order to add an event to your widget, you only have to declare a public boolean property conforming to this naming pattern: <code class="highlighter-rouge">eventNameListener</code> (e.g. <code class="highlighter-rouge">longPressListener</code>). Please note you should not change the value of this property inside of your native code.</p>
+
+    <div class="language-objc highlighter-rouge">
+<pre class="highlight"><code><span class="k">@interface</span> <span class="nc">MyWidget</span> <span class="p">:</span> <span class="nc">BasicWidget</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">myEventListener</span><span class="p">;</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">MyWidget</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">someMethod</span> <span class="p">{</span>
+  <span class="c1">//Method implementation
+</span>  <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">myEventListener</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Message</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">message</span> <span class="o">=</span> <span class="p">[[</span><span class="n">self</span> <span class="nf">notifications</span><span class="p">]</span> <span class="nf">forObject</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">message</span> <span class="nf">fireEvent</span><span class="p">:</span><span class="s">@"myEvent"</span> <span class="nf">withAttributes</span><span class="p">:@{</span><span class="s">@"key"</span><span class="o">:</span><span class="s">@"value"</span><span class="p">,</span> <span class="s">@"otherKey"</span><span class="o">:</span><span class="s">@"otherValue"</span><span class="p">}];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+
+    <h3 id="registering-your-widget">Registering your widget</h3>
+
+    <p>You have to execute following instructions after you add a plugin (e.g. <code class="highlighter-rouge">cordova plugin add</code>) to your project. Locate your Xcode project file (typically located in <code class="highlighter-rouge">platforms/ios/</code>) and open it.</p>
+
+    <p>The final step of this process is adding your new widget to widget registry. To do this edit the <code class="highlighter-rouge">AppDelegate.m</code> in your project to:</p>
+
+    <ul>
+        <li>Import your plugins header file (e.g. <code class="highlighter-rouge">#import "MyWidget.h"</code>)</li>
+        <li>Find the <code class="highlighter-rouge">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code> method. Inside of this method you have add following line <code class="highlighter-rouge">[self.client addRemoteObject:[MyWidget class]];</code> along the other calls of <code class="highlighter-rouge">addRemoteObject:</code> method.</li>
+    </ul>
+
+    <h3 id="other-methods">Other methods</h3>
+
+    <p>Following methods can be overridden:</p>
+
+    <ul>
+        <li>
+            <code class="highlighter-rouge">- (void)destroy</code> - Called upon destruction of a widget.</li>
+        <li>
+            <code class="highlighter-rouge">- (void)addObject:(id&lt;RemoteObject&gt;)object</code> – Called when a child object sets this object as parent.</li>
+        <li>
+            <code class="highlighter-rouge">- (void)removeObject:(id&lt;RemoteObject&gt;)object</code> – Called when a child object is being removed (e.g. when child is destroyed).</li>
+        <li>
+            <code class="highlighter-rouge">- (void)addWidgetView:(id&lt;Widget&gt;)widget</code> – Used to add a UIView of a child to this widget’s view hierarchy.</li>
+        <li>
+            <code class="highlighter-rouge">- (void)childObjectChanged:(id&lt;RemoteObject&gt;)object</code> – Will be called when a child object calls <code class="highlighter-rouge">[self notifyObjectChange]</code>.</li>
+    </ul>
+
+    <h2 id="swift">Swift</h2>
+
+    <p>In order to develop a Tabris plugin in Swift, you’ll have to open your project in Xcode and adjust couple of things:</p>
+
+    <ul>
+        <li>Add a new Swift class to your project. Xcode will ask to create a bridging header (if you don’t have one). You have to confirm its creation.</li>
+        <li>Go to the bridging header and impor the Tabris headers to this file.</li>
+        <li>Go to the <code class="highlighter-rouge">Build Settings</code> of your project and find <code class="highlighter-rouge">Defines Module</code> and <code class="highlighter-rouge">Enable Modules (C and Objective-C)</code>. Set both of them to <code class="highlighter-rouge">Yes</code>.</li>
+        <li>There is a second special header file that bridges Swift to Objective-C. It is automatically generated by Xcode upon build time and is not a part of your projects structure. Therefore, after adding new classes or methods in Swift you need to rebuild the project to make them visible on Objective-C. This is very important because you need to register your widgets in <code class="highlighter-rouge">AppDelegate.m</code>, which is written in Objective-C. This header file has your projects name and the <code class="highlighter-rouge">-Swift.h</code> suffix (e.g. <code class="highlighter-rouge">MyProject-Swift.h</code>). You have to import it in <code class="highlighter-rouge">AppDelegate.m</code>. After you do this, register your widget as stated previously.</li>
+    </ul>

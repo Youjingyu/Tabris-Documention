@@ -1,0 +1,67 @@
+<h1 id="custom-widgets">Custom Widgets</h1>
+
+<p>Custom widgets are written in JavaScript and the language available for the native platforms. They use the interfaces of the native Tabris.js clients and are wrapped in a Cordova plug-in. This article covers the JavaScript part of the implementation.</p>
+
+<h2 id="defining-a-custom-widget-in-javascript">Defining a Custom Widget in JavaScript</h2>
+
+<p>Custom widgets must extend <code class="highlighter-rouge">Widget</code>. It enables communication with the native part of the custom widget.</p>
+
+<p>Custom widget classes must overwrite the <code class="highlighter-rouge">_nativeType</code> property getter to return a type matching the native implementation:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyCustomWidget</span> <span class="kr">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
+
+  <span class="nx">get</span> <span class="nx">_nativeType</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'myLibrary.MyCustomWidget'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="properties">Properties</h3>
+
+<p>Call <code class="highlighter-rouge">_nativeSet(name, value)</code> and <code class="highlighter-rouge">_nativeGet(name)</code> to exchange properties with the native client.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyCustomWidget</span> <span class="kr">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
+
+  <span class="p">...</span>
+
+  <span class="nx">set</span> <span class="nx">myProperty</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_nativeSet</span><span class="p">(</span><span class="s1">'myProperty'</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">get</span> <span class="nx">myProperty</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_nativeGet</span><span class="p">(</span><span class="s1">'myProperty'</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="p">...</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="events">Events</h3>
+
+<p>Overwrite the <code class="highlighter-rouge">_listen</code> method and call <code class="highlighter-rouge">_nativeListen</code> to get notified when an event gets fired by the native widget part.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyCustomWidget</span> <span class="kr">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
+
+  <span class="p">...</span>
+
+  <span class="nx">_listen</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">listening</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">'myEvent'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_nativeListen</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">listening</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kr">super</span><span class="p">.</span><span class="nx">_listen</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">listening</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="p">...</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="compatibility-with-ios-9">Compatibility with iOS 9</h3>
+
+<p>For compatibility with the JavaScriptCore version used in iOS 9, some ES6 language features must be transpiled (see <a href="/tabris-js-docs/latest/lang.html#ecmascript-6">EcmaScript 6</a>).</p>

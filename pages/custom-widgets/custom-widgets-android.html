@@ -1,0 +1,162 @@
+    <h1 id="custom-widgets-android">Custom Widgets Android</h1>
+
+    <p>A Tabris.js widget consists of a <a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript API</a> and a native client side implementation. This document describes how to create the native implementation for a custom widget on the Android platform.</p>
+
+    <p>In order to implement a custom widget you will need to <a href="/tabris-js-docs/latest/build.html">build locally</a>.</p>
+
+    <h3 id="building-upon-cordova-infrastructure">Building upon Cordova infrastructure</h3>
+
+    <p>To create a Tabris.js custom widget, we make use of the Cordova build system. Therefore we create a Cordova plugin that ties into Tabris.js specific APIs. A Tabris.js custom widget does not require touching any of the Cordova specific Java APIs. All interaction with the JavaScript parts is enabled through Tabris.js specific APIs.</p>
+
+    <p>By leveraging the Cordova plugin architecture we are able to make use of the Cordova build chain and to provide a <code class="highlighter-rouge">plugin.xml</code> in our plugin to customize the build process. Once a plugin is defined it can be consumed by an app via the regular <code class="highlighter-rouge">cordova plugin add &lt;plugin-id/git-url&gt;</code> shell command or a <code class="highlighter-rouge">&lt;plugin /&gt;</code> entry in the config.xml of an app.</p>
+
+    <p><img class="emoji" title=":information_source:" alt=":information_source:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2139.png" height="20" width="20" align="absmiddle"> A working example of the concepts outlined in this document can be found <a href="https://github.com/eclipsesource/tabris-calendar">here</a>.</p>
+
+    <h2 id="receiving-messages-from-javascript">Receiving messages from JavaScript</h2>
+
+    <p>Creating a custom widget requires handling incoming messages from JavaScript and sending messages back to JavaScript. The main entry point to this communication loop is the <code class="highlighter-rouge">com.eclipsesource.tabris.android.Operator</code>. The operator provides callback methods for all communication <em>from</em> JavaScript to the native client. The following snippet shows a basic operator that uses the <code class="highlighter-rouge">com.eclipsesource.tabris.android.AbstractViewOperator</code> as a basis for a <code class="highlighter-rouge">View</code> specific operator:</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalendarOperator</span> <span class="kd">extends</span> <span class="n">AbstractViewOperator</span><span class="o">&lt;</span><span class="n">CalendarView</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="nf">CalendarOperator</span><span class="o">(</span><span class="n">Activity</span> <span class="n">activity</span><span class="o">,</span> <span class="n">TabrisContext</span> <span class="n">tabrisContext</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ..</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"com.example.calendar.Calendar"</span><span class="o">;</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+    </div>
+
+    <p>The snippet above shows two important aspects of an <code class="highlighter-rouge">Operator</code>: The class <em>has to have</em> a two argument constructor <code class="highlighter-rouge">CalendarOperator(&lt;Activity&gt;, &lt;TabrisContext&gt;)</code> and the method <code class="highlighter-rouge">getType()</code> has to return the name of the custom widget as registered on the <a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript side</a>.</p>
+
+    <h2 id="registering-an-operator">Registering an operator</h2>
+
+    <p>To make an operator available to the Tabris.js Android runtime we have to register it. The simplest way is to declare our operator in a <code class="highlighter-rouge">meta-data</code> entry of the <code class="highlighter-rouge">AndroidManifest.xml</code>.</p>
+
+    <p>Since our custom widget is wrapped in a Cordova plug-in we can use the plug-in’s <code class="highlighter-rouge">plugin.xml</code> file to add a new <code class="highlighter-rouge">meta-data</code> entry into the <code class="highlighter-rouge">AndroidManifest.xml</code> via the Cordova <a href="https://cordova.apache.org/docs/en/5.0.0/plugin_ref_spec.md.html"><code class="highlighter-rouge">config-file</code></a> directive. The following snippet shows how to declare our operator in the <code class="highlighter-rouge">plugin.xml</code> so that it is part of the final <code class="highlighter-rouge">AndroidManifest.xml</code>:</p>
+
+    <div class="language-xml highlighter-rouge">
+<pre class="highlight"><code><span class="nt">&lt;plugin</span> <span class="na">xmlns=</span><span class="s">"http://apache.org/cordova/ns/plugins/1.0"</span>
+        <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+        <span class="na">id=</span><span class="s">"com.example.tabris.calendar"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;platform</span> <span class="na">name=</span><span class="s">"android"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;config-file</span> <span class="na">target=</span><span class="s">"AndroidManifest.xml"</span> <span class="na">parent=</span><span class="s">"/manifest/application"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;meta-data</span>
+        <span class="na">android:name=</span><span class="s">"com.example.tabris.android.OPERATOR.com.example.tabris.calendar"</span>
+        <span class="na">android:value=</span><span class="s">"com.example.tabris.calendar.CalendarOperator"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/config-file&gt;</span>
+  <span class="nt">&lt;/platform&gt;</span>
+
+  ...
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre>
+    </div>
+
+    <p>The snippet above inserts the <code class="highlighter-rouge">meta-data</code> element with its two attributes <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">value</code> into the <code class="highlighter-rouge">AndroidManifest.xml</code>. The <code class="highlighter-rouge">name</code> attribute has to be an application wide unique ID with a prefix of <code class="highlighter-rouge">com.eclipsesource.tabris.android.OPERATOR</code>. In order to make the name unique we append the widget specific ID <code class="highlighter-rouge">.com.eclipsesource.tabris.calendar</code> to the prefix. The <code class="highlighter-rouge">value</code> attribute of the <code class="highlighter-rouge">meta-data</code> element has to contain the fully qualified class name of our <code class="highlighter-rouge">Operator</code> implementation, eg.: <code class="highlighter-rouge">com.eclipsesource.tabris.calendar.CalendarOperator</code>.</p>
+
+    <h2 id="instantiating-a-widget">Instantiating a widget</h2>
+
+    <p>With the <code class="highlighter-rouge">Operator</code> registered we can now instantiate the Android <code class="highlighter-rouge">View</code> object that we want to display in the UI. To handle a create operation sent from JavaScript we implement the <code class="highlighter-rouge">Operator.create(&lt;Properties&gt;)</code> method in the operator:</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">CalendarView</span> <span class="nf">createView</span><span class="o">(</span><span class="n">Properties</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nf">CalendarView</span><span class="o">(</span><span class="n">activity</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+    </div>
+
+    <p>The snippet instantiates the Android <code class="highlighter-rouge">android.widget.CalendarView</code> with the <code class="highlighter-rouge">Activity</code> passed into the constructor of the <code class="highlighter-rouge">Operator</code>. The <code class="highlighter-rouge">properties</code>  argument could contain widget specific configuration directives but is not used in this example.</p>
+
+    <h2 id="handling-properties">Handling properties</h2>
+
+    <p>While we have instantiated our widget and passed it back to the system, it is not yet visible in the UI. To show an Android <code class="highlighter-rouge">View</code> it has to be added to the view hierarchy. In order to do that we have to process the <code class="highlighter-rouge">parent</code> property passed in from JavaScript. The <code class="highlighter-rouge">parent</code> provides the widget onto which we want to add our custom widget.</p>
+
+    <p>Since this is a very common scenario we don’t have to implement this ourselves but rather rely on the pre-existing <code class="highlighter-rouge">com.eclipsesource.tabris.android.ViewPropertyHandler</code>. The <code class="highlighter-rouge">ViewPropertyHandler</code> implements the <code class="highlighter-rouge">PropertyHandler</code> interface which provides <code class="highlighter-rouge">get</code> and <code class="highlighter-rouge">set</code> methods to support various properties.</p>
+
+    <p>The concrete <code class="highlighter-rouge">ViewPropertyHandler</code> provides default implementations for <a href="https://tabrisjs.com/documentation/latest/api/Widget#properties">common widget properties</a> like <code class="highlighter-rouge">parent</code>, <code class="highlighter-rouge">layoutData</code>, <code class="highlighter-rouge">visible</code> etc..</p>
+
+    <p>To activate the property handler we override <code class="highlighter-rouge">AbstractOperator.getPropertyHandler()</code> and return the corresponding handler:</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">PropertyHandler</span><span class="o">&lt;</span><span class="n">CalendarView</span><span class="o">&gt;</span> <span class="nf">getPropertyHandler</span><span class="o">(</span><span class="n">CalendarView</span> <span class="n">calendarView</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">propertyHandler</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+    </div>
+
+    <p>By returning the default <code class="highlighter-rouge">ViewPropertyHandler</code> we have covered all the common widget properties of Tabris.js but it is also possible to extend the <code class="highlighter-rouge">ViewPropertyHandler</code> to provide your own implementation for a property or to add a custom property. The following snippet shows how to add support for the custom property <code class="highlighter-rouge">date</code>:</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalendarWidgetPropertyHandler</span> <span class="kd">extends</span> <span class="n">ViewPropertyHandler</span><span class="o">&lt;</span><span class="n">CalendarView</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">set</span><span class="o">(</span><span class="n">CalendarView</span> <span class="n">view</span><span class="o">,</span> <span class="n">Properties</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">view</span><span class="o">,</span> <span class="n">properties</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">properties</span><span class="o">.</span><span class="na">hasProperty</span><span class="o">(</span><span class="s">"date"</span><span class="o">))</span> <span class="o">{</span>
+      <span class="n">view</span><span class="o">.</span><span class="na">setDate</span><span class="o">(</span><span class="n">properties</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="s">"date"</span><span class="o">),</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">get</span><span class="o">(</span><span class="n">CalendarView</span> <span class="n">view</span><span class="o">,</span> <span class="n">String</span> <span class="n">property</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">property</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"date"</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">view</span><span class="o">.</span><span class="na">getDate</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">view</span><span class="o">,</span> <span class="n">property</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+    </div>
+
+    <p>Note how the snippet not only processes incoming properties in the <code class="highlighter-rouge">set</code> method but also provides a <code class="highlighter-rouge">get</code> implementation so that the <code class="highlighter-rouge">date</code> property can be read as well.</p>
+
+    <h2 id="sending-messages-to-javascript">Sending messages to JavaScript</h2>
+
+    <p><img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2757.png" height="20" width="20" align="absmiddle"> This API is likely going to change.</p>
+
+    <p>While receiving an operation from JavaScript covers a lot of ground we also want to send messages proactively to JavaScript. A classic example is a user initiated action like a button tap.</p>
+
+    <p>To send a message for a particular widget we use a <code class="highlighter-rouge">com.eclipsesource.tabris.android.RemoteObject</code>. A <code class="highlighter-rouge">RemoteObject</code> can be obtained from the <code class="highlighter-rouge">TabrisContext</code> via the <code class="highlighter-rouge">ObjectRegistry</code>:</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="n">RemoteObject</span> <span class="n">remoteObject</span> <span class="o">=</span> <span class="n">tabrisContext</span><span class="o">.</span><span class="na">getObjectRegistry</span><span class="o">().</span><span class="na">getRemoteObjectForObject</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+</code></pre>
+    </div>
+
+    <p>Continuing the example from above the following snippet sends a notify operation to JavaScript when the user changes the date on the <code class="highlighter-rouge">CalendarView</code>:</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="kd">private</span> <span class="kd">class</span> <span class="nc">OnDateChangeListener</span> <span class="kd">implements</span> <span class="n">CalendarView</span><span class="o">.</span><span class="na">OnDateChangeListener</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSelectedDayChange</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">CalendarView</span> <span class="n">calendarView</span><span class="o">,</span> <span class="kt">int</span> <span class="n">year</span><span class="o">,</span> <span class="kt">int</span> <span class="n">month</span><span class="o">,</span> <span class="kt">int</span> <span class="n">dayOfMonth</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">date</span> <span class="o">=</span> <span class="c1">// get date from calendarView</span>
+    <span class="n">RemoteObject</span> <span class="n">remoteObject</span> <span class="o">=</span> <span class="n">tabrisContext</span><span class="o">.</span><span class="na">getObjectRegistry</span><span class="o">().</span><span class="na">getRemoteObjectForObject</span><span class="o">(</span><span class="n">calendarView</span><span class="o">);</span>
+    <span class="n">remoteObject</span><span class="o">.</span><span class="na">notify</span><span class="o">(</span><span class="s">"change_date"</span><span class="o">,</span> <span class="s">"date"</span><span class="o">,</span> <span class="n">date</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+    </div>
+
+    <h2 id="destroying-a-widget">Destroying a widget</h2>
+
+    <p>When a widget is no longer being used we also need to take care of destroying it. In case of our custom Android <code class="highlighter-rouge">View</code> we receive a destroy operation in the <code class="highlighter-rouge">Operator</code> and are responsible for cleaning up any resources that are not required anymore. When an <code class="highlighter-rouge">Operator</code> inherits from the <code class="highlighter-rouge">AbstractViewOperator</code> the destroy operation will remove the view from the view hierarchy.</p>
+
+    <div class="language-java highlighter-rouge">
+<pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">(</span><span class="n">CalendarView</span> <span class="n">calendarView</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">destroy</span><span class="o">(</span><span class="n">calendarView</span><span class="o">);</span>
+  <span class="c1">// perform any necessary cleanup</span>
+<span class="o">}</span>
+</code></pre>
+    </div>
