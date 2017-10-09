@@ -741,7 +741,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             menuArr.push($(this).find('ul').find('a'));
         });
 
-        $mainNav.on('click', 'a', function (e) {
+        $mainNav.on('click', 'a', function (e, position) {
             e.preventDefault();
             var $this = $(this);
             var href = $this.attr('href');
@@ -751,7 +751,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 $loading.show();
                 $docBody.load('./pages/' + folderName +  '/' + pageName, function (response, status) {
                     if(status === 'success'){
-                        $('html,body').animate({scrollTop: 0}, 500, 'linear');
+                        if(position){
+                            location.href = location.href + '#' + position;
+                        } else {
+                            $('html,body').animate({scrollTop: 0}, 500, 'linear');
+                        }
                         $loading.fadeOut();
                         $('#main-nav').find('.active').removeClass('active');
                         $this.parent().addClass('active');
@@ -761,7 +765,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             var href = $this.attr('href');
                             var src = $this.attr('src');
                             if(href){
-                                if(!/http/.test(href)){
+                                if(!/http/.test(href) && !/^#.*/.test(href)){
                                     $this.attr('href', 'https://tabrisjs.com' + href);
                                 }
                             } else if(src){
@@ -780,18 +784,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             var href = $(this).attr('href');
             var urlPrefix = 'https://tabrisjs.com/tabris-js-docs/latest/';
             if(new RegExp(urlPrefix).test(href)){
-                var fileName = href.replace(urlPrefix, '');
+                var fileNameArr = href.replace(/.*\//, '').split('#');
                 var $listItem;
                 for(var i = 0; i < menuArr.length; i++){
                     for(var j = 0; j < menuArr[i].length; j++){
                         $listItem = $(menuArr[i][j]);
-                        if(new RegExp(fileName).test($listItem.attr('href'))){
+                        if(new RegExp(fileNameArr[0]).test($listItem.attr('href'))){
                             e.preventDefault();
                             var $prev = $listItem.parent().parent().prev();
                             if($prev.attr('class') === 'collapsed'){
                                 $prev.trigger('click');
                             }
-                            $listItem.trigger('click');
+                            $listItem.trigger('click', fileNameArr[1]);
                             return false;
                         }
                     }
