@@ -50,7 +50,7 @@
         <li><code class="highlighter-rouge">"recognized"</code>: 只触发一次的手势的状态（<code class="highlighter-rouge">tap</code> 和 <code class="highlighter-rouge">swipe</code>）。</li>
         <li><code class="highlighter-rouge">"start"</code>: 手势开始，即开始移动（<code class="highlighter-rouge">pan</code>）或已经按压足够时间（<code class="highlighter-rouge">长按</code>）。</li>
         <li><code class="highlighter-rouge">"change"</code>: 通过移动手指继续手势（只针对<code class="highlighter-rouge">pan</code>）。</li>
-        <li><code class="highlighter-rouge">"end"</code>: 通过抬起所有手势停止手势（<code class="highlighter-rouge">pan</code> 和 <code class="highlighter-rouge">长按</code>）。</li>
+        <li><code class="highlighter-rouge">"end"</code>: 通过抬起所有手指停止手势（<code class="highlighter-rouge">pan</code> 和 <code class="highlighter-rouge">长按</code>）。</li>
         <li><code class="highlighter-rouge">"cancel"</code>: 手势被打断，比如弹出对话框（<code class="highlighter-rouge">pan</code> 和 <code class="highlighter-rouge">长按</code>）。</li>
     </ul>
 
@@ -66,7 +66,7 @@
         <li><code class="highlighter-rouge">touchStart</code> - 手指触摸控件时触发。</li>
         <li><code class="highlighter-rouge">touchMove</code> - 在开始<code class="highlighter-rouge">touchStart</code>事件后，在屏幕上滑动时反复触发。</li>
         <li><code class="highlighter-rouge">touchEnd</code> - 当交互在接收<code class="highlighter-rouge">touchStart</code>事件的同一个控件上结束（比如抬起手指）时触发。</li>
-        <li><code class="highlighter-rouge">touchCancel</code> - 当触摸交互在另一个控件上结束，而不是在触摸开始的控件上结束时触发，而不触发<code class="highlighter-rouge">touchEnd</code>事件。</li>
+        <li><code class="highlighter-rouge">touchCancel</code> - 当触摸交互在另一个控件上结束而不是在触摸开始的控件上结束时触发，不触发<code class="highlighter-rouge">touchEnd</code>事件。</li>
     </ul>
 
     <p>事件对象包括下面的属性：</p>

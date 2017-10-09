@@ -36,7 +36,7 @@
 
             <li>“<em>percentage</em> <em>offset</em>”: 同上，但是用空格分隔的字符串列表，而不是数组。</li>
 
-        <li>“<em>widget</em> <em>offset</em>”: 同上，但是用空格分隔的字符串列表，而不是数组。由于是字符串，控件可以是选择器或者<code class="highlighter-rouge">"prev()"</code>，但不能是直接的引用。</li>
+        <li>“<em>widget</em> <em>offset</em>”: 同上，但是是用空格分隔的字符串列表，而不是数组。由于是字符串，控件可以是选择器或者<code class="highlighter-rouge">"prev()"</code>，但不能是直接的引用。</li>
     </ul>
 
     <p>全部<strong>百分比</strong>值都需要是一个具有百分比前缀的字符，比如<code class="highlighter-rouge">"50%"</code>.</p>
@@ -79,7 +79,7 @@
 
     <p>可以使用变量、<a href="/tabris-js-docs/latest/selector.html">选择器字符</a>或者<code class="highlighter-rouge">"prev()"</code>来引用控件。</p>
 
-    <p>目前，只有包含文本的控件才支持此属性，即实际和引用的控件必须是<code class="highlighter-rouge">TextView</code>、<code class="highlighter-rouge">TextInput</code>或<code class="highlighter-rouge">Button</code>之一。</p>
+    <p>目前，只有包含文本的控件才支持此属性，即实际引用的控件必须是<code class="highlighter-rouge">TextView</code>、<code class="highlighter-rouge">TextInput</code>或<code class="highlighter-rouge">Button</code>之一。</p>
 
     <p>对于多行文本，目前各平台有如下区别：Android用第一行对齐，iOS用最后一行对齐。</p>
 
