@@ -12,7 +12,7 @@
             <p>用单指滑动屏幕边缘的手势来打开开发者控制台将不起作用：因为操作系统保留该手势来打开操作中心。作为替代，你可以使用鼠标或笔来做手势，也可以使用两根手指（可能需要更精确）来打开控制台，或者只需按键盘上的F12即可。</p>
         </li>
         <li>
-            <p>回环地址（<code class="highlighter-rouge">localhost</code>, <code class="highlighter-rouge">127.0.0.1</code>）并不是开箱即用的。要允许开发者应用访问在同一台机器上运行的tabris http服务器，你需要在管理员命令行窗口中使用此命令启用它：</p>
+            <p>回环地址（<code class="highlighter-rouge">localhost</code>, <code class="highlighter-rouge">127.0.0.1</code>）并不是开箱即用的。要允许开发者app访问在同一台机器上运行的tabris http服务器，你需要在管理员命令行窗口中使用此命令启用它：</p>
         </li>
     </ol>
 
@@ -20,7 +20,7 @@
 
     <h2 id="api">API</h2>
 
-    <p>在Android和iOS之后才添加了Windows 10（UWP / Store Apps）支持。 因此，这些平台上的一些API在Windows上尚未得到支持。有关详细信息，请参阅API参考文档。另外，还有一些特定于Windows平台特性的新API。这些API都以<code class="highlighter-rouge">win_</code>为前缀，并在API参考文档中有说明。</p>
+    <p>由于在Android和iOS之后才添加了Windows 10（UWP / Store Apps）支持。 因此，这些平台上的一些API在Windows上尚未得到支持。有关详细信息，请参阅API参考文档。另外，还有一些特定于Windows平台特性的新API。这些API都以<code class="highlighter-rouge">win_</code>为前缀，并在API参考文档中有说明。</p>
 
     <h2 id="building-an-app">构建app</h2>
 
@@ -34,12 +34,12 @@ tabris build windows --release -- --archs="&lt;cpu&gt;"
 </code></pre>
     </div>
 
-    <p>其中<code class="highlighter-rouge">&lt;cpu&gt;</code>可以是‘x64’、‘x86’ 或 ‘arm’。将包复制到单独的目录中，并为下一个架构重复此步骤。</p>
+    <p>其中<code class="highlighter-rouge">&lt;cpu&gt;</code>可以是‘x64’、‘x86’ 或 ‘arm’。将包复制到单独的目录中，并为下一个要构建的架构重复此步骤。</p>
 
     <p>windows特定的<code class="highlighter-rouge">config.xml</code>配置项在<a href="build.html#windows-specific-preferences">这里</a>说明。</p>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js的Windows构建还不能为Windows Store签署包。现在，如果你需要将应用程序上传到Windows Store，则必须通过tabris CLI进行本地构建，并<a href="https://docs.microsoft.com/en-us/windows/uwp/packaging/packaging-uwp-apps#create-an-app-package">使用Visual Studio创建<code class="highlighter-rouge">.appxupload</code>包</a>。 建议不要将它们打包，因为这可能会在以后使用Tabris.js构建服务创建的包更新store提交时引起问题。</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js的Windows构建还不能为Windows Store签署包。现在，如果你需要将app上传到Windows Store，必须通过tabris CLI进行本地构建，并<a href="https://docs.microsoft.com/en-us/windows/uwp/packaging/packaging-uwp-apps#create-an-app-package">使用Visual Studio创建<code class="highlighter-rouge">.appxupload</code>包</a>。 建议不要将它们打包，因为这可能会在以后使用Tabris.js构建服务创建的包更新store提交时引起问题。</p>
     </blockquote>
 
     <h2 id="sideloading-apps-on-windows-10-pc">在Windows 10上加载app(PC)：</h2>
@@ -53,20 +53,20 @@ tabris build windows --release -- --archs="&lt;cpu&gt;"
     </ul>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">目前，tabris构建服务始终使用cordova密钥来签署app。在将来，你将能够使用自己的密钥来构建已经为Windows Store配置好的软件包。</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">目前，tabris构建服务始终使用cordova密钥来签署app。在将来，你能够使用自己的密钥来构建已经为Windows Store配置好的软件包。</p>
     </blockquote>
 
     <h2 id="sideloading-apps-on-windows-10-mobile">在Windows 10上加载app(Mobile)：</h2>
 
     <ul>
-        <li>如果加载没有完成，将手机设置为开发者模式：<code class="highlighter-rouge">Settings -&gt; Update &amp; security -&gt; For developers -&gt; Developer mode</code>.</li>
+        <li>如果加载没有完成，请将手机设置为开发者模式：<code class="highlighter-rouge">Settings -&gt; Update &amp; security -&gt; For developers -&gt; Developer mode</code>.</li>
         <li>如果存在旧版app，先卸载它。</li>
     </ul>
 
-    <p>现在有两种选择。你可以通过USB将<code class="highlighter-rouge">.appx</code>复制到手机，然后从中安装：</p>
+    <p>这里有两种选择。你可以通过USB将<code class="highlighter-rouge">.appx</code>复制到手机，然后从中安装：</p>
     <ul>
         <li>移动<code class="highlighter-rouge">.appx</code>到你的手机。</li>
-        <li>在文件浏览器app中查找该文件。</li>
+        <li>在文件浏览应用中查找该文件。</li>
         <li>点击app，确认你要安装该app。</li>
         <li>该app会在后台安装。不幸的是，当安装过程完成时，你不会得到任何反馈。该app应当在一分钟左右后显示在“所有应用程序”的屏幕上。</li>
     </ul>
