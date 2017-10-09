@@ -7,11 +7,11 @@
 
     <ul>
         <li>模块文件被require之前，该文件中的代码不会被解析和执行。</li>
-        <li>模块文件具有隐式的局部作用域。用<code class="highlighter-rouge">var</code>声明的变量永远不会是全局变量。 应该避免全局变量。</li>
-        <li>有三个预定义的局部变量：<code class="highlighter-rouge">require</code>、<code class="highlighter-rouge">module</code> 和 <code class="highlighter-rouge">exports</code>。这些允许你从/向其他模块导入/导出数据。</li>
+        <li>模块文件具有隐式的局部作用域。用<code class="highlighter-rouge">var</code>声明的变量永远不会是全局变量。 应该避免全局变量的使用。</li>
+        <li>有三个预定义的局部变量：<code class="highlighter-rouge">require</code>、<code class="highlighter-rouge">module</code> 和 <code class="highlighter-rouge">exports</code>。这些变量允许你从/向其他模块导入/导出数据。</li>
     </ul>
 
-    <p>当应用程序启动时，它将加载项目的<code class="highlighter-rouge">package.json</code>中<code class="highlighter-rouge">main</code>字段定义的入口模块。例如：:</p>
+    <p>当应用程序启动时，它会加载项目的<code class="highlighter-rouge">package.json</code>中<code class="highlighter-rouge">main</code>字段定义的入口模块。例如：:</p>
 
     <div class="language-json highlighter-rouge">
 <pre class="highlight"><code><span class="p">{</span><span class="w">
