@@ -739,6 +739,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           $loading.show();
           $docBody.load('./pages/' + pageName, function (response, status) {
               if(status === 'success'){
+                  $('html,body').animate({scrollTop: 0}, 500, 'linear');
                   $loading.fadeOut();
                   $('#main-nav').find('.active').removeClass('active');
                   $this.parent().addClass('active');
@@ -773,7 +774,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               for(var j = 0; j < menuArr[i].length; j++){
                   $listItem = $(menuArr[i][j]);
                   if(new RegExp(fileName).test($listItem.attr('href'))){
-                      $(window).scrollTop(0);
                       e.preventDefault();
                       var $prev = $listItem.parent().parent().prev();
                       if($prev.attr('class') === 'collapsed'){
