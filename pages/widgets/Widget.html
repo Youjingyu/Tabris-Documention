@@ -1,0 +1,1194 @@
+    <h1 id="widget">Widget</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/NativeObject.html">NativeObject</a></p>
+
+    <p>Base class for all widgets</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {Widget} = require('tabris');</code>”</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="animateproperties-options">animate(properties, options)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>properties: <em>{transform?: Transformation, opacity?: number}</em>
+            <ul>
+                <li>the properties and target values to animate.</li>
+            </ul>
+        </li>
+        <li>options: <em><a href="/tabris-js-docs/latest/types.html#animationoptions">AnimationOptions</a></em>
+            <ul>
+                <li>configures the animation itself.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> *Promise<any>*</any></p>
+
+    <p>Starts an animation that transforms the given properties from their current values to the given ones. Supported properties are <em>transform</em> and <em>opacity</em>. Returns a promise that is resolved once the animation is completed and is rejected if the animation is aborted.</p>
+
+    <h3 id="appendtoparent">appendTo(parent)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>parent: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Appends this widget to the given parent. The parent widget must support children (extending <em>Composite</em>). If the widget already has a parent, it is removed from the old parent.</p>
+
+    <h3 id="applyproperties">apply(properties)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>properties: <em>Object</em>
+            <ul>
+                <li>an object in the format <code class="highlighter-rouge"><span class="p">{</span><span class="err">Selector:</span><span class="w"> </span><span class="err">{property:</span><span class="w"> </span><span class="err">value,</span><span class="w"> </span><span class="err">property:</span><span class="w"> </span><span class="err">value,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="err">,</span><span class="w"> </span><span class="err">Selector:</span><span class="w"> </span><span class="err">...}</span></code></li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Applies the given properties to all descendants that match the associated selector(s).</p>
+
+    <h3 id="childrenselector">children(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a (possibly empty) collection of all children of this widget that match the given selector.</p>
+
+    <h3 id="detach">detach()</h3>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Removes this widget from its parent.</p>
+
+    <h3 id="dispose">dispose()</h3>
+
+    <p>Removes this widget from its parent and destroys it. Also disposes of all its children. Triggers a <code class="highlighter-rouge">remove</code> event on the parent and a <code class="highlighter-rouge">dispose</code> event on itself. The widget can no longer be used.</p>
+
+    <h3 id="findselector">find(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a collection containing all descendants of all widgets in this collection that match the given selector.</p>
+
+    <h3 id="insertafterwidget">insertAfter(widget)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Inserts this widget directly after the given widget. If the widget already has a parent, it is removed from the old parent.</p>
+
+    <h3 id="insertbeforewidget">insertBefore(widget)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Inserts this widget directly before the given widget. If the widget already has a parent, it is removed from the old parent.</p>
+
+    <h3 id="isdisposed">isDisposed()</h3>
+
+    <p><strong>Returns:</strong> <em>boolean</em></p>
+
+    <p>Returns <code class="highlighter-rouge">true</code> if the widget has been disposed, otherwise <code class="highlighter-rouge">false</code>.</p>
+
+    <h3 id="parent">parent()</h3>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em></p>
+
+    <p>Returns the parent of this widget or <code class="highlighter-rouge">null</code> if this widget is not appended to a parent.</p>
+
+    <h3 id="siblingsselector">siblings(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns a (possibly empty) collection of all siblings of this widget that match the given selector.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="background">background</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>Background color of the widget.</p>
+
+    <h3 id="backgroundimage">backgroundImage</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#image">Image</a></em></p>
+
+    <p>An image to be displayed on the widget’s background. If the image is smaller than the widget, it will be tiled.</p>
+
+    <h3 id="baseline">baseline</h3>
+
+    <table>
+        <tbody>
+        <tr>
+            <td>Type: *Widget</td>
+            <td>Selector*</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>The vertical position of the widget’s baseline relative to a sibling widget.</p>
+
+    <h3 id="bottom">bottom</h3>
+
+    <p>Type: <em>margin</em></p>
+
+    <p>The position of the widget’s bottom edge relative to the parent or a sibling widget.</p>
+
+    <h3 id="bounds">bounds</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em><a href="/tabris-js-docs/latest/types.html#bounds">Bounds</a></em></p>
+
+    <p>The actual location and size of the widget, relative to its parent.</p>
+
+    <h3 id="centerx">centerX</h3>
+
+    <p>Type: <em>offset</em></p>
+
+    <p>The horizontal position of the widget’s center relative to the parent’s center.</p>
+
+    <h3 id="centery">centerY</h3>
+
+    <p>Type: <em>offset</em></p>
+
+    <p>The vertical position of the widget’s center relative to the parent’s center.</p>
+
+    <h3 id="class">class</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>A class name or a whitespace separated list of class names to identify the widget. Class names are arbitrary strings that describe a state or a category and help to select widgets using a selector expression. A class name may only contain alphanumeric characters, <code class="highlighter-rouge">_</code> and <code class="highlighter-rouge">-</code>. Class names can also be added or removed using the field <code class="highlighter-rouge">classList</code>.</p>
+
+    <h3 id="classlist">classList</h3>
+
+    <p>Type: <em>string[]</em></p>
+
+    <p>Provides convenient access to the list of class names set to this widget. Class names can either be set using the <code class="highlighter-rouge">class</code> property or by modifying the <code class="highlighter-rouge">classList</code> directly.</p>
+
+    <h3 id="cornerradius">cornerRadius</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>number</em></p>
+
+    <p>Configure a widget to have rounded corners. Each corner is affected equally. Supported on iOS and Android 5.0+.</p>
+
+    <h3 id="data">data</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>Object</em></p>
+
+    <p>A general-purpose object that allows the application to attach arbitrary data to the widget. Manipulations on this object have no effect on the widget itself in any way. Example: <code class="highlighter-rouge">widget.data.myData = myData;</code></p>
+
+    <h3 id="elevation">elevation</h3>
+    <p class="platforms"><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>number</em></p>
+
+    <p>The position of the widget on the z-axis. Currently only supported on Android 5.0+.</p>
+
+    <h3 id="enabled">enabled</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">true</code></p>
+
+    <p>Whether the widget can be operated.</p>
+
+    <h3 id="font">font</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#font">Font</a></em></p>
+
+    <p>The font used for the widget.</p>
+
+    <h3 id="height">height</h3>
+
+    <p>Type: <em>dimension</em></p>
+
+    <p>The height of the widget.</p>
+
+    <h3 id="highlightontouch">highlightOnTouch</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">false</code></p>
+
+    <p>Whether the entire widget should be highlighted while touched.</p>
+
+    <h3 id="id">id</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>A string to identify the widget by using selectors. IDs are optional. It is strongly recommended that they are unique within a page.</p>
+
+    <h3 id="layoutdata">layoutData</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#layoutdata">LayoutData</a></em></p>
+
+    <p>Shorthand for all layout properties. See <a href="/tabris-js-docs/latest/layout.html">Layout</a>.</p>
+
+    <h3 id="left">left</h3>
+
+    <p>Type: <em>margin</em></p>
+
+    <p>The position of the widget’s left edge relative to the parent or a sibling widget.</p>
+
+    <h3 id="opacity">opacity</h3>
+
+    <p>Type: <em>number</em>, default: <code class="highlighter-rouge">1</code></p>
+
+    <p>Opacity of the entire widget, in the range <code class="highlighter-rouge">[0..1]</code>. Can be used for fade animations.</p>
+
+    <h3 id="right">right</h3>
+
+    <p>Type: <em>margin</em></p>
+
+    <p>The position of the widget’s right edge relative to the parent or a sibling widget.</p>
+
+    <h3 id="top">top</h3>
+
+    <p>Type: <em>margin</em></p>
+
+    <p>The position of the widget’s top edge relative to the parent or a sibling widget.</p>
+
+    <h3 id="transform">transform</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#transformation">Transformation</a></em></p>
+
+    <p>Modifications to the widget’s shape, size, or position. Can be used for animations. <strong>Note:</strong> In Android the <em>transform</em> property does not affect the <em>bounds</em> property, while it does so in iOS.</p>
+
+    <h3 id="visible">visible</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">true</code></p>
+
+    <p>Whether the widget is visible.</p>
+
+    <h3 id="width">width</h3>
+
+    <p>Type: <em>dimension</em></p>
+
+    <p>The width of the widget.</p>
+
+    <h3 id="win_theme">win_theme</h3>
+    <p class="platforms"><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">light</code>, <code class="highlighter-rouge">dark</code>, <code class="highlighter-rouge">default</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Controls the color scheme used for this widget. When set to <code class="highlighter-rouge">"default"</code> the theme is inherited from either the parent (if present) or the OS settings. Available only on windows.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="backgroundchanged">backgroundChanged</h3>
+
+    <p>Fired when the <a href="#background"><em>background</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#background"><em>background</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="backgroundimagechanged">backgroundImageChanged</h3>
+
+    <p>Fired when the <a href="#backgroundImage"><em>backgroundImage</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#image">Image</a></em>
+                The new value of <a href="#backgroundImage"><em>backgroundImage</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="baselinechanged">baselineChanged</h3>
+
+    <p>Fired when the <a href="#baseline"><em>baseline</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>Widget|Selector</em>
+                The new value of <a href="#baseline"><em>baseline</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="bottomchanged">bottomChanged</h3>
+
+    <p>Fired when the <a href="#bottom"><em>bottom</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>margin</em>
+                The new value of <a href="#bottom"><em>bottom</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="boundschanged">boundsChanged</h3>
+
+    <p>Fired when the <a href="#bounds"><em>bounds</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-4">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#bounds">Bounds</a></em>
+                The new value of <a href="#bounds"><em>bounds</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="centerxchanged">centerXChanged</h3>
+
+    <p>Fired when the <a href="#centerX"><em>centerX</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-5">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>offset</em>
+                The new value of <a href="#centerX"><em>centerX</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="centerychanged">centerYChanged</h3>
+
+    <p>Fired when the <a href="#centerY"><em>centerY</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-6">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>offset</em>
+                The new value of <a href="#centerY"><em>centerY</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="classchanged">classChanged</h3>
+
+    <p>Fired when the <a href="#class"><em>class</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-7">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#class"><em>class</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="classlistchanged">classListChanged</h3>
+
+    <p>Fired when the <a href="#classList"><em>classList</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-8">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string[]</em>
+                The new value of <a href="#classList"><em>classList</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="cornerradiuschanged">cornerRadiusChanged</h3>
+
+    <p>Fired when the <a href="#cornerRadius"><em>cornerRadius</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-9">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#cornerRadius"><em>cornerRadius</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="datachanged">dataChanged</h3>
+
+    <p>Fired when the <a href="#data"><em>data</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-10">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>Object</em>
+                The new value of <a href="#data"><em>data</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="dispose-1">dispose</h3>
+
+    <p>Fired when the widget is about to be disposed. At this point the widget and its children are still accessible.</p>
+    <h3 id="elevationchanged">elevationChanged</h3>
+
+    <p>Fired when the <a href="#elevation"><em>elevation</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-11">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#elevation"><em>elevation</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="enabledchanged">enabledChanged</h3>
+
+    <p>Fired when the <a href="#enabled"><em>enabled</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-12">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#enabled"><em>enabled</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="fontchanged">fontChanged</h3>
+
+    <p>Fired when the <a href="#font"><em>font</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-13">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#font">Font</a></em>
+                The new value of <a href="#font"><em>font</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="heightchanged">heightChanged</h3>
+
+    <p>Fired when the <a href="#height"><em>height</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-14">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>dimension</em>
+                The new value of <a href="#height"><em>height</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="highlightontouchchanged">highlightOnTouchChanged</h3>
+
+    <p>Fired when the <a href="#highlightOnTouch"><em>highlightOnTouch</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-15">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#highlightOnTouch"><em>highlightOnTouch</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="idchanged">idChanged</h3>
+
+    <p>Fired when the <a href="#id"><em>id</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-16">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#id"><em>id</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="layoutdatachanged">layoutDataChanged</h3>
+
+    <p>Fired when the <a href="#layoutData"><em>layoutData</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-17">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#layoutdata">LayoutData</a></em>
+                The new value of <a href="#layoutData"><em>layoutData</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="leftchanged">leftChanged</h3>
+
+    <p>Fired when the <a href="#left"><em>left</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-18">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>margin</em>
+                The new value of <a href="#left"><em>left</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="longpress">longpress</h3>
+
+    <p>Fired after pressing a widget for a specific amount of time (about a second), and again on lifting the finger.</p>
+
+    <h4 id="event-parameters-19">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’end’|’cancel’</em>
+                ‘start’ when the widget has been hold down long enough, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="opacitychanged">opacityChanged</h3>
+
+    <p>Fired when the <a href="#opacity"><em>opacity</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-20">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#opacity"><em>opacity</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="pan">pan</h3>
+
+    <p>Fired continuously after a finger touching the widget moved for a certain distance.</p>
+
+    <h4 id="event-parameters-21">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="pandown">panDown</h3>
+
+    <p>Fired when a finger starts moving down.</p>
+
+    <h4 id="event-parameters-22">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="panhorizontal">panHorizontal</h3>
+
+    <p>Fired when a finger starts moving left or right.</p>
+
+    <h4 id="event-parameters-23">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="panleft">panLeft</h3>
+
+    <p>Fired when a finger starts moving left.</p>
+
+    <h4 id="event-parameters-24">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="panright">panRight</h3>
+
+    <p>Fired when a finger starts moving right.</p>
+
+    <h4 id="event-parameters-25">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="panup">panUp</h3>
+
+    <p>Fired when a finger starts moving up.</p>
+
+    <h4 id="event-parameters-26">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="panvertical">panVertical</h3>
+
+    <p>Fired when a finger starts moving up or down.</p>
+
+    <h4 id="event-parameters-27">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>state</strong>: <em>‘start’|’change’|’end’|’cancel’</em>
+                ‘start’ when the finger starts moving, ‘change’ while the finger is moving, ‘end’ when the finger has been lifted and ‘cancel’ when the gesture has been interrupted.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+        <li>
+            <p><strong>translationX</strong>: <em>number</em>
+                Current horizontal touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>translationY</strong>: <em>number</em>
+                Current vertical touch offset relative to the first touch.</p>
+        </li>
+        <li>
+            <p><strong>velocityX</strong>: <em>number</em>
+                Current horizontal velocity in pixels per second.</p>
+        </li>
+        <li>
+            <p><strong>velocityY</strong>: <em>number</em>
+                Current vertical velocity in pixels per second.</p>
+        </li>
+    </ul>
+
+    <h3 id="resize">resize</h3>
+
+    <p>Fired when the widget’s size has changed. You can use this event to apply new <a href="#layoutdata"><em>layoutData</em></a>.</p>
+
+    <h4 id="event-parameters-28">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>height</strong>: <em>number</em>
+                The height of the widget in dip.</p>
+        </li>
+        <li>
+            <p><strong>left</strong>: <em>number</em>
+                The horizontal offset from the parent’s left edge in dip.</p>
+        </li>
+        <li>
+            <p><strong>top</strong>: <em>number</em>
+                The vertical offset from the parent’s top edge in dip.</p>
+        </li>
+        <li>
+            <p><strong>width</strong>: <em>number</em>
+                The width of the widget in dip.</p>
+        </li>
+    </ul>
+
+    <h3 id="rightchanged">rightChanged</h3>
+
+    <p>Fired when the <a href="#right"><em>right</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-29">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>margin</em>
+                The new value of <a href="#right"><em>right</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="swipedown">swipeDown</h3>
+
+    <p>Fired when a finger moves down quickly.</p>
+
+    <h4 id="event-parameters-30">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="swipeleft">swipeLeft</h3>
+
+    <p>Fired when a finger moves left quickly.</p>
+
+    <h4 id="event-parameters-31">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="swiperight">swipeRight</h3>
+
+    <p>Fired when a finger moves right quickly.</p>
+
+    <h4 id="event-parameters-32">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="swipeup">swipeUp</h3>
+
+    <p>Fired when a finger moves up quickly.</p>
+
+    <h4 id="event-parameters-33">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="tap">tap</h3>
+
+    <p>Fired once when a finger briefly touched the widget.</p>
+
+    <h4 id="event-parameters-34">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="topchanged">topChanged</h3>
+
+    <p>Fired when the <a href="#top"><em>top</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-35">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>margin</em>
+                The new value of <a href="#top"><em>top</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="touchcancel">touchCancel</h3>
+
+    <p>Fired instead of touchEnd when the touch ends on another widget than it started on.</p>
+
+    <h4 id="event-parameters-36">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number, absoluteX: number, absoluteY: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="touchend">touchEnd</h3>
+
+    <p>Fired when a touch ends on the same widget than it started on.</p>
+
+    <h4 id="event-parameters-37">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number, absoluteX: number, absoluteY: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="touchmove">touchMove</h3>
+
+    <p>Fired repeatedly while swiping across the screen.</p>
+
+    <h4 id="event-parameters-38">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number, absoluteX: number, absoluteY: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="touchstart">touchStart</h3>
+
+    <p>Fired when a widget is touched. See <a href="/tabris-js-docs/latest/touch.html">Touch Events</a>.</p>
+
+    <h4 id="event-parameters-39">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>touches</strong>: <em>{x: number, y: number, absoluteX: number, absoluteY: number}[]</em>
+                Touch coordinates relative to the origin coordinates of the widget.</p>
+        </li>
+    </ul>
+
+    <h3 id="transformchanged">transformChanged</h3>
+
+    <p>Fired when the <a href="#transform"><em>transform</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-40">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#transformation">Transformation</a></em>
+                The new value of <a href="#transform"><em>transform</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="visiblechanged">visibleChanged</h3>
+
+    <p>Fired when the <a href="#visible"><em>visible</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-41">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#visible"><em>visible</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="widthchanged">widthChanged</h3>
+
+    <p>Fired when the <a href="#width"><em>width</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-42">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>dimension</em>
+                The new value of <a href="#width"><em>width</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_themechanged">win_themeChanged</h3>
+
+    <p>Fired when the <a href="#win_theme"><em>win_theme</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-43">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#win_theme"><em>win_theme</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="/tabris-js-docs/latest/layout.html">Understanding layouts in Tabris.js</a></li>
+        <li><a href="/tabris-js-docs/latest/touch.html">Understanding gesture events in Tabris.js</a></li>
+    </ul>

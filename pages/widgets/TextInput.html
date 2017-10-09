@@ -1,0 +1,384 @@
+    <h1 id="textinput">TextInput</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></p>
+
+    <p>A widget that allows to enter text.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {TextInput} = require('tabris');</code>”</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Android</th>
+            <th>iOS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><img src="/tabris-js-docs/latest/api/img/android/TextInput.png" alt="TextInput on Android"></td>
+            <td><img src="/tabris-js-docs/latest/api/img/ios/TextInput.png" alt="TextInput on iOS"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="alignment">alignment</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">left</code>, <code class="highlighter-rouge">right</code>, <code class="highlighter-rouge">center</code>, default: <code class="highlighter-rouge">left</code></p>
+
+    <p>The horizontal alignment of the text.</p>
+
+    <h3 id="autocapitalize">autoCapitalize</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">false</code></p>
+
+    <p>Automatically switch to capital letters after every key pressed.</p>
+
+    <h3 id="autocorrect">autoCorrect</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">false</code></p>
+
+    <p>Enables the spell checker and auto-correction feature.</p>
+
+    <h3 id="bordercolor">borderColor</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The color of the border of the TextInput. On iOS this is a rectangular border around the TextInput, on Android it is a single line below the TextInput.</p>
+
+    <h3 id="editable">editable</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">true</code></p>
+
+    <p>Whether the text can be edited or not.</p>
+
+    <h3 id="enterkeytype">enterKeyType</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">default</code>, <code class="highlighter-rouge">done</code>, <code class="highlighter-rouge">next</code>, <code class="highlighter-rouge">send</code>, <code class="highlighter-rouge">search</code>, <code class="highlighter-rouge">go</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Label or icon to display on the keyboard ‘confirmation’ key. The key press can be captured via the <code class="highlighter-rouge">accept</code> event. Setting an <code class="highlighter-rouge">enterKeyType</code> other than <code class="highlighter-rouge">default</code> will change the key behavior to not close the keyboard automatically. The developer is able close the keyboard by removing the focus from the <code class="highlighter-rouge">TextInput</code>.</p>
+
+    <h3 id="fillcolor">fillColor</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span></p>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The color of the background of the TextInput - applies only to iOS.</p>
+
+    <h3 id="focused">focused</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">false</code></p>
+
+    <p>Reflects whether this widget has the keyboard focus. Setting this property to <code class="highlighter-rouge">true</code> will focus the widget and open the virtual keyboard, setting it to <code class="highlighter-rouge">false</code> will remove the focus and hide the virtual keyboard.</p>
+
+    <h3 id="keepfocus">keepFocus</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">false</code></p>
+
+    <p>When <code class="highlighter-rouge">true</code> the <code class="highlighter-rouge">TextInput</code> will keep its focus, even when tapped outside of the widget bounds.</p>
+
+    <h3 id="keyboard">keyboard</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">ascii</code>, <code class="highlighter-rouge">decimal</code>, <code class="highlighter-rouge">email</code>, <code class="highlighter-rouge">number</code>, <code class="highlighter-rouge">numbersAndPunctuation</code>, <code class="highlighter-rouge">phone</code>, <code class="highlighter-rouge">url</code>, <code class="highlighter-rouge">default</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Selects the keyboard type to use for editing this widget. Has no effect when <code class="highlighter-rouge">type</code> is set to <code class="highlighter-rouge">multiline</code>.</p>
+
+    <h3 id="message">message</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>A hint text that is displayed when the input field is empty. Does not apply on iOS when <code class="highlighter-rouge">type</code> is set to <code class="highlighter-rouge">multiline</code>.</p>
+
+    <h3 id="text">text</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>The text in the input field.</p>
+
+    <h3 id="textcolor">textColor</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The color of the text.</p>
+
+    <h3 id="type">type</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">default</code>, <code class="highlighter-rouge">password</code>, <code class="highlighter-rouge">search</code>, <code class="highlighter-rouge">multiline</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>The type of the text widget. Windows 10 currently interprets <code class="highlighter-rouge">search</code>  as <code class="highlighter-rouge">default</code>.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="accept">accept</h3>
+
+    <p>Fired when a text input has been finished by pressing the keyboard’s Enter key. The label of this key may vary depending on the platform and locale.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>text</strong>: <em>string</em>
+                The current value of <em><a href="#text">text</a></em>.</p>
+        </li>
+    </ul>
+
+    <h3 id="alignmentchanged">alignmentChanged</h3>
+
+    <p>Fired when the <a href="#alignment"><em>alignment</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#alignment"><em>alignment</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="autocapitalizechanged">autoCapitalizeChanged</h3>
+
+    <p>Fired when the <a href="#autoCapitalize"><em>autoCapitalize</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#autoCapitalize"><em>autoCapitalize</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="autocorrectchanged">autoCorrectChanged</h3>
+
+    <p>Fired when the <a href="#autoCorrect"><em>autoCorrect</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#autoCorrect"><em>autoCorrect</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="blur">blur</h3>
+
+    <p>Fired when the widget lost focus.</p>
+    <h3 id="bordercolorchanged">borderColorChanged</h3>
+
+    <p>Fired when the <a href="#borderColor"><em>borderColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-4">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#borderColor"><em>borderColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="editablechanged">editableChanged</h3>
+
+    <p>Fired when the <a href="#editable"><em>editable</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-5">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#editable"><em>editable</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="enterkeytypechanged">enterKeyTypeChanged</h3>
+
+    <p>Fired when the <a href="#enterKeyType"><em>enterKeyType</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-6">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#enterKeyType"><em>enterKeyType</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="fillcolorchanged">fillColorChanged</h3>
+
+    <p>Fired when the <a href="#fillColor"><em>fillColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-7">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#fillColor"><em>fillColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="focus">focus</h3>
+
+    <p>Fired when the widget gains focus.</p>
+    <h3 id="focusedchanged">focusedChanged</h3>
+
+    <p>Fired when the <a href="#focused"><em>focused</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-8">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#focused"><em>focused</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="input">input</h3>
+
+    <p>Fired when the text was changed by the user.</p>
+
+    <h4 id="event-parameters-9">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>text</strong>: <em>string</em>
+                The new value of <em><a href="#text">text</a></em>.</p>
+        </li>
+    </ul>
+
+    <h3 id="keepfocuschanged">keepFocusChanged</h3>
+
+    <p>Fired when the <a href="#keepFocus"><em>keepFocus</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-10">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#keepFocus"><em>keepFocus</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="keyboardchanged">keyboardChanged</h3>
+
+    <p>Fired when the <a href="#keyboard"><em>keyboard</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-11">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#keyboard"><em>keyboard</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="messagechanged">messageChanged</h3>
+
+    <p>Fired when the <a href="#message"><em>message</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-12">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#message"><em>message</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="textchanged">textChanged</h3>
+
+    <p>Fired when the <a href="#text"><em>text</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-13">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#text"><em>text</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="textcolorchanged">textColorChanged</h3>
+
+    <p>Fired when the <a href="#textColor"><em>textColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-14">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#textColor"><em>textColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">TextInput</span><span class="p">,</span> <span class="nx">TextView</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="c1">// Create a text input field with input finished listener</span>
+
+<span class="k">new</span> <span class="nx">TextInput</span><span class="p">({</span>
+  <span class="na">top</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">left</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">,</span>
+  <span class="na">message</span><span class="p">:</span> <span class="s1">'Type here, then confirm'</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'accept'</span><span class="p">,</span> <span class="p">({</span><span class="nx">text</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span>
+    <span class="na">top</span><span class="p">:</span> <span class="s1">'prev() 20'</span><span class="p">,</span> <span class="na">left</span><span class="p">:</span> <span class="s1">'20%'</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="nx">text</span>
+  <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/textinput.js">Simple TextInput snippet</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/examples/input/input.js">Example with Text and other input controls</a></li>
+    </ul>

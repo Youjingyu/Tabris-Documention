@@ -1,0 +1,93 @@
+    <h1 id="canvas">Canvas</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+
+    <p>Canvas is a widget that can be used to draw graphics using a <a href="/tabris-js-docs/latest/api/CanvasContext.html">canvas context</a>.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {Canvas} = require('tabris');</code>”</p>
+
+    <p><img src="/tabris-js-docs/latest/api/img/android/Canvas.png" alt="Canvas on Android"></p>
+
+    <p>Example:</p>
+
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">Canvas</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"resize"</span><span class="p">,</span> <span class="p">({</span><span class="na">target</span><span class="p">:</span> <span class="nx">canvas</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">"2d"</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="c1">// ...</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
+</code></pre>
+    </div>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="getcontextcontexttype-width-height">getContext(contextType, width, height)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>contextType: <em>string</em>
+            <ul>
+                <li>the context identifier. Only <code class="highlighter-rouge">"2d"</code> is currently supported.</li>
+            </ul>
+        </li>
+        <li>width: <em>number</em>
+            <ul>
+                <li>the width of the canvas context to create</li>
+            </ul>
+        </li>
+        <li>height: <em>number</em>
+            <ul>
+                <li>the height of the canvas context to create</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/CanvasContext.html">CanvasContext</a></em></p>
+
+    <p>Returns the drawing context with the given size.</p>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Canvas</span><span class="p">,</span> <span class="nx">ui</span><span class="p">,</span> <span class="nx">device</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="c1">// Draw shapes on a canvas using HTML5 Canvas API</span>
+
+<span class="k">new</span> <span class="nx">Canvas</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'resize'</span><span class="p">,</span> <span class="p">({</span><span class="na">target</span><span class="p">:</span> <span class="nx">canvas</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">scaleFactor</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">scaleFactor</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">'2d'</span><span class="p">,</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">scaleFactor</span><span class="p">,</span> <span class="nx">height</span> <span class="o">*</span> <span class="nx">scaleFactor</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">scaleFactor</span><span class="p">,</span> <span class="nx">scaleFactor</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="s1">'rgb(78, 154, 217)'</span><span class="p">;</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">width</span> <span class="o">-</span> <span class="mi">40</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="mi">40</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+
+  <span class="c1">// draw image</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">putImageData</span><span class="p">(</span><span class="nx">createImageData</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+  <span class="c1">// copy region</span>
+  <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="nx">ctx</span><span class="p">.</span><span class="nx">putImageData</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">createImageData</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">height</span><span class="p">;</span> <span class="nx">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">alpha</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">&gt;</span> <span class="nx">y</span> <span class="o">%</span> <span class="mi">20</span> <span class="p">?</span> <span class="mi">255</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">alpha</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">ImageData</span><span class="p">(</span><span class="k">new</span> <span class="nx">Uint8ClampedArray</span><span class="p">(</span><span class="nx">array</span><span class="p">),</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/master/examples/canvas">Example that shows animations and different shapes on a canvas</a></li>
+    </ul>

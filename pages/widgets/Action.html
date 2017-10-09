@@ -1,0 +1,125 @@
+    <h1 id="action">Action</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></p>
+
+    <p>An executable item that is integrated in the application’s navigation menu. Add a listener on <em>select</em> to implement the action.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {Action} = require('tabris');</code>”</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Android</th>
+            <th>iOS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><img src="/tabris-js-docs/latest/api/img/android/Action.png" alt="Action on Android"></td>
+            <td><img src="/tabris-js-docs/latest/api/img/ios/Action.png" alt="Action on iOS"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="image">image</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#image">Image</a></em></p>
+
+    <p>Icon image for the action.</p>
+
+    <h3 id="placementpriority">placementPriority</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">low</code>, <code class="highlighter-rouge">high</code>, <code class="highlighter-rouge">normal</code>, default: <code class="highlighter-rouge">normal</code></p>
+
+    <p>Actions with higher placement priority will be placed at a more significant position in the UI, e.g. low priority actions could go into a menu instead of being included in a toolbar.</p>
+
+    <h3 id="title">title</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>The text to be displayed for the action.</p>
+
+    <h3 id="win_symbol">win_symbol</h3>
+    <p class="platforms"><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em>string</em></p>
+
+    <p>Allows to override the image of the Action with an MDL2 (“Metro Design Language 2”) symbol. When the string does not exactly match <a href="https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.symbol.aspx">the name of an MDL2 symbol</a> the <code class="highlighter-rouge">image</code> property is used instead. Platforms other than windows ignore this property and always show the image.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="imagechanged">imageChanged</h3>
+
+    <p>Fired when the <a href="#image"><em>image</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#image">Image</a></em>
+                The new value of <a href="#image"><em>image</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="placementprioritychanged">placementPriorityChanged</h3>
+
+    <p>Fired when the <a href="#placementPriority"><em>placementPriority</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#placementPriority"><em>placementPriority</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="select">select</h3>
+
+    <p>Fired when the action is invoked.</p>
+    <h3 id="titlechanged">titleChanged</h3>
+
+    <p>Fired when the <a href="#title"><em>title</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#title"><em>title</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_symbolchanged">win_symbolChanged</h3>
+
+    <p>Fired when the <a href="#win_symbol"><em>win_symbol</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#win_symbol"><em>win_symbol</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-action.js">Snippet for creating actions</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-action-placementpriority.js">Actions - placement priorities</a></li>
+    </ul>

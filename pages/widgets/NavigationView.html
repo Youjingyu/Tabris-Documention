@@ -1,0 +1,328 @@
+    <h1 id="navigationview">NavigationView</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+
+    <p>A widget that displays a stack of <a href="Page">pages</a> with a toolbar that allows to navigate back. The toolbar also displays the current page’s title and the highest priority <a href="Action">actions</a> that are added to the NavigationView. Only children of type <code class="highlighter-rouge">Page</code>, <code class="highlighter-rouge">Action</code> and <code class="highlighter-rouge">SearchAction</code> are supported. Since the NavigationView does not compute its own size, the width and height must be defined by the respective layout properties (e.g. either <code class="highlighter-rouge">width</code> or <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code> must be specified).</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {NavigationView} = require('tabris');</code>”</p>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="pagesselector">pages(selector)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+            <ul>
+                <li>a selector expression or a predicate function to filter the results.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+
+    <p>Returns the ordered list of pages on the page stack, with the bottommost page as the first and the topmost page as the last element. Same as children(), but only returns children that are of type <code class="highlighter-rouge">Page</code>.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="actioncolor">actionColor</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The color used for action icons.</p>
+
+    <h3 id="actiontextcolor">actionTextColor</h3>
+    <p class="platforms"><span class="android-tag" title="supported on Android">Android</span><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The color used for action texts. Only applied on Android and Windows. IOS uses the <code class="highlighter-rouge">actionColor</code> to colorize the action text.</p>
+
+    <h3 id="bottomtoolbarheight">bottomToolbarHeight</h3>
+
+    <p>Type: <em>number</em></p>
+
+    <p>The height of the bottom toolbar. Is 0 if not visible or unsupported by the platform.</p>
+
+    <h3 id="draweractionvisible">drawerActionVisible</h3>
+
+    <p>Type: <em>boolean</em></p>
+
+    <p>Whether to display the so-called “Burger menu” to open the drawer.</p>
+
+    <h3 id="pageanimation">pageAnimation</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">default</code>, <code class="highlighter-rouge">none</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Controls what animation to use when animating a page transition.</p>
+
+    <h3 id="titletextcolor">titleTextColor</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The text color used for page titles.</p>
+
+    <h3 id="toolbarcolor">toolbarColor</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The background color of the toolbar.</p>
+
+    <h3 id="toolbarvisible">toolbarVisible</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">true</code></p>
+
+    <p>Whether the toolbar is visible.</p>
+
+    <h3 id="toptoolbarheight">topToolbarHeight</h3>
+
+    <p>Type: <em>number</em></p>
+
+    <p>The height of the top toolbar. Is 0 if not visible.</p>
+
+    <h3 id="win_draweractionbackground">win_drawerActionBackground</h3>
+    <p class="platforms"><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The background color used for the drawer action. It is common to the make this the same color as the splash screen. Available only on Windows.</p>
+
+    <h3 id="win_draweractiontheme">win_drawerActionTheme</h3>
+    <p class="platforms"><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">light</code>, <code class="highlighter-rouge">dark</code>, <code class="highlighter-rouge">default</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Controls the color scheme used for the drawer action. When set to <code class="highlighter-rouge">"default"</code> the theme is inherited from the NavigationView. Available only on Windows.</p>
+
+    <h3 id="win_toolbaroverflowtheme">win_toolbarOverflowTheme</h3>
+    <p class="platforms"><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">light</code>, <code class="highlighter-rouge">dark</code>, <code class="highlighter-rouge">default</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Controls the color scheme used for the toolbar’s overflow menu. When set to <code class="highlighter-rouge">"default"</code> the theme is inherited from the toolbar. Available only on Windows.</p>
+
+    <h3 id="win_toolbartheme">win_toolbarTheme</h3>
+    <p class="platforms"><span class="windows-tag" title="supported on Windows 10">Windows 10</span></p>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">light</code>, <code class="highlighter-rouge">dark</code>, <code class="highlighter-rouge">default</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Controls the color scheme used for the toolbar. When set to <code class="highlighter-rouge">"default"</code> the theme is inherited from the NavigationView. Available only on Windows.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="actioncolorchanged">actionColorChanged</h3>
+
+    <p>Fired when the <a href="#actionColor"><em>actionColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#actionColor"><em>actionColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="actiontextcolorchanged">actionTextColorChanged</h3>
+
+    <p>Fired when the <a href="#actionTextColor"><em>actionTextColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#actionTextColor"><em>actionTextColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="bottomtoolbarheightchanged">bottomToolbarHeightChanged</h3>
+
+    <p>Fired when the height of the bottom toolbar changes, e.g. if it changes visibility.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#bottomToolbarHeight"><em>bottomToolbarHeight</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="draweractionvisiblechanged">drawerActionVisibleChanged</h3>
+
+    <p>Fired when the <a href="#drawerActionVisible"><em>drawerActionVisible</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#drawerActionVisible"><em>drawerActionVisible</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="pageanimationchanged">pageAnimationChanged</h3>
+
+    <p>Fired when the <a href="#pageAnimation"><em>pageAnimation</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-4">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#pageAnimation"><em>pageAnimation</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="titletextcolorchanged">titleTextColorChanged</h3>
+
+    <p>Fired when the <a href="#titleTextColor"><em>titleTextColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-5">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#titleTextColor"><em>titleTextColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="toolbarcolorchanged">toolbarColorChanged</h3>
+
+    <p>Fired when the <a href="#toolbarColor"><em>toolbarColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-6">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#toolbarColor"><em>toolbarColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="toolbarvisiblechanged">toolbarVisibleChanged</h3>
+
+    <p>Fired when the <a href="#toolbarVisible"><em>toolbarVisible</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-7">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#toolbarVisible"><em>toolbarVisible</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="toptoolbarheightchanged">topToolbarHeightChanged</h3>
+
+    <p>Fired when the height of the top toolbar changes, e.g. if it changes visibility.</p>
+
+    <h4 id="event-parameters-8">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#topToolbarHeight"><em>topToolbarHeight</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_draweractionbackgroundchanged">win_drawerActionBackgroundChanged</h3>
+
+    <p>Fired when the <a href="#win_drawerActionBackground"><em>win_drawerActionBackground</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-9">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#win_drawerActionBackground"><em>win_drawerActionBackground</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_draweractionthemechanged">win_drawerActionThemeChanged</h3>
+
+    <p>Fired when the <a href="#win_drawerActionTheme"><em>win_drawerActionTheme</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-10">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#win_drawerActionTheme"><em>win_drawerActionTheme</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_toolbaroverflowthemechanged">win_toolbarOverflowThemeChanged</h3>
+
+    <p>Fired when the <a href="#win_toolbarOverflowTheme"><em>win_toolbarOverflowTheme</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-11">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#win_toolbarOverflowTheme"><em>win_toolbarOverflowTheme</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_toolbarthemechanged">win_toolbarThemeChanged</h3>
+
+    <p>Fired when the <a href="#win_toolbarTheme"><em>win_toolbarTheme</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-12">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#win_toolbarTheme"><em>win_toolbarTheme</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-page-stacked.js">Snippet with a NavigationView and Pages</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-properties.js">Snippet with a NavigationView and its various properties</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-tabfolder.js">Snippet with NavigationViews embedded in Tabs of a TabFolder</a></li>
+    </ul>

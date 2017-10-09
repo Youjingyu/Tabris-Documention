@@ -1,0 +1,200 @@
+    <h1 id="tabfolder">TabFolder</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+
+    <p>A widget that can switch between <a href="Tab">tabs</a>. Only children of type <code class="highlighter-rouge">Tab</code> are supported. Since the TabFolder does not compute its own size, the width and height must be defined by the respective layout properties (e.g. either <code class="highlighter-rouge">width</code> or <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code> must be specified).</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {TabFolder} = require('tabris');</code>”</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Android</th>
+            <th>iOS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><img src="/tabris-js-docs/latest/api/img/android/TabFolder.png" alt="TabFolder on Android"></td>
+            <td><img src="/tabris-js-docs/latest/api/img/ios/TabFolder.png" alt="TabFolder on iOS"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="paging">paging</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>boolean</em></p>
+
+    <p>Enables swiping through tabs. Always enabled on Windows.</p>
+
+    <h3 id="selection">selection</h3>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/api/Tab.html">Tab</a></em></p>
+
+    <p>The currently selected tab.</p>
+
+    <h3 id="tabbarlocation">tabBarLocation</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">top</code>, <code class="highlighter-rouge">bottom</code>, <code class="highlighter-rouge">hidden</code>, <code class="highlighter-rouge">auto</code>, default: <code class="highlighter-rouge">auto</code></p>
+
+    <p>The placement of the tab titles. When set to <code class="highlighter-rouge">"hidden"</code>, the tab bar will not be visible. When set to <code class="highlighter-rouge">"auto"</code>, the position is platform dependent.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="tabmode">tabMode</h3>
+    <p class="platforms"><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">fixed</code>, <code class="highlighter-rouge">scrollable</code>, default: <code class="highlighter-rouge">fixed</code></p>
+
+    <p>Controls how the tabs make use of the available horizontal space. Setting the <code class="highlighter-rouge">tabMode</code> to <code class="highlighter-rouge">"fixed"</code> makes the tabs span the entire available space. In case of a very wide <code class="highlighter-rouge">TabFolder</code> the <code class="highlighter-rouge">"fixed"</code> mode centers the tabs. The mode <code class="highlighter-rouge">"scrollable"</code> left aligns the tabs and allows to scroll the tabs if there are more tabs than would fit in the available space. Available on Android only.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="textcolor">textColor</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em></p>
+
+    <p>The color used for the text of the tab headers.</p>
+
+    <h3 id="win_tabbartheme">win_tabBarTheme</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">light</code>, <code class="highlighter-rouge">dark</code>, <code class="highlighter-rouge">default</code>, default: <code class="highlighter-rouge">default</code></p>
+
+    <p>Controls the color scheme used for the tabBar. When set to <code class="highlighter-rouge">"default"</code> the theme is inherited from the TabFolder. Available only on Windows.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="pagingchanged">pagingChanged</h3>
+
+    <p>Fired when the <a href="#paging"><em>paging</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#paging"><em>paging</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="scroll">scroll</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+    <p>Fired when <code class="highlighter-rouge">paging</code> is enabled and a tab is scrolled. The <code class="highlighter-rouge">event</code> parameter contains position information relative to the currently selected <code class="highlighter-rouge">Tab</code>. Eg.: scrolling a 500px wide tab 10% to the left sets <code class="highlighter-rouge">offset</code> to <code class="highlighter-rouge">50</code>. Scrolling 10% to the right sets <code class="highlighter-rouge">offset</code> to <code class="highlighter-rouge">-50</code>.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>offset</strong>: <em>number</em>
+                Number of pixels the current tab has scrolled horizontally.</p>
+        </li>
+        <li>
+            <p><strong>selection</strong>: <em><a href="/tabris-js-docs/latest/api/Tab.html">Tab</a></em>
+                The current value of the <code class="highlighter-rouge">selection</code> property.</p>
+        </li>
+    </ul>
+
+    <h3 id="select">select</h3>
+
+    <p>Fired when the selection property changes by user interaction.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>selection</strong>: <em><a href="/tabris-js-docs/latest/api/Tab.html">Tab</a></em>
+                The new value of <em>selection</em>.</p>
+        </li>
+    </ul>
+
+    <h3 id="selectionchanged">selectionChanged</h3>
+
+    <p>Fired when the <a href="#selection"><em>selection</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/api/Tab.html">Tab</a></em>
+                The new value of <a href="#selection"><em>selection</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="textcolorchanged">textColorChanged</h3>
+
+    <p>Fired when the <a href="#textColor"><em>textColor</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-4">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#color">Color</a></em>
+                The new value of <a href="#textColor"><em>textColor</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="win_tabbarthemechanged">win_tabBarThemeChanged</h3>
+
+    <p>Fired when the <a href="#win_tabBarTheme"><em>win_tabBarTheme</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-5">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#win_tabBarTheme"><em>win_tabBarTheme</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Tab</span><span class="p">,</span> <span class="nx">TabFolder</span><span class="p">,</span> <span class="nx">TextView</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="c1">// Create a swipe enabled tab folder with 3 tabs</span>
+
+<span class="kd">let</span> <span class="nx">tabFolder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TabFolder</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="na">paging</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// enables swiping. To still be able to open the developer console in iOS, swipe from the bottom right.</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="nx">createTab</span><span class="p">(</span><span class="s1">'Cart'</span><span class="p">,</span> <span class="s1">'images/cart.png'</span><span class="p">,</span> <span class="s1">'images/cart-filled.png'</span><span class="p">);</span>
+<span class="nx">createTab</span><span class="p">(</span><span class="s1">'Pay'</span><span class="p">,</span> <span class="s1">'images/card.png'</span><span class="p">,</span> <span class="s1">'images/card-filled.png'</span><span class="p">);</span>
+<span class="nx">createTab</span><span class="p">(</span><span class="s1">'Statistic'</span><span class="p">,</span> <span class="s1">'images/chart.png'</span><span class="p">,</span> <span class="s1">'images/chart-filled.png'</span><span class="p">);</span>
+
+<span class="nx">tabFolder</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'selectionChanged'</span><span class="p">,</span> <span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="nx">tab</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tab</span><span class="p">.</span><span class="nx">title</span><span class="p">));</span>
+
+<span class="kd">function</span> <span class="nx">createTab</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">image</span><span class="p">,</span> <span class="nx">seletedImage</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">tab</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tab</span><span class="p">({</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">title</span><span class="p">,</span> <span class="c1">// converted to upper-case on Android</span>
+    <span class="na">image</span><span class="p">:</span> <span class="p">{</span><span class="na">src</span><span class="p">:</span> <span class="nx">image</span><span class="p">,</span> <span class="na">scale</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="na">selectedImage</span><span class="p">:</span> <span class="p">{</span><span class="na">src</span><span class="p">:</span> <span class="nx">seletedImage</span><span class="p">,</span> <span class="na">scale</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+  <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">tabFolder</span><span class="p">);</span>
+  <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span>
+    <span class="na">centerX</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">centerY</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Content of Tab '</span> <span class="o">+</span> <span class="nx">title</span>
+  <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">tab</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/tabfolder.js">Snippet with a TabFolder and Tabs</a></li>
+    </ul>

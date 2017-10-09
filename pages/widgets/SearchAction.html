@@ -1,0 +1,136 @@
+    <h1 id="searchaction">SearchAction</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Action.html">Action</a></p>
+
+    <p>An action that displays a search text field with dynamic proposals when selected. Add a listener on <em>select</em> to implement the action. On <em>input</em>, you may set a list of <em>proposals</em>.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {SearchAction} = require('tabris');</code>”</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Android</th>
+            <th>iOS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><img src="/tabris-js-docs/latest/api/img/android/SearchAction.png" alt="SearchAction on Android"></td>
+            <td><img src="/tabris-js-docs/latest/api/img/ios/SearchAction.png" alt="SearchAction on iOS"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="open">open()</h3>
+
+    <p>Invokes the search action, i.e. displays the UI to perform a search.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="message">message</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>A hint text that is displayed when the search input is empty.</p>
+
+    <h3 id="proposals">proposals</h3>
+
+    <p>Type: <em>string[]</em>, default: <code class="highlighter-rouge">[]</code></p>
+
+    <p>The list of proposals to display.</p>
+
+    <h3 id="text">text</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>The text in the search input field.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="accept">accept</h3>
+
+    <p>Fired when a text input has been submitted by pressing the keyboard’s search key.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>text</strong>: <em>string</em>
+                The current value of <em><a href="#text">text</a></em>.</p>
+        </li>
+    </ul>
+
+    <h3 id="input">input</h3>
+
+    <p>Fired when the user inputs text.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>text</strong>: <em>string</em>
+                The new value of <em><a href="#text">text</a></em>.</p>
+        </li>
+    </ul>
+
+    <h3 id="messagechanged">messageChanged</h3>
+
+    <p>Fired when the <a href="#message"><em>message</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#message"><em>message</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="proposalschanged">proposalsChanged</h3>
+
+    <p>Fired when the <a href="#proposals"><em>proposals</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string[]</em>
+                The new value of <a href="#proposals"><em>proposals</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="textchanged">textChanged</h3>
+
+    <p>Fired when the <a href="#text"><em>text</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-4">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#text"><em>text</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-searchaction.js">Search action snippet</a></li>
+    </ul>

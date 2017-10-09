@@ -1,0 +1,187 @@
+    <h1 id="scrollview">ScrollView</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+
+    <p>A composite that allows its content to overflow either vertically (default) or horizontally. Since the ScrollView does not compute its own size, the width and height must be defined by the respective layout properties (e.g. either <code class="highlighter-rouge">width</code> or <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code> must be specified).</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {ScrollView} = require('tabris');</code>”</p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Android</th>
+            <th>iOS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><img src="/tabris-js-docs/latest/api/img/android/ScrollView.png" alt="ScrollView on Android"></td>
+            <td><img src="/tabris-js-docs/latest/api/img/ios/ScrollView.png" alt="ScrollView on iOS"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 id="methods">Methods</h2>
+
+    <h3 id="scrolltoxoffset-options">scrollToX(offset, options)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>offset: <em>number</em>
+            <ul>
+                <li>the offset to scroll to in dip.</li>
+            </ul>
+        </li>
+        <li>options: <em>{animate?: boolean}</em> [<strong>Optional</strong>]
+            <ul>
+                <li>an additional object to control the animation. Set to <code class="highlighter-rouge"><span class="p">{</span><span class="err">animate:</span><span class="w"> </span><span class="err">false</span><span class="p">}</span></code> to scroll without an animation.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Scrolls to the given horizontal offset. Give <code class="highlighter-rouge"><span class="p">{</span><span class="err">animate:</span><span class="w"> </span><span class="err">false</span><span class="p">}</span></code> as the second parameter to suppress the animation.</p>
+
+    <h3 id="scrolltoyoffset-options">scrollToY(offset, options)</h3>
+
+    <p><strong>Parameters:</strong></p>
+
+    <ul>
+        <li>offset: <em>number</em>
+            <ul>
+                <li>the offset to scroll to in dip.</li>
+            </ul>
+        </li>
+        <li>options: <em>{animate?: boolean}</em> [<strong>Optional</strong>]
+            <ul>
+                <li>an additional object to control the animation. Set to <code class="highlighter-rouge"><span class="p">{</span><span class="err">animate:</span><span class="w"> </span><span class="err">false</span><span class="p">}</span></code> to scroll without an animation.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>Returns:</strong> <em>this</em></p>
+
+    <p>Scrolls to the given vertical offset. Give <code class="highlighter-rouge"><span class="p">{</span><span class="err">animate:</span><span class="w"> </span><span class="err">false</span><span class="p">}</span></code> as the second parameter to suppress the animation.</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="direction">direction</h3>
+
+    <p>Type: <em>string</em>, supported values: <code class="highlighter-rouge">vertical</code>, <code class="highlighter-rouge">horizontal</code>, default: <code class="highlighter-rouge">vertical</code></p>
+
+    <p>Specifies the scrolling direction of the scroll composite.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+
+    <h3 id="offsetx">offsetX</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>number</em></p>
+
+    <p>The horizontal scrolling position in dip.</p>
+
+    <h3 id="offsety">offsetY</h3>
+
+    <p><strong>read-only</strong><br>
+        Type: <em>number</em></p>
+
+    <p>The vertical scrolling position in dip.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="offsetxchanged">offsetXChanged</h3>
+
+    <p>Fired when the <a href="#offsetX"><em>offsetX</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#offsetX"><em>offsetX</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="offsetychanged">offsetYChanged</h3>
+
+    <p>Fired when the <a href="#offsetY"><em>offsetY</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>number</em>
+                The new value of <a href="#offsetY"><em>offsetY</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="scrollx">scrollX</h3>
+
+    <p>Fired while scrolling horizontally.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>offset</strong>: <em>number</em>
+                Indicates the current horizontal scrolling position.</p>
+        </li>
+    </ul>
+
+    <h3 id="scrolly">scrollY</h3>
+
+    <p>Fired while scrolling vertically.</p>
+
+    <h4 id="event-parameters-3">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>offset</strong>: <em>number</em>
+                Indicates the current vertical scrolling position.</p>
+        </li>
+    </ul>
+
+    <h2 id="example">Example</h2>
+    <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">ScrollView</span><span class="p">,</span> <span class="nx">TextView</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
+
+<span class="c1">// Create a horizontal scroll view and populate it with text views</span>
+
+<span class="kd">let</span> <span class="nx">scrollView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ScrollView</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">top</span><span class="p">:</span> <span class="s1">'40%'</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="s1">'40%'</span><span class="p">,</span>
+  <span class="na">direction</span><span class="p">:</span> <span class="s1">'horizontal'</span><span class="p">,</span>
+  <span class="na">background</span><span class="p">:</span> <span class="s1">'#234'</span>
+<span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">50</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">new</span> <span class="nx">TextView</span><span class="p">({</span>
+    <span class="na">left</span><span class="p">:</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">30</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="na">centerY</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">width</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="na">textColor</span><span class="p">:</span> <span class="s1">'white'</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">'°'</span>
+  <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">scrollView</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">new</span> <span class="nx">Button</span><span class="p">({</span>
+  <span class="na">left</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="na">bottom</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="na">text</span><span class="p">:</span> <span class="s1">'scroll'</span>
+<span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'select'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">scrollView</span><span class="p">.</span><span class="nx">scrollToX</span><span class="p">(</span><span class="mi">310</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
+</code></pre>
+    </div>
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/scrollview.js">Simple ScrollView snippet</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/examples/parallax/parallax.js">Example using a ScrollView</a></li>
+    </ul>

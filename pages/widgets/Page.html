@@ -1,0 +1,91 @@
+    <h1 id="page">Page</h1>
+
+    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+
+    <p>A container representing a single page of a NavigationView widget.</p>
+
+    <p>Import this type with “<code class="highlighter-rouge">const {Page} = require('tabris');</code>”</p>
+
+    <h2 id="properties">Properties</h2>
+
+    <h3 id="autodispose">autoDispose</h3>
+
+    <p>Type: <em>boolean</em>, default: <code class="highlighter-rouge">true</code></p>
+
+    <p>Defines whether this page will be automatically disposed when popped from the NavigationView, e.g. using native back navigation.</p>
+
+    <h3 id="image">image</h3>
+    <p class="platforms"><span class="ios-tag" title="supported on iOS">iOS</span><span class="android-tag" title="supported on Android">Android</span></p>
+
+    <p>Type: <em><a href="/tabris-js-docs/latest/types.html#image">Image</a></em></p>
+
+    <p>An image to be displayed in the navigation bar. Not supported on Windows.</p>
+
+    <h3 id="title">title</h3>
+
+    <p>Type: <em>string</em></p>
+
+    <p>The page title to be displayed in the navigation bar.</p>
+
+    <h2 id="events">Events</h2>
+
+    <h3 id="appear">appear</h3>
+
+    <p>Fired when the page is about to become visible, i.e. it has become the active page.</p>
+    <h3 id="autodisposechanged">autoDisposeChanged</h3>
+
+    <p>Fired when the <a href="#autoDispose"><em>autoDispose</em></a> property has changed.</p>
+
+    <h4 id="event-parameters">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>boolean</em>
+                The new value of <a href="#autoDispose"><em>autoDispose</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="disappear">disappear</h3>
+
+    <p>Fired when the page is no longer visible, i.e. another page has become the active page.</p>
+    <h3 id="imagechanged">imageChanged</h3>
+
+    <p>Fired when the <a href="#image"><em>image</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-1">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em><a href="/tabris-js-docs/latest/types.html#image">Image</a></em>
+                The new value of <a href="#image"><em>image</em></a>.</p>
+        </li>
+    </ul>
+
+    <h3 id="titlechanged">titleChanged</h3>
+
+    <p>Fired when the <a href="#title"><em>title</em></a> property has changed.</p>
+
+    <h4 id="event-parameters-2">Event Parameters</h4>
+    <ul>
+        <li>
+            <p><strong>target</strong>: <em>this</em>
+                The widget the event was fired on.</p>
+        </li>
+        <li>
+            <p><strong>value</strong>: <em>string</em>
+                The new value of <a href="#title"><em>title</em></a>.</p>
+        </li>
+    </ul>
+
+    <h2 id="see-also">See also</h2>
+
+    <ul>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-page.js">Simple snippet for displaying a single page</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/navigationview-page-stacked.js">Snippet for creating a stack of pages</a></li>
+    </ul>
