@@ -1,20 +1,20 @@
-    <h1 id="custom-widgets-android">Custom Widgets Android</h1>
+    <h1 id="custom-widgets-android">自定义Android控件</h1>
 
-    <p>A Tabris.js widget consists of a <a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript API</a> and a native client side implementation. This document describes how to create the native implementation for a custom widget on the Android platform.</p>
+    <p>Tabris.js控件由<a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript API</a>和原生平台的实现组成。本文档介绍Android平台上的自定义控件的原生实现。</p>
 
-    <p>In order to implement a custom widget you will need to <a href="/tabris-js-docs/latest/build.html">build locally</a>.</p>
+    <p>为了实现自定义控件你需要<a href="/tabris-js-docs/latest/build.html">本地构建</a>。</p>
 
-    <h3 id="building-upon-cordova-infrastructure">Building upon Cordova infrastructure</h3>
+    <h3 id="building-upon-cordova-infrastructure">在Cordova基础上构建</h3>
 
-    <p>To create a Tabris.js custom widget, we make use of the Cordova build system. Therefore we create a Cordova plugin that ties into Tabris.js specific APIs. A Tabris.js custom widget does not require touching any of the Cordova specific Java APIs. All interaction with the JavaScript parts is enabled through Tabris.js specific APIs.</p>
+    <p>为了创建Tabris.js自定义控件，我们使用Cordova的构建系统。因此，我们创建一个与Tabris.js特定的API相关联的Cordova插件。Tabris.js自定义控件不需要接触任何Cordova特定的Java API。通过Tabris.js特定的API可以实现与JavaScript部分的所有交互。</p>
 
-    <p>By leveraging the Cordova plugin architecture we are able to make use of the Cordova build chain and to provide a <code class="highlighter-rouge">plugin.xml</code> in our plugin to customize the build process. Once a plugin is defined it can be consumed by an app via the regular <code class="highlighter-rouge">cordova plugin add &lt;plugin-id/git-url&gt;</code> shell command or a <code class="highlighter-rouge">&lt;plugin /&gt;</code> entry in the config.xml of an app.</p>
+    <p>通过Cordova的插件架构，我们可以利用Cordova构建工具链，并在我们的插件中提供一个<code class="highlighter-rouge">plugin.xml</code>来自定义构建过程。一旦定义了一个插件，app就可以通过常规的<code class="highlighter-rouge">cordova plugin add &lt;plugin-id/git-url&gt;</code>shell命令或一个config.xml中的<code class="highlighter-rouge">&lt;plugin /&gt;</code>来使用。</p>
 
-    <p><img class="emoji" title=":information_source:" alt=":information_source:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2139.png" height="20" width="20" align="absmiddle"> A working example of the concepts outlined in this document can be found <a href="https://github.com/eclipsesource/tabris-calendar">here</a>.</p>
+    <p><img class="emoji" title=":information_source:" alt=":information_source:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2139.png" height="20" width="20" align="absmiddle">一个本文档中概述的概念的使用示例可以在。<a href="https://github.com/eclipsesource/tabris-calendar">这里</a>找到。</p>
 
-    <h2 id="receiving-messages-from-javascript">Receiving messages from JavaScript</h2>
+    <h2 id="receiving-messages-from-javascript">从JavaScript接收消息</h2>
 
-    <p>Creating a custom widget requires handling incoming messages from JavaScript and sending messages back to JavaScript. The main entry point to this communication loop is the <code class="highlighter-rouge">com.eclipsesource.tabris.android.Operator</code>. The operator provides callback methods for all communication <em>from</em> JavaScript to the native client. The following snippet shows a basic operator that uses the <code class="highlighter-rouge">com.eclipsesource.tabris.android.AbstractViewOperator</code> as a basis for a <code class="highlighter-rouge">View</code> specific operator:</p>
+    <p>自定义控件需要处理JavaScript传入的消息并将消息返回给JavaScript。此通信循环的主要入口点是<code class="highlighter-rouge">com.eclipsesource.tabris.android.Operator</code>。该Operator提供从JavaScript到原生平台的所有通信的回调方法。以下代码片段展示了一个使用<code class="highlighter-rouge">com.eclipsesource.tabris.android.AbstractViewOperator</code>作为<code class="highlighter-rouge">View</code>特定操作基础的基本操作：</p>
 
     <div class="language-java highlighter-rouge">
 <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalendarOperator</span> <span class="kd">extends</span> <span class="n">AbstractViewOperator</span><span class="o">&lt;</span><span class="n">CalendarView</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -32,7 +32,7 @@
 </code></pre>
     </div>
 
-    <p>The snippet above shows two important aspects of an <code class="highlighter-rouge">Operator</code>: The class <em>has to have</em> a two argument constructor <code class="highlighter-rouge">CalendarOperator(&lt;Activity&gt;, &lt;TabrisContext&gt;)</code> and the method <code class="highlighter-rouge">getType()</code> has to return the name of the custom widget as registered on the <a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript side</a>.</p>
+    <p>上面的代码片段展示了<code class="highlighter-rouge">Operator</code>的两个重要方面：该类<em>必须有</em>一个具有两个参数的构造函数<code class="highlighter-rouge">CalendarOperator(&lt;Activity&gt;, &lt;TabrisContext&gt;)</code>，以及<code class="highlighter-rouge">getType()</code>方法必须返回<a href="/tabris-js-docs/latest/custom-widgets.html">JavaScript端</a>自定义控件的名字。</p>
 
     <h2 id="registering-an-operator">Registering an operator</h2>
 
