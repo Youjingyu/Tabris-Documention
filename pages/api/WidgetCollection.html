@@ -1,14 +1,14 @@
     <h1 id="widgetcollection">WidgetCollection</h1>
 
-    <p>A <code class="highlighter-rouge">WidgetCollection</code> is an array-like object representing a set of widgets, as returned by the widget methods <code class="highlighter-rouge">children</code> and <code class="highlighter-rouge">find</code>.</p>
+    <p><code class="highlighter-rouge">WidgetCollection</code> 是表示一组部件（widget）的类数组对象，由部件方法 <code class="highlighter-rouge">children</code> 和 <code class="highlighter-rouge">find</code> 返回。</p>
 
-    <p>Import this type with “<code class="highlighter-rouge">const {WidgetCollection} = require('tabris');</code>”</p>
+    <p>通过 “<code class="highlighter-rouge">const {WidgetCollection} = require('tabris');</code>” 引入该类。</p>
 
-    <p>A <code class="highlighter-rouge">WidgetCollection</code> is an array-like object that represents any number of widgets - it can also be empty.</p>
+    <p>A <code class="highlighter-rouge">WidgetCollection</code> 是表示一组部件的类数组对象 - 也可能是个空值。</p>
 
-    <p>It combines a subset of the JavaScript Array API with a subset of the Tabris.js Widget API. Like an array, the widgets within the collection may be accessed directly using the <code class="highlighter-rouge">[index]</code> syntax. The number of widgets is stored in the <code class="highlighter-rouge">length</code> field. Instances of <em>WidgetCollection</em> are immutable.</p>
+    <p>合并了JavaScript数组API的子集和Tabris.js部件API的子集。像数组一样，集合中的部件可以通过 <code class="highlighter-rouge">[index]</code> 语法直接访问。部件个数存储在 <code class="highlighter-rouge">length</code> 字段。<em>WidgetCollection</em>的实例是不可变的。</p>
 
-    <p>Example:</p>
+    <p>示例：</p>
 
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">page</span><span class="p">.</span><span class="nx">children</span><span class="p">();</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">child</span> <span class="nx">of</span> <span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
@@ -17,53 +17,53 @@
 </code></pre>
     </div>
 
-    <p>Calls to <code class="highlighter-rouge">set</code> or <code class="highlighter-rouge">animate</code> change the given properties for all widgets in the collection. Similarly, the <code class="highlighter-rouge">on</code>, <code class="highlighter-rouge">off</code> and <code class="highlighter-rouge">once</code> methods will add/remove the given listener to/from all widgets. When <code class="highlighter-rouge">get</code> is used, the value of the first widget in the collection is returned.</p>
+    <p>调用 <code class="highlighter-rouge">set</code> 或 <code class="highlighter-rouge">animate</code> 改变集合中所有部件的给定属性。同样 <code class="highlighter-rouge">on</code>，<code class="highlighter-rouge">off</code> 和 <code class="highlighter-rouge">once</code> 方法将会向/从所有的部件添加/移除给定的事件监听。使用 <code class="highlighter-rouge">get</code> 时，会得到集合中的第一个部件。</p>
 
-    <h2 id="methods">Methods</h2>
+    <h2 id="methods">方法</h2>
 
     <h3 id="animateproperties-options">animate(properties, options)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>properties: <em>{transform?: Transformation, opacity?: number}</em>
             <ul>
-                <li>the properties and target values to animate.</li>
+                <li>动画属性与目标值。</li>
             </ul>
         </li>
         <li>options: <em><a href="/tabris-js-docs/latest/types.html#animationoptions">AnimationOptions</a></em>
             <ul>
-                <li>configures the animation itself.</li>
+                <li>动画配置。</li>
             </ul>
         </li>
     </ul>
 
-    <p>Animates all widgets in this collection.</p>
+    <p>使集合中的所有部件动画化。</p>
 
     <h3 id="appendtoparent">appendTo(parent)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>parent: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em>
             <ul>
-                <li>the parent widget to append to.</li>
+                <li>要被追加至的父部件。</li>
             </ul>
         </li>
     </ul>
 
     <p><strong>Returns:</strong> <em>this</em></p>
 
-    <p>Appends all widgets in this collection to the given parent widget.</p>
+    <p>会将集合中所有的部件追加到给定的父部件中。</p>
 
     <h3 id="childrenselector">children(selector)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
             <ul>
-                <li>a selector expression or a predicate function to filter the results.</li>
+                <li>一个用来获取结果的选择器表达式或判断函数。a selector expression or a predicate function to filter the results.</li>
             </ul>
         </li>
     </ul>
