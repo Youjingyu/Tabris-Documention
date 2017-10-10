@@ -1,12 +1,12 @@
-<h1 id="custom-widgets">Custom Widgets</h1>
+<h1 id="custom-widgets">自定义控件</h1>
 
-<p>Custom widgets are written in JavaScript and the language available for the native platforms. They use the interfaces of the native Tabris.js clients and are wrapped in a Cordova plug-in. This article covers the JavaScript part of the implementation.</p>
+<p>自定义控件用JavaScript和原生平台支持的语言编写。它们使用原生Tabris.js客户端的接口，并被封装在Cordova插件中。本文将介绍JavaScript的实现部分。</p>
 
-<h2 id="defining-a-custom-widget-in-javascript">Defining a Custom Widget in JavaScript</h2>
+<h2 id="defining-a-custom-widget-in-javascript">用JavaScript定义自定义控件</h2>
 
-<p>Custom widgets must extend <code class="highlighter-rouge">Widget</code>. It enables communication with the native part of the custom widget.</p>
+<p>自定义控件必须继承自<code class="highlighter-rouge">Widget</code>。它能够与自定义控件的原生部分进行通信。</p>
 
-<p>Custom widget classes must overwrite the <code class="highlighter-rouge">_nativeType</code> property getter to return a type matching the native implementation:</p>
+<p>自定义控件类必须覆写<code class="highlighter-rouge">_nativeType</code>属性的getter以返回与原生实现匹配的类型：</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyCustomWidget</span> <span class="kr">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
 
@@ -18,9 +18,9 @@
 </code></pre>
 </div>
 
-<h3 id="properties">Properties</h3>
+<h3 id="properties">属性</h3>
 
-<p>Call <code class="highlighter-rouge">_nativeSet(name, value)</code> and <code class="highlighter-rouge">_nativeGet(name)</code> to exchange properties with the native client.</p>
+<p>调用<code class="highlighter-rouge">_nativeSet(name, value)</code> 和 <code class="highlighter-rouge">_nativeGet(name)</code>来与原生平台交换属性。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyCustomWidget</span> <span class="kr">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
 
@@ -40,9 +40,9 @@
 </code></pre>
 </div>
 
-<h3 id="events">Events</h3>
+<h3 id="events">事件</h3>
 
-<p>Overwrite the <code class="highlighter-rouge">_listen</code> method and call <code class="highlighter-rouge">_nativeListen</code> to get notified when an event gets fired by the native widget part.</p>
+<p>覆写<code class="highlighter-rouge">_listen</code>方法，并调用<code class="highlighter-rouge">_nativeListen</code>以便在原生控件触发事件时收到通知。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">MyCustomWidget</span> <span class="kr">extends</span> <span class="nx">Widget</span> <span class="p">{</span>
 
@@ -62,6 +62,6 @@
 </code></pre>
 </div>
 
-<h3 id="compatibility-with-ios-9">Compatibility with iOS 9</h3>
+<h3 id="compatibility-with-ios-9">兼容iOS 9</h3>
 
-<p>For compatibility with the JavaScriptCore version used in iOS 9, some ES6 language features must be transpiled (see <a href="/tabris-js-docs/latest/lang.html#ecmascript-6">EcmaScript 6</a>).</p>
+<p>为了与iOS 9中使用的JavaScriptCore版本兼容，某些ES6语言特性需要编译（参考<a href="/tabris-js-docs/latest/lang.html#ecmascript-6">EcmaScript 6</a>）。</p>
