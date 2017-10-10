@@ -1,12 +1,12 @@
     <h1 id="widgetcollection">WidgetCollection</h1>
 
-    <p><code class="highlighter-rouge">WidgetCollection</code> 是表示一组部件（widget）的类数组对象，由部件方法 <code class="highlighter-rouge">children</code> 和 <code class="highlighter-rouge">find</code> 返回。</p>
+    <p><code class="highlighter-rouge">WidgetCollection</code> 是表示一组控件（widget）的类数组对象，由控件方法 <code class="highlighter-rouge">children</code> 和 <code class="highlighter-rouge">find</code> 返回。</p>
 
     <p>通过 “<code class="highlighter-rouge">const {WidgetCollection} = require('tabris');</code>” 引入该类。</p>
 
-    <p>A <code class="highlighter-rouge">WidgetCollection</code> 是表示一组部件的类数组对象 - 也可能是个空值。</p>
+    <p>A <code class="highlighter-rouge">WidgetCollection</code> 是表示一组控件的类数组对象 - 也可能是个空值。</p>
 
-    <p>合并了JavaScript数组API的子集和Tabris.js部件API的子集。像数组一样，集合中的部件可以通过 <code class="highlighter-rouge">[index]</code> 语法直接访问。部件个数存储在 <code class="highlighter-rouge">length</code> 字段。<em>WidgetCollection</em>的实例是不可变的。</p>
+    <p>合并了JavaScript数组API的子集和Tabris.js控件API的子集。像数组一样，集合中的控件可以通过 <code class="highlighter-rouge">[index]</code> 语法直接访问。控件个数存储在 <code class="highlighter-rouge">length</code> 字段。<em>WidgetCollection</em>的实例是不可变的。</p>
 
     <p>示例：</p>
 
@@ -17,7 +17,7 @@
 </code></pre>
     </div>
 
-    <p>调用 <code class="highlighter-rouge">set</code> 或 <code class="highlighter-rouge">animate</code> 改变集合中所有部件的给定属性。同样 <code class="highlighter-rouge">on</code>，<code class="highlighter-rouge">off</code> 和 <code class="highlighter-rouge">once</code> 方法将会向/从所有的部件添加/移除给定的事件监听。使用 <code class="highlighter-rouge">get</code> 时，会得到集合中的第一个部件。</p>
+    <p>调用 <code class="highlighter-rouge">set</code> 或 <code class="highlighter-rouge">animate</code> 改变集合中所有控件的给定属性。同样 <code class="highlighter-rouge">on</code>，<code class="highlighter-rouge">off</code> 和 <code class="highlighter-rouge">once</code> 方法将会向/从所有的控件添加/移除给定的事件监听。使用 <code class="highlighter-rouge">get</code> 时，会得到集合中的第一个控件。</p>
 
     <h2 id="methods">方法</h2>
 
@@ -38,7 +38,7 @@
         </li>
     </ul>
 
-    <p>使集合中的所有部件动画化。</p>
+    <p>使集合中的所有控件动画化。</p>
 
     <h3 id="appendtoparent">appendTo(parent)</h3>
 
@@ -47,262 +47,263 @@
     <ul>
         <li>parent: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em>
             <ul>
-                <li>要被追加至的父部件。</li>
+                <li>要被追加至的父控件。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>会将集合中所有的部件追加到给定的父部件中。</p>
+    <p>会将集合中所有的控件追加到给定的父控件中。</p>
 
     <h3 id="childrenselector">children(selector)</h3>
 
     <p><strong>参数：</strong></p>
 
     <ul>
-        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>一个用来获取结果的选择器表达式或判断函数。a selector expression or a predicate function to filter the results.</li>
+                <li>用来获取结果的选择器表达式或判断函数（返回布尔值的函数）。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+    <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>Returns a collection containing all children of all widgets in this collection that match the given selector.</p>
+    <p>返回给定集合中的控件的子控件中所有匹配选择器的控件的集合。</p>
 
     <h3 id="dispose">dispose()</h3>
 
-    <p>Disposes all widgets in this collection.</p>
+    <p>清除集合中的所有控件。</p>
 
     <h3 id="filterselector">filter(selector)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em>
             <ul>
-                <li>a selector expression or a predicate function to filter the results.</li>
+                <li>用来获取结果的选择器表达式或判断函数。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+    <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>Returns a new <em>WidgetCollection</em> containing all widgets in this collection that match the given selector.</p>
+    <p>返回此集合中匹配给定选择器的所有控件的新 <em>WidgetCollection</em> 。</p>
 
     <h3 id="findselector">find(selector)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
-        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>a selector expression or a predicate function to filter the results.</li>
+                <li>用来获取结果的选择器表达式或判断函数。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+    <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>Returns a collection containing all descendants of all widgets in this collection that match the given selector.</p>
+    <p>返回给定集合中的控件的后代控件中所有匹配选择器的控件的集合。</p>
 
     <h3 id="firstselector">first(selector)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
-        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>a selector expression or a predicate function to filter the results.</li>
+                <li>用来获取结果的选择器表达式或判断函数。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></p>
+    <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></p>
 
-    <p>Returns the first widget in the collection that is matched by the selector. Without selector, it is the same as <code class="highlighter-rouge">collection[0]</code>.</p>
+    <p>返回集合中第一个匹配选择器的控件。缺少selector参数时，和 <code class="highlighter-rouge">collection[0]</code>相同。</p>
 
     <h3 id="foreachcallback">forEach(callback)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>callback: <em>(widget: Widget, index: number, collection: WidgetCollection) =&gt; void</em>
             <ul>
-                <li>the function to call for each widget. The arguments are: <em>widget</em>, <em>index</em>, <em>collection</em></li>
+                <li>对于每个控件所要执行的函数。参数有: <em>widget</em>， <em>index</em>， <em>collection</em></li>
             </ul>
         </li>
     </ul>
 
-    <p>Calls the given callback function once for each widget in the collection.</p>
+    <p>集合中的每个控件调用给定函数一次。</p>
 
     <h3 id="getproperty">get(property)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>property: <em>string</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>any</em></p>
+    <p><strong>返回值：</strong> <em>any</em></p>
 
-    <p>Returns the value of the given property of the first widget in this collection.</p>
+    <p>返回集合中第一个控件的给定属性的值。</p>
 
     <h3 id="includeswidget">includes(widget)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em>
             <ul>
-                <li>the widget to search in the collection.</li>
+                <li>在集合中查找的指定控件。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>boolean</em></p>
+    <p><strong>返回值：</strong> <em>boolean</em></p>
 
-    <p>Returns <code class="highlighter-rouge">true</code> if the given widget is included in the collection, <code class="highlighter-rouge">false</code> otherwise.</p>
+    <p>如果集合中包含给定控件，返回 <code class="highlighter-rouge">true</code> ，否则返回 <code class="highlighter-rouge">false</code> 。</p>
 
     <h3 id="indexofwidget">indexOf(widget)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em>
             <ul>
-                <li>the widget to locate in the collection.</li>
+                <li>集合中的控件。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>number</em></p>
+    <p><strong>返回值：</strong> <em>number</em></p>
 
-    <p>Returns the index of the given widget within the collection, or <code class="highlighter-rouge">-1</code> if the widget is not present.</p>
+    <p>返回集合中给定控件的索引。如果集合中不存在此控件，返回 <code class="highlighter-rouge">-1</code> 。</p>
 
     <h3 id="lastselector">last(selector)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
-        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>Optional</strong>]
+        <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>a selector expression or a predicate function to filter the results.</li>
+                <li>用来获取结果的选择器表达式或判断函数。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></p>
+    <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em></p>
 
-    <p>Returns the last widget in the collection that is matched by the selector. Without selector, it is the same as <code class="highlighter-rouge">collection[collection.length - 1]</code>.</p>
+    <p>返回集合中最后一个匹配选择器的控件。缺少selector参数时，和 <code class="highlighter-rouge">collection[collection.length - 1]</code>相同。</p>
 
     <h3 id="offevent-listener-context">off(event, listener, context)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>event: <em>string</em></li>
         <li>listener: <em>Function</em></li>
-        <li>context: <em>this</em> [<strong>Optional</strong>]</li>
+        <li>context: <em>this</em> [<strong>可选</strong>]</li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Removes the given listener from all widgets in this collection. See also <code class="highlighter-rouge">Widget.off()</code>.</p>
+    <p>移除集合中所有控件的给定监听器。参考 <code class="highlighter-rouge">Widget.off()</code>。</p>
 
     <h3 id="onevent-listener-context">on(event, listener, context)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>event: <em>string</em></li>
         <li>listener: <em>Function</em></li>
-        <li>context: <em>this</em> [<strong>Optional</strong>]
+        <li>context: <em>this</em> [<strong>可选</strong>]
             <ul>
-                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object.</li>
+                <li>在监听回调函数中, <code class="highlighter-rouge">this</code> 指向事件注册的对象。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Adds the given listener to all widgets in this collection. See also <code class="highlighter-rouge">Widget.on()</code>.</p>
+    <p>向集合中所有的控件绑定给定的事件监听器。参考 <code class="highlighter-rouge">Widget.on()</code>。</p>
 
     <h3 id="onceevent-listener-context">once(event, listener, context)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>event: <em>string</em></li>
         <li>listener: <em>Function</em></li>
-        <li>context: <em>this</em> [<strong>Optional</strong>]
+        <li>context: <em>this</em> [<strong>可选</strong>]
             <ul>
-                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object.</li>
+                <li>在监听回调函数中, <code class="highlighter-rouge">this</code> 指向事件注册的对象。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Adds the given listener for single execution on all widgets in this collection. See also <code class="highlighter-rouge">Widget.once()</code>.</p>
+    <p>向集合中所有的控件绑定给定的事件监听器，监听器只触发一次。参考 <code class="highlighter-rouge">Widget.once()</code>。</p>
 
     <h3 id="parent">parent()</h3>
 
-    <p><strong>Returns:</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
+    <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>Returns a collection containing all direct parents of the widgets in this collection.</p>
+    <p>返回集合中所有控件的父控件的一个集合。</p>
 
     <h3 id="setproperty-value">set(property, value)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>property: <em>string</em></li>
         <li>value: <em>any</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Sets the given property on all widgets in this collection. See also <code class="highlighter-rouge">Widget.set()</code>.</p>
+    <p>给集合中所有的控件设置给定属性。参考 <code class="highlighter-rouge">Widget.set()</code>。</p>
 
     <h3 id="setproperties">set(properties)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>properties: <em>Object</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Sets all key-value pairs in the properties object on all widgets in this collection. See also <code class="highlighter-rouge">Widget.set()</code>.</p>
+    <p>将给定的属性对象中的键值对设置给集合中所有控件。参考 <code class="highlighter-rouge">Widget.set()</code>。</p>
 
     <h3 id="toarray">toArray()</h3>
 
-    <p><strong>Returns:</strong> <em>Widget[]</em></p>
+    <p><strong>返回值：</strong> <em>Widget[]</em></p>
 
-    <p>Returns an Array containing all widgets in the collection.</p>
+    <p>返回由集合中所有控件组成的数组。</p>
 
     <h3 id="triggerevent-params">trigger(event, …params)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>event: <em>string</em></li>
         <li>…params: <em>any[]</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Triggers an event of the given type on all widgets in this collection. See also <code class="highlighter-rouge">Widget.trigger()</code></p>
+    <p>触发集合中所有控件的给定的事件。 参考 <code class="highlighter-rouge">Widget.trigger()</code></p>
 
-    <h2 id="properties">Properties</h2>
+    <h2 id="properties">属性</h2>
 
     <h3 id="length">length</h3>
 
-    <p><strong>read-only</strong><br>
+    <p><strong>只读</strong><br>
         Type: <em>number</em></p>
 
-    <p>Contains the number of widgets in the collection.</p>
+    <p>集合中控件个数。</p>
+    
