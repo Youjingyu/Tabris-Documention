@@ -1,12 +1,12 @@
     <h1 id="widgetcollection">WidgetCollection</h1>
 
-    <p><code class="highlighter-rouge">WidgetCollection</code> 是表示一组控件（widget）的类数组对象，由控件方法 <code class="highlighter-rouge">children</code> 和 <code class="highlighter-rouge">find</code> 返回。</p>
+    <p><code class="highlighter-rouge">WidgetCollection</code> 是表示一组控件的类数组对象，由控件方法 <code class="highlighter-rouge">children</code> 和 <code class="highlighter-rouge">find</code> 返回。</p>
 
     <p>通过 “<code class="highlighter-rouge">const {WidgetCollection} = require('tabris');</code>” 引入该类。</p>
 
-    <p>A <code class="highlighter-rouge">WidgetCollection</code> 是表示一组控件的类数组对象 - 也可能是个空值。</p>
+    <p><code class="highlighter-rouge">WidgetCollection</code>是表示任意数量控件的类数组对象 - 也可能为空。</p>
 
-    <p>合并了JavaScript数组API的子集和Tabris.js控件API的子集。像数组一样，集合中的控件可以通过 <code class="highlighter-rouge">[index]</code> 语法直接访问。控件个数存储在 <code class="highlighter-rouge">length</code> 字段。<em>WidgetCollection</em>的实例是不可变的。</p>
+    <p>它合并了JavaScript数组API的子集和Tabris.js控件API的子集。像数组一样，集合中的控件可以通过 <code class="highlighter-rouge">[index]</code> 语法直接访问。控件个数存储在<code class="highlighter-rouge">length</code> 字段。<em>WidgetCollection</em>的实例是不可变的。</p>
 
     <p>示例：</p>
 
@@ -17,7 +17,7 @@
 </code></pre>
     </div>
 
-    <p>调用 <code class="highlighter-rouge">set</code> 或 <code class="highlighter-rouge">animate</code> 改变集合中所有控件的给定属性。同样 <code class="highlighter-rouge">on</code>，<code class="highlighter-rouge">off</code> 和 <code class="highlighter-rouge">once</code> 方法将会向/从所有的控件添加/移除给定的事件监听。使用 <code class="highlighter-rouge">get</code> 时，会得到集合中的第一个控件。</p>
+    <p>调用 <code class="highlighter-rouge">set</code> 或 <code class="highlighter-rouge">animate</code> 改变集合中所有控件的给定属性。同样 <code class="highlighter-rouge">on</code>、<code class="highlighter-rouge">off</code> 和 <code class="highlighter-rouge">once</code> 方法将会向/从所有的控件添加/移除给定的事件监听。使用 <code class="highlighter-rouge">get</code> 时，会返回集合中的第一个控件。</p>
 
     <h2 id="methods">方法</h2>
 
@@ -28,17 +28,17 @@
     <ul>
         <li>properties: <em>{transform?: Transformation, opacity?: number}</em>
             <ul>
-                <li>动画属性与目标值。</li>
+                <li>要做动画的属性与目标值。</li>
             </ul>
         </li>
         <li>options: <em><a href="/tabris-js-docs/latest/types.html#animationoptions">AnimationOptions</a></em>
             <ul>
-                <li>动画配置。</li>
+                <li>配置动画。</li>
             </ul>
         </li>
     </ul>
 
-    <p>使集合中的所有控件动画化。</p>
+    <p>使集合中的所有控件做动画。</p>
 
     <h3 id="appendtoparent">appendTo(parent)</h3>
 
@@ -47,14 +47,14 @@
     <ul>
         <li>parent: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em>
             <ul>
-                <li>要被追加至的父控件。</li>
+                <li>要添加控件的父控件。</li>
             </ul>
         </li>
     </ul>
 
     <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>将集合中所有的控件追加到给定的父控件中。</p>
+    <p>将集合中所有的控件添加到给定的父控件中。</p>
 
     <h3 id="childrenselector">children(selector)</h3>
 
@@ -63,14 +63,14 @@
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>用来获取结果的选择器表达式或判断函数（返回布尔值的函数）。</li>
+                <li>用来过滤结果的选择器表达式或布尔值的函数。</li>
             </ul>
         </li>
     </ul>
 
     <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>返回给定集合中的控件的子控件中所有匹配选择器的控件的集合。</p>
+    <p>返回给定集合中的控件的子控件中所有匹配给定选择器的控件的集合。</p>
 
     <h3 id="dispose">dispose()</h3>
 
@@ -83,14 +83,14 @@
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em>
             <ul>
-                <li>用来获取结果的选择器表达式或判断函数。</li>
+                <li>用来过滤结果的选择器表达式或布尔值的函数。</li>
             </ul>
         </li>
     </ul>
 
     <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>返回此集合中匹配给定选择器的所有控件的新 <em>WidgetCollection</em> 。</p>
+    <p>返回此集合中匹配给定选择器的所有控件的一个新<em>WidgetCollection</em>。</p>
 
     <h3 id="findselector">find(selector)</h3>
 
@@ -99,7 +99,7 @@
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>用来获取结果的选择器表达式或判断函数。</li>
+                <li>用来过滤结果的选择器表达式或布尔值的函数。</li>
             </ul>
         </li>
     </ul>
@@ -115,7 +115,7 @@
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>用来获取结果的选择器表达式或判断函数。</li>
+                <li>用来过滤结果的选择器表达式或布尔值的函数。</li>
             </ul>
         </li>
     </ul>
@@ -131,12 +131,12 @@
     <ul>
         <li>callback: <em>(widget: Widget, index: number, collection: WidgetCollection) =&gt; void</em>
             <ul>
-                <li>对于每个控件所要执行的函数。参数有: <em>widget</em>， <em>index</em>， <em>collection</em></li>
+                <li>为每个控件调用的函数。参数: <em>widget</em>、<em>index</em>、<em>collection</em></li>
             </ul>
         </li>
     </ul>
 
-    <p>集合中的每个控件调用给定函数一次。</p>
+    <p>为集合中的每个控件调用一次给定的函数。</p>
 
     <h3 id="getproperty">get(property)</h3>
 
@@ -148,7 +148,7 @@
 
     <p><strong>返回值：</strong> <em>any</em></p>
 
-    <p>返回集合中第一个控件的给定属性的值。</p>
+    <p>返回集合中第一个控件的给定的属性的值。</p>
 
     <h3 id="includeswidget">includes(widget)</h3>
 
@@ -157,14 +157,14 @@
     <ul>
         <li>widget: <em><a href="/tabris-js-docs/latest/api/Widget.html">Widget</a></em>
             <ul>
-                <li>在集合中查找的指定控件。</li>
+                <li>要在集合中查找的控件。</li>
             </ul>
         </li>
     </ul>
 
     <p><strong>返回值：</strong> <em>boolean</em></p>
 
-    <p>如果集合中包含给定控件，返回 <code class="highlighter-rouge">true</code> ，否则返回 <code class="highlighter-rouge">false</code> 。</p>
+    <p>如果集合中包含给定控件，返回 <code class="highlighter-rouge">true</code> ，否则返回 <code class="highlighter-rouge">false</code>。</p>
 
     <h3 id="indexofwidget">indexOf(widget)</h3>
 
@@ -180,7 +180,7 @@
 
     <p><strong>返回值：</strong> <em>number</em></p>
 
-    <p>返回集合中给定控件的索引。如果集合中不存在此控件，返回 <code class="highlighter-rouge">-1</code> 。</p>
+    <p>返回集合中给定控件的索引。如果集合中不存在此控件，返回 <code class="highlighter-rouge">-1</code>。</p>
 
     <h3 id="lastselector">last(selector)</h3>
 
@@ -189,7 +189,7 @@
     <ul>
         <li>selector: <em><a href="/tabris-js-docs/latest/types.html#selector">Selector</a></em> [<strong>可选</strong>]
             <ul>
-                <li>用来获取结果的选择器表达式或判断函数。</li>
+                <li>用来过滤结果的选择器表达式或布尔值的函数。</li>
             </ul>
         </li>
     </ul>
@@ -210,7 +210,7 @@
 
     <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>移除集合中所有控件的给定监听器。参考 <code class="highlighter-rouge">Widget.off()</code>。</p>
+    <p>移除集合中所有控件的给定事件监听器。参考 <code class="highlighter-rouge">Widget.off()</code>。</p>
 
     <h3 id="onevent-listener-context">on(event, listener, context)</h3>
 
@@ -228,7 +228,7 @@
 
     <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>向集合中所有的控件绑定给定的事件监听器。参考 <code class="highlighter-rouge">Widget.on()</code>。</p>
+    <p>为集合中所有的控件绑定给定的事件监听器。参考 <code class="highlighter-rouge">Widget.on()</code>。</p>
 
     <h3 id="onceevent-listener-context">once(event, listener, context)</h3>
 
@@ -252,7 +252,7 @@
 
     <p><strong>返回值：</strong> <em><a href="/tabris-js-docs/latest/api/WidgetCollection.html">WidgetCollection</a></em></p>
 
-    <p>返回集合中所有控件的父控件的一个集合。</p>
+    <p>返回集合中所有控件的直接父控件的一个集合。</p>
 
     <h3 id="setproperty-value">set(property, value)</h3>
 
@@ -265,7 +265,7 @@
 
     <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>给集合中所有的控件设置给定属性。参考 <code class="highlighter-rouge">Widget.set()</code>。</p>
+    <p>给集合中所有的控件设置给定的属性。参考 <code class="highlighter-rouge">Widget.set()</code>。</p>
 
     <h3 id="setproperties">set(properties)</h3>
 
@@ -277,7 +277,7 @@
 
     <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>将给定的属性对象中的键值对设置给集合中所有控件。参考 <code class="highlighter-rouge">Widget.set()</code>。</p>
+    <p>将给定属性对象中的键值对设置给集合中所有控件。参考 <code class="highlighter-rouge">Widget.set()</code>。</p>
 
     <h3 id="toarray">toArray()</h3>
 
@@ -296,7 +296,7 @@
 
     <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>触发集合中所有控件的给定的事件。 参考 <code class="highlighter-rouge">Widget.trigger()</code></p>
+    <p>触发集合中所有控件的给定事件。 参考 <code class="highlighter-rouge">Widget.trigger()</code></p>
 
     <h2 id="properties">属性</h2>
 
