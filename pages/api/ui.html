@@ -1,33 +1,32 @@
     <h1 id="ui">ui</h1>
 
-    <p>Extends <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
+    <p>继承自 <a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></p>
 
-    <p>Represents the top-level parent for all widgets. It provides access to the status bar, the navigation bar, the drawer and the content view.</p>
+    <p>是所有控件的父级。可通过其访问状态栏、导航栏、抽屉控件和内容视图。</p>
 
-    <p>Import this object with “<code class="highlighter-rouge">const {ui} = require('tabris');</code>”</p>
+    <p>通过 “<code class="highlighter-rouge">const {ui} = require('tabris');</code>” 引入该对象。</p>
 
-    <h2 id="properties">Properties</h2>
+    <h2 id="properties">属性</h2>
 
     <h3 id="contentview">contentView</h3>
 
     <p>Type: <em><a href="/tabris-js-docs/latest/api/Composite.html">Composite</a></em></p>
 
-    <p>The content view is the container for the widgets that constitute the app’s main UI. It covers the entire app area. Widgets can be appended directly to the content view.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+    <p>内容视图是构成应用主UI的控件的容器。覆盖整个应用界面。可将控件直接添加到内容视图中。<br>此属性只能在创建控件时设置。一旦设置，不能修改。</p>
 
     <h3 id="drawer">drawer</h3>
 
     <p>Type: <em><a href="/tabris-js-docs/latest/api/Drawer.html">Drawer</a></em></p>
 
-    <p>A drawer that can be swiped in from the left edge of the screen. The drawer is locked by default. To use it in an application, set the property <code class="highlighter-rouge">locked</code> to <code class="highlighter-rouge">false</code>. The drawer can contain any kind of widgets.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+    <p>表示可以从屏幕左侧划入的抽屉控件。默认被锁定不可使用。想要使用的话，设置<code class="highlighter-rouge">locked</code>属性为<code class="highlighter-rouge">false</code>。此控件内可包含任意类型的控件。<br>此属性只能在创建控件时设置。一旦设置，不能修改。</p>
 
     <h3 id="navigationbar">navigationBar</h3>
 
     <p>Type: <em><a href="/tabris-js-docs/latest/api/NavigationBar.html">NavigationBar</a></em></p>
 
-    <p>Represents the system navigation bar is the onscreen area where <em>Back</em>, <em>Home</em> and similar buttons are displayed. It is only supported on Android.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+    <p>表示屏幕上显示<em>后退</em>、<em>主页</em>或其他相似按钮的系统导航栏。仅在安卓系统可用。<br>此属性只能在创建控件时设置。一旦设置，不能修改。</p>
 
     <h3 id="statusbar">statusBar</h3>
 
     <p>Type: <em><a href="/tabris-js-docs/latest/api/StatusBar.html">StatusBar</a></em></p>
-
-    <p>Represents the system status bar. This is the area where notifications, status icons and device time are displayed.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+    <p>表示系统状态栏。是显示通知、状态图标和设备时间的区域。<br>此属性只能在创建控件时设置。一旦设置，不能修改。</p>
