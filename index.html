@@ -801,7 +801,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         if(new RegExp(fileNameArr[0]).test($listItem.attr('href'))){
                             e.preventDefault();
                             var $prev = $listItem.parent().parent().prev();
-                            if($prev.attr('class') === 'collapsed'){
+                            if(!$prev.attr('class') || $prev.attr('class') === 'collapsed'){
                                 $prev.trigger('click');
                             }
                             $listItem.trigger('click', fileNameArr[1]);
@@ -812,8 +812,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
         });
 
-        $(menuArr[0][0]).parent().parent().prev().trigger('click')
-        $(menuArr[0][0]).trigger('click');
+        (function () {
+            var urlArr = location.href.split('#');
+            if(urlArr[1] && /\.html/.test(urlArr[1])){
+                var $listItem;
+                for(var i = 0; i < menuArr.length; i++){
+                    for(var j = 0; j < menuArr[i].length; j++){
+                        $listItem = $(menuArr[i][j]);
+                        if(new RegExp(urlArr[1]).test($listItem.attr('href'))){
+                            var $prev = $listItem.parent().parent().prev();
+                            if(!$prev.attr('class') || $prev.attr('class') === 'collapsed'){
+                                $prev.trigger('click');
+                            }
+                            $listItem.trigger('click');
+//                            history.pushState({}, '', location.href.replace('#' + urlArr[1], ''));
+                            return false;
+                        }
+                    }
+                }
+            } else {
+                $(menuArr[0][0]).parent().parent().prev().trigger('click')
+                $(menuArr[0][0]).trigger('click');
+            }
+        })()
     })()
 </script>
 <!-- End load page -->
