@@ -1,200 +1,200 @@
     <h1 id="nativeobject">NativeObject</h1>
 
-    <p>Base class for all objects with a native implementation.</p>
+    <p>所有原生实现的对象的基类。</p>
 
-    <p>Import this type with “<code class="highlighter-rouge">const {NativeObject} = require('tabris');</code>”</p>
+    <p>通过“<code class="highlighter-rouge">const {NativeObject} = require('tabris');</code>”引入该类</p>
 
-    <h2 id="methods">Methods</h2>
+    <h2 id="methods">方法</h2>
 
     <h3 id="getproperty">get(property)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>property: <em>string</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>any</em></p>
+    <p><strong>返回值：</strong> <em>any</em></p>
 
-    <p>Gets the current value of the given <em>property</em>.</p>
+    <p>获取指定<em>属性</em>的当前值。</p>
 
     <h3 id="offtype-listener-context">off(type, listener, context)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>type: <em>string</em>
             <ul>
-                <li>the type of events to remove listeners for.</li>
+                <li>要移除的事件监听器的事件类型。</li>
             </ul>
         </li>
         <li>listener: <em>(event: any) =&gt; void</em>
             <ul>
-                <li>the listener function to remove.</li>
+                <li>要移除的监听回调函数。</li>
             </ul>
         </li>
-        <li>context: <em>Object</em> [<strong>Optional</strong>]
+        <li>context: <em>Object</em> [<strong>可选</strong>]
             <ul>
-                <li>the context of the bound listener to remove.</li>
+                <li>要移除的监听器的上下文。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Removes all occurrences of <em>listener</em> that are bound to <em>type</em> and <em>context</em> from this widget.</p>
+    <p>移除此控件上所有符合指定<em>类型</em>和<em></em>上下文</em>的监听器。</p>
 
     <h3 id="offlisteners">off(listeners)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>listeners: <em>EventsObject</em>
             <ul>
-                <li>a key-value map where the keys are event types and the values are the listeners to deregister from these events, e.g. <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>.</li>
+                <li>一个键值映射，键是事件类型，值是事件绑定的监听器。例如：<code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Removes all listeners in the given object from the event type indicated by their key.</p>
+    <p>移除给定参数中事件对应的监听器。</p>
 
     <h3 id="ontype-listener-context">on(type, listener, context)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>type: <em>string</em>
             <ul>
-                <li>the type of events to listen for.</li>
+                <li>要监听的事件类型。</li>
             </ul>
         </li>
         <li>listener: <em>(event: any) =&gt; void</em>
             <ul>
-                <li>the listener function to register. This function will be called with an event object.</li>
+                <li>要注册的监听回调函数。此函数将会被事件对象调用。</li>
             </ul>
         </li>
-        <li>context: <em>Object</em> [<strong>Optional</strong>]
+        <li>context: <em>Object</em> [<strong>可选</strong>]
             <ul>
-                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object. If not present, the listener will be called in the context of this object.</li>
+                <li>在监听回调函数中，<code class="highlighter-rouge">this</code>指向事件绑定对象。 如果没有传入此参数，将会在事件绑定对象的上下文中调用。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Registers a <em>listener</em> function to be notified of events of the given <em>type</em>.</p>
+    <p>给指定事件<em>类型</em>注册一个<em>监听器</em>。</p>
 
     <h3 id="onlisteners">on(listeners)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>listeners: <em>EventsObject</em>
             <ul>
-                <li>a key-value map where the keys are event types and the values are the listeners to register for these events, e.g. <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>.</li>
+                <li>一个键值映射，键是事件类型，值是事件绑定的监听器。例如：<code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Registers all listeners in the given object for the event type indicated by their key.</p>
+    <p>注册给定对象中事件对应的监听器。</p>
 
     <h3 id="oncetype-listener-context">once(type, listener, context)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>type: <em>string</em>
             <ul>
-                <li>the type of the event to listen for.</li>
+                <li>要监听的事件类型。</li>
             </ul>
         </li>
         <li>listener: <em>(event: any) =&gt; void</em>
             <ul>
-                <li>the listener function to register. This function will be called with an event object.</li>
+                <li>要注册的监听回调函数。此函数将会被事件对象调用。</li>
             </ul>
         </li>
-        <li>context: <em>Object</em> [<strong>Optional</strong>]
+        <li>context: <em>Object</em> [<strong>可选</strong>]
             <ul>
-                <li>in the listener function, <code class="highlighter-rouge">this</code> will point to this object. If not present, the listener will be called in the context of this object.</li>
+                <li>在监听回调函数中, <code class="highlighter-rouge">this</code> 指向事件绑定对象。 如果没有传入此参数，将会在事件绑定对象的上下文中调用。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Same as <code class="highlighter-rouge">on</code>, but removes the listener after it has been invoked by an event.</p>
+    <p>和<code class="highlighter-rouge">on</code>相同，但是会在事件调用后移除监听器。</p>
 
     <h3 id="oncelisteners">once(listeners)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>listeners: <em>EventsObject</em>
             <ul>
-                <li>a key-value map where the keys are event types and the values are the listeners to register for these events, e.g. <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>.</li>
+                <li>一个键值映射，键是事件类型，值是事件绑定的监听器。例如： <code class="highlighter-rouge"><span class="p">{</span><span class="err">tap:</span><span class="w"> </span><span class="err">onTap,</span><span class="w"> </span><span class="err">scroll:</span><span class="w"> </span><span class="err">onScroll</span><span class="p">}</span></code>。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Same as <code class="highlighter-rouge">on</code>, but removes the listener after it has been invoked by an event.</p>
+    <p>和<code class="highlighter-rouge">on</code>相同，但是会在事件调用后移除监听器。</p>
 
     <h3 id="setproperty-value">set(property, value)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>property: <em>string</em></li>
         <li>value: <em>any</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Sets the given property.</p>
+    <p>设置指定属性。</p>
 
     <h3 id="setproperties">set(properties)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>properties: <em>PropertiesObject</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Sets all key-value pairs in the properties object as widget properties.</p>
+    <p>给控件设置将键值对中所有属性。</p>
 
     <h3 id="triggertype-event">trigger(type, event)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>type: <em>string</em>
             <ul>
-                <li>the type of event to trigger</li>
+                <li>要触发的事件类型</li>
             </ul>
         </li>
         <li>event: <em>Object</em>
             <ul>
-                <li>the event object to pass to listener functions.</li>
+                <li>传给回调函数的事件对象。</li>
             </ul>
         </li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>this</em></p>
+    <p><strong>返回值：</strong> <em>this</em></p>
 
-    <p>Notifies all registered listeners for the given <em>type</em> and passes the <em>event</em> object to the listeners.</p>
+    <p>触发给定事件<em>类型</em>的所有监听回调函数，并将<em>事件</em>对象传给监听函数。</p>
 
     <h2 id="properties">Properties</h2>
 
     <h3 id="cid">cid</h3>
 
-    <p><strong>read-only</strong><br>
+    <p><strong>只读</strong><br>
         Type: <em>string</em></p>
 
-    <p>An application-wide unique identifier automatically assigned to all native objects on creation.<br>This property can only be set on widget creation. Once set, it cannot be changed anymore.</p>
+    <p>在原生对象创建时，自动分配的应用内唯一标示。<br>此属性只能在创建控件时设置。一旦设置，不能修改。</p>
