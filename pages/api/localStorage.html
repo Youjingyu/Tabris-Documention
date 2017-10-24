@@ -1,48 +1,48 @@
     <h1 id="localstorage">localStorage</h1>
 
-    <p>The <code class="highlighter-rouge">localStorage</code> object allows storing key-value pairs in a persistent store. Both keys and values are stored as strings.</p>
+    <p><code class="highlighter-rouge">localStorage</code>对象可持久存储键值对。</p>
 
-    <p>On iOS, there is an additional object <code class="highlighter-rouge">secureStorage</code> available in the global scope. This is a drop-in replacement for <code class="highlighter-rouge">localStorage</code> that keeps data in the encrypted iOS Keychain.</p>
+    <p>在iOS中还有一个全局作用域中可用的额外<code class="highlighter-rouge">secureStorage</code>对象。这是一个将数据存储在加密iOS Keychain中的<code class="highlighter-rouge">localStorage</code>的替代物。</p>
 
-    <p>The <code class="highlighter-rouge">localStorage</code> is only meant to store relatively short strings. To store larger amounts of data it is recommended to use the <a href="./fs.html">FileSystem</a> API.</p>
+    <p><code class="highlighter-rouge">localStorage</code>只适用于存储相对较少的字符串。存储大量数据推荐使用<a href="./fs.html">FileSystem</a>API。</p>
 
-    <p>This object is available in the global namespace. You do not need to import it explicitly.</p>
+    <p>该API可以在全局命名空间中使用。不需要明确地导入。</p>
 
-    <h2 id="methods">Methods</h2>
+    <h2 id="methods">方法</h2>
 
     <h3 id="clear">clear()</h3>
 
-    <p>Remove all key/value pairs from the storage.</p>
+    <p>清空存储的所有键值对。</p>
 
     <h3 id="getitemkey">getItem(key)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>key: <em>string</em></li>
     </ul>
 
-    <p><strong>Returns:</strong> <em>string</em></p>
+    <p><strong>返回值：</strong> <em>string</em></p>
 
-    <p>Retrieves the value associated with the given key.</p>
+    <p>取得与给定键对应的值。</p>
 
     <h3 id="removeitemkey">removeItem(key)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>key: <em>string</em></li>
     </ul>
 
-    <p>Removes the given key/value pair from the storage.</p>
+    <p>删除存储的给定键值对。</p>
 
     <h3 id="setitemkey-value">setItem(key, value)</h3>
 
-    <p><strong>Parameters:</strong></p>
+    <p><strong>参数：</strong></p>
 
     <ul>
         <li>key: <em>string</em></li>
         <li>value: <em>string</em></li>
     </ul>
 
-    <p>Stores a string value using the given key.</p>
+    <p>用给定的键存储一个字符串。</p>
