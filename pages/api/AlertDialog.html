@@ -1,107 +1,107 @@
-    <h1 id="alertdialog">AlertDialog</h1>
+    <h1 id="alertdialog">AlertDialog（对话框）</h1>
 
-    <p>Extends <a href="/tabris-js-docs/latest/api/Popup.html">Popup</a></p>
+    <p>继承自<a href="/tabris-js-docs/latest/api/Popup.html">Popup</a></p>
 
-    <p>An <code class="highlighter-rouge">AlertDialog</code> represents a native dialog pop-up showing a message and up to three buttons.  Is automatically disposed when closed.</p>
+    <p><code class="highlighter-rouge">对话框</code>是一个原生对话弹出框，显示一个消息与最多三个按钮。关闭时会被自动释放。</p>
 
-    <p>Import this type with “<code class="highlighter-rouge">const {AlertDialog} = require('tabris');</code>”</p>
+    <p>使用“<code class="highlighter-rouge">const {AlertDialog} = require('tabris');</code>”引入该类。</p>
 
-    <h2 id="properties">Properties</h2>
+    <h2 id="properties">属性</h2>
 
     <h3 id="buttons">buttons</h3>
 
     <p>Type: <em>{ok?: string, cancel?: string, neutral?: string}</em></p>
 
-    <p>An object with the texts of the buttons to display. There are up to three buttons: <code class="highlighter-rouge">ok</code>, <code class="highlighter-rouge">cancel</code> and <code class="highlighter-rouge">neutral</code>. If no text is given for a button it will not be displayed. Example: <code class="highlighter-rouge"><span class="p">{</span><span class="err">ok:</span><span class="w"> </span><span class="err">'Yes',</span><span class="w"> </span><span class="err">cancel:</span><span class="w"> </span><span class="err">'No'</span><span class="p">}</span></code> shows ‘Yes’ and ‘No’, but no ‘neutral’ button.</p>
+    <p>含有按钮文本内容的对象。分别是这三种按钮：<code class="highlighter-rouge">ok</code>, <code class="highlighter-rouge">cancel</code>和<code class="highlighter-rouge">neutral</code>。没有设置文本的按钮不会显示。示例: <code class="highlighter-rouge"><span class="p">{</span><span class="err">ok:</span><span class="w"> </span><span class="err">'Yes',</span><span class="w"> </span><span class="err">cancel:</span><span class="w"> </span><span class="err">'No'</span><span class="p">}</span></code>显示‘Yes’和‘No’按钮,不显示‘neutral’按钮。</p>
 
     <h3 id="message">message</h3>
 
     <p>Type: <em>string</em></p>
 
-    <p>The message to display inside the dialog.</p>
+    <p>对话框中显示的文本。</p>
 
     <h3 id="title">title</h3>
 
     <p>Type: <em>string</em></p>
 
-    <p>The title of the dialog.</p>
+    <p>对话框的标题。</p>
 
-    <h2 id="events">Events</h2>
+    <h2 id="events">事件</h2>
 
     <h3 id="buttonschanged">buttonsChanged</h3>
 
-    <p>Fired when the <a href="#buttons"><em>buttons</em></a> property has changed.</p>
+    <p>当<a href="#buttons"><em>buttons</em></a>属性改变时触发。</p>
 
-    <h4 id="event-parameters">Event Parameters</h4>
+    <h4 id="event-parameters">事件参数</h4>
     <ul>
         <li>
             <p><strong>target</strong>: <em>this</em>
-                The widget the event was fired on.</p>
+                事件触发的控件。</p>
         </li>
         <li>
             <p><strong>value</strong>: <em>{ok?: string, cancel?: string, neutral?: string}</em>
-                The new value of <a href="#buttons"><em>buttons</em></a>.</p>
+                <a href="#buttons"><em>buttons</em></a>属性被设置的新的值。</p>
         </li>
     </ul>
 
     <h3 id="close">close</h3>
 
-    <p>Fired when the dialog was closed for any reason.</p>
+    <p>当对话框被关闭时触发。</p>
 
-    <h4 id="event-parameters-1">Event Parameters</h4>
+    <h4 id="event-parameters-1">事件参数</h4>
     <ul>
         <li>
             <p><strong>target</strong>: <em>this</em>
-                The widget the event was fired on.</p>
+                事件触发的控件。</p>
         </li>
         <li>
             <p><strong>button</strong>: <em>‘ok’|’cancel’|’neutral’|’’</em>
-                The type of button that was used to close the dialog. Can also be an empty string, e.g. when the global back button was pressed.</p>
+                关闭对话框的操作按钮类型。也可能是个空串，比如点了应用返回按钮而被关闭时。</p>
         </li>
     </ul>
 
     <h3 id="closecancel">closeCancel</h3>
 
-    <p>Fired when the dialog was closed by pressing the ‘cancel’ button.</p>
+    <p>当通过点击‘cancel’按钮关闭对话框时触发。</p>
     <h3 id="closeneutral">closeNeutral</h3>
 
-    <p>Fired when the dialog was closed by pressing the ‘neutral’ button.</p>
+    <p>当通过点击‘neutral’按钮关闭对话框时触发。</p>
     <h3 id="closeok">closeOk</h3>
 
-    <p>Fired when the dialog was closed by pressing the ‘ok’ button.</p>
+    <p>当通过点击‘ok’按钮关闭对话框时触发。</p>
     <h3 id="messagechanged">messageChanged</h3>
 
-    <p>Fired when the <a href="#message"><em>message</em></a> property has changed.</p>
+    <p>当<a href="#message"><em>message</em></a>属性发生改变时触发。</p>
 
-    <h4 id="event-parameters-2">Event Parameters</h4>
+    <h4 id="event-parameters-2">事件参数</h4>
     <ul>
         <li>
             <p><strong>target</strong>: <em>this</em>
-                The widget the event was fired on.</p>
+                事件触发的控件。</p>
         </li>
         <li>
             <p><strong>value</strong>: <em>string</em>
-                The new value of <a href="#message"><em>message</em></a>.</p>
+                <a href="#message"><em>message</em></a>属性被设置的新的值。</p>
         </li>
     </ul>
 
     <h3 id="titlechanged">titleChanged</h3>
 
-    <p>Fired when the <a href="#title"><em>title</em></a> property has changed.</p>
+    <p>当<a href="#title"><em>title</em></a>属性发生改变时触发。</p>
 
-    <h4 id="event-parameters-3">Event Parameters</h4>
+    <h4 id="event-parameters-3">事件参数</h4>
     <ul>
         <li>
             <p><strong>target</strong>: <em>this</em>
-                The widget the event was fired on.</p>
+                事件触发的控件。</p>
         </li>
         <li>
             <p><strong>value</strong>: <em>string</em>
-                The new value of <a href="#title"><em>title</em></a>.</p>
+                <a href="#title"><em>title</em></a>属性被设置的新的值。</p>
         </li>
     </ul>
 
-    <h2 id="example">Example</h2>
+    <h2 id="example">示例</h2>
     <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="p">{</span><span class="nx">AlertDialog</span><span class="p">,</span> <span class="nx">Button</span><span class="p">,</span> <span class="nx">ui</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tabris'</span><span class="p">);</span>
 
 <span class="c1">// AlertDialog example</span>
@@ -148,8 +148,8 @@
 <span class="p">}).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">ui</span><span class="p">.</span><span class="nx">contentView</span><span class="p">);</span>
 </code></pre>
     </div>
-    <h2 id="see-also">See also</h2>
+    <h2 id="see-also">还可参阅</h2>
 
     <ul>
-        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/alertdialog.js">Simple AlertDialog snippet</a></li>
+        <li><a href="https://github.com/eclipsesource/tabris-js/tree/v2.1.0/snippets/alertdialog.js">简单的对话框代码示例</a></li>
     </ul>
