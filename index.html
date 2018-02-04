@@ -792,7 +792,7 @@
             $docBody.load('./pages/' + option.folderName +  '/' + option.pageName, function (response, status) {
                 if(status === 'success'){
                     if(option.position){
-                        location.href = location.href.replace('?', '#' + option.position + '?');
+                        location.href = location.href + '#' + option.position;
                     } else {
                         $('html,body').animate({scrollTop: 0}, 500, 'linear');
                     }
