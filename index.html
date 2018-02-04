@@ -25,14 +25,13 @@
 <link rel="icon" type="image/png" href="https://tabrisjs.com/documentation/assets/img/favicon/favicon-192x192.png" sizes="192x192">
 
 <!-- bootstrap -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <!-- global styles -->
 <link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/layout.css">
 <link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/markdown.css">
 <link rel="stylesheet" href="https://tabrisjs.com/documentation/assets/css/syntax.css">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+<!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700">-->
+  <link href="https://cdn.bootcss.com/docsearch.js/2.0.0/docsearch.min.css" rel="stylesheet">
 <style>
   .loading-modal{
     position: fixed;
@@ -696,10 +695,9 @@
 <!-- Bootstrap core JavaScript -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Algolia docsearch -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script src="https://cdn.bootcss.com/docsearch.js/2.0.0/docsearch.min.js"></script>
 <script>
   docsearch({
     apiKey: '18eb7cad98edf7d6fc8cd6d459e39baa',
@@ -713,7 +711,7 @@
 </script>
 
 <!-- Tocbot TOC generator -->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/tocbot/3.0.2/tocbot.min.js"></script>
+    <script src="https://cdn.bootcss.com/tocbot/3.0.2/tocbot.min.js"></script>
 <script>
   tocbot.init({
     tocSelector: '#toc',
@@ -723,31 +721,19 @@
   });
 </script>
 
-<!-- Google analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-382324-12', 'auto');
-  ga('send', 'pageview');
-</script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KH32LM3');</script>
-<!-- End Google Tag Manager -->
 
 <!-- Load page -->
 <script>
     (function () {
+        var isOnPopstate = false, firstLoad = true;
         var $docBody = $('#doc-body'), $loading = $('#loading'), $mainNav = $('#main-nav');
         var menuArr = [];
         $mainNav.children().each(function () {
             menuArr.push($(this).find('ul').find('a'));
+        });
+        window.addEventListener("popstate", function () {
+            isOnPopstate = true;
+            tirggerSidebar(getQuery().pageName);
         });
 
         $mainNav.on('click', 'a', function (e, position) {
@@ -755,40 +741,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             var $this = $(this);
             var href = $this.attr('href');
             if(href){
+                $('#main-nav').find('.active').removeClass('active');
+                $this.parent().addClass('active');
+                $this.parent().parent().parent().addClass('active');
                 var hrefArr = href.split('/');
                 var folderName = hrefArr[hrefArr.length - 2], pageName = hrefArr[hrefArr.length - 1];
-                $loading.show();
-                $docBody.load('./pages/' + folderName +  '/' + pageName, function (response, status) {
-                    if(status === 'success'){
-                        if(position){
-                            location.href = location.href + '#' + position;
-                        } else {
-                            $('html,body').animate({scrollTop: 0}, 500, 'linear');
-                        }
-                        $loading.fadeOut();
-                        $('#main-nav').find('.active').removeClass('active');
-                        $this.parent().addClass('active');
-                        $this.parent().parent().parent().addClass('active');
-                        $docBody.find('a,img').each(function () {
-                            var $this = $(this);
-                            var href = $this.attr('href');
-                            var src = $this.attr('src');
-                            if(href){
-                                if(!/http/.test(href) && !/^#.*/.test(href)){
-                                    $this.attr('href', 'https://tabrisjs.com' + href);
-                                }
-                            } else if(src){
-                                if(!/http/.test(src)){
-                                    $this.attr('src', 'https://tabrisjs.com' + src);
-                                }
-                            }
-
-                        });
+                var option = {
+                    folderName: folderName,
+                    pageName: pageName,
+                    position: position
+                }
+                loadPage(option);
+                if(!isOnPopstate){
+                    if(firstLoad){
+                        history.replaceState  && history.replaceState(option, $this.text(), location.href.split('?')[0] + '?' + 'folderName=' + folderName　+'&pageName=' + pageName);
+                    } else {
+                        history.pushState  && history.pushState(option, $this.text(), location.href.split('?')[0] + '?' + 'folderName=' + folderName　+'&pageName=' + pageName);
                     }
-                });
+                }
+                firstLoad = false;
+                isOnPopstate = false;
             }
         });
-
         $docBody.on('click', 'a', function (e) {
             var href = $(this).attr('href');
             var urlPrefix = 'https://tabrisjs.com/tabris-js-docs/latest/';
@@ -801,7 +775,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         if(new RegExp(fileNameArr[0]).test($listItem.attr('href'))){
                             e.preventDefault();
                             var $prev = $listItem.parent().parent().prev();
-                            if(!$prev.attr('class') || $prev.attr('class') === 'collapsed'){
+                            if($prev.attr('class') === undefined || $prev.attr('class') === 'collapsed'){
                                 $prev.trigger('click');
                             }
                             $listItem.trigger('click', fileNameArr[1]);
@@ -811,21 +785,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 }
             }
         });
+        tirggerSidebar(getQuery().pageName);
 
-        (function () {
-            var urlArr = location.href.split('#');
-            if(urlArr[1] && /\.html/.test(urlArr[1])){
+        function loadPage(option) {
+            $loading.show();
+            $docBody.load('./pages/' + option.folderName +  '/' + option.pageName, function (response, status) {
+                if(status === 'success'){
+                    if(option.position){
+                        location.href = location.href.replace('?', '#' + option.position + '?');
+                    } else {
+                        $('html,body').animate({scrollTop: 0}, 500, 'linear');
+                    }
+                    $loading.fadeOut();
+                    $docBody.find('a,img').each(function () {
+                        var $this = $(this);
+                        var href = $this.attr('href');
+                        var src = $this.attr('src');
+                        if(href){
+                            if(!/http/.test(href) && !/^#.*/.test(href)){
+                                $this.attr('href', 'https://tabrisjs.com' + href);
+                            }
+                        } else if(src){
+                            if(!/http/.test(src)){
+                                $this.attr('src', 'https://tabrisjs.com' + src);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        function tirggerSidebar(pageName) {
+            if(pageName && /\.html/.test(pageName)){
                 var $listItem;
                 for(var i = 0; i < menuArr.length; i++){
                     for(var j = 0; j < menuArr[i].length; j++){
                         $listItem = $(menuArr[i][j]);
-                        if(new RegExp(urlArr[1]).test($listItem.attr('href'))){
+                        if(new RegExp(pageName).test($listItem.attr('href'))){
                             var $prev = $listItem.parent().parent().prev();
-                            if(!$prev.attr('class') || $prev.attr('class') === 'collapsed'){
+                            if($prev.attr('class') === undefined || $prev.attr('class') === 'collapsed'){
                                 $prev.trigger('click');
                             }
                             $listItem.trigger('click');
-//                            history.pushState({}, '', location.href.replace('#' + urlArr[1], ''));
                             return false;
                         }
                     }
@@ -834,7 +834,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 $(menuArr[0][0]).parent().parent().prev().trigger('click')
                 $(menuArr[0][0]).trigger('click');
             }
-        })()
+        }
+        function getQuery() {
+            var result = {};
+            location.search.replace('?', '').split('&').forEach(function (item) {
+                var arr = item.split('=');
+                result[arr[0]] = arr[1];
+            });
+            return result;
+        }
     })()
 </script>
 <!-- End load page -->
