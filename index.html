@@ -810,7 +810,7 @@
                             }
                         } else if(src){
                             if(!/http/.test(src)){
-                                $this.attr('src', 'http://docs.tabris.com' + src);
+                                $this.attr('src', 'http://docs.tabris.com' + src.replace('/tabris-js-docs', ''));
                             } else {
                               $this.attr('src', src.replace('https://tabrisjs.com/tabris-js-docs', 'http://docs.tabris.com'));
                             }
