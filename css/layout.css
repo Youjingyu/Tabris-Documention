@@ -1,0 +1,259 @@
+/*
+ * Defaults and bootstrap overrides
+ */
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: ​#333333;
+  background-color: white;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: "Open Sans", Arial;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-family: "Open Sans", sans-serif;
+}
+
+.nav-list > li > a,
+.nav-list .nav-header {
+  margin: 0px;
+}
+
+.nav-list > li > a {
+  padding: 0;
+}
+
+.nav > li > a:focus,
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+/*
+ * Top navigation
+ */
+
+nav.navbar-inverse {
+  background-color: #0273b1;
+  box-shadow: inset 0 0 15px #026da7;
+  border-bottom-color: #026da7;
+}
+
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+  background-color: #026da7;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-form {
+  border-color: transparent;
+}
+
+.navbar .navbar-brand {
+  background-image: url(//tabrisjs.com/documentation/assets/img/tabris-logo.png);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: left 15px center;
+  padding-left: 50px;
+  font-size: 20px;
+  letter-spacing: -.05rem;
+  color: white;
+  min-height: 50px;
+  padding-top: 15px;
+  line-height: 20px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #ebebeb;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: white;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  padding: 30px 0 10px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  display: block;
+  font-size: 90%;
+}
+
+.sidebar h4 {
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sidebar h4:first-of-type {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.sidebar .box {
+  margin-top: 25px;
+}
+
+.sidebar .box:first-of-type {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.sidebar ul {
+  padding-left: 0;
+}
+
+.sidebar li {
+  list-style-type: none;
+  list-style-position: outside;
+  padding-left: 0;
+  margin: 5px 0;
+}
+
+.sidebar > ul > li:first-of-type {
+  margin-top: 0;
+}
+
+.sidebar li li {
+  padding-left: 10px;
+}
+
+.sidebar a {
+  outline: none;
+  text-decoration: none;
+}
+
+/*
+ * Sidebar navigation
+ */
+
+.sidebar-nav {
+  font-size: 100%;
+}
+
+/* Override bootstrap defaults for .panel,
+   .panel is needed for collapse: https://stackoverflow.com/questions/19425165 */
+.sidebar-nav .panel {
+  border: none;
+  border-radius: 0;
+  background: inherit;
+  margin-bottom: 0;
+  box-shadow: inherit;
+}
+.sidebar-nav li {
+  padding-left: 0;
+}
+.sidebar-nav li.panel {
+  border-left: 1px solid transparent;
+  margin-bottom: 10px;
+}
+.sidebar-nav li.panel.active {
+  border-left: 1px solid #cecece;
+}
+.sidebar-nav li li {
+  border-left: 3px solid transparent;
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.sidebar-nav li.active li.active {
+  border-left: 3px solid #026da7;
+}
+.sidebar-nav a {
+  cursor: pointer;
+}
+.sidebar-nav li.panel > a {
+  display: block;
+  padding: 0 0 0 10px;
+  font-weight: bold;
+  color: #333333;
+}
+.sidebar-nav li.active > a {
+  color: #333333;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px 20px 40px 20px;
+}
+
+/*
+ * Search
+ */
+
+#search-query {
+  border-radius: 4px;
+}
+
+li.toc-list-item a {
+  color: #666;
+}
+li.toc-list-item a:hover {
+  color: #333;
+}
+
+li li.toc-list-item {
+  font-size: 90%;
+}
+
+/**
+ * Footer
+ */
+
+footer {
+  background-color: #313131;
+  color: #ddd;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+footer .right {
+  text-align: right;
+}
+
+footer .logo img {
+  vertical-align: center;
+}
+
+footer ul {
+  margin: 0;
+  padding: 3px 0;
+}
+
+footer li {
+  display: inline-block;
+}
+
+
+footer .left li:not(:last-child) {
+  margin-right: 20px;
+}
+
+footer a,
+footer a:hover {
+  color: #ddd;
+}
+
+footer .copyright {
+  padding-top: 10px;
+  font-size: 12px;
+}
