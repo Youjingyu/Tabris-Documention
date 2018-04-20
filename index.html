@@ -768,7 +768,7 @@
         });
         $docBody.on('click', 'a', function (e) {
             var href = $(this).attr('href');
-            var urlPrefix = 'https://tabrisjs.com/tabris-js-docs/latest/';
+            var urlPrefix = 'http://docs.tabris.com/latest/';
             if(new RegExp(urlPrefix).test(href)){
                 var fileNameArr = href.replace(/.*\//, '').split('#');
                 var $listItem;
@@ -806,7 +806,7 @@
                         var src = $this.attr('src');
                         if(href){
                             if(!/http/.test(href) && !/^#.*/.test(href)){
-                                $this.attr('href', 'http://docs.tabris.com' + href);
+                                $this.attr('href', 'http://docs.tabris.com' + href.replace('/tabris-js-docs', ''));
                             }
                         } else if(src){
                             if(!/http/.test(src)){
