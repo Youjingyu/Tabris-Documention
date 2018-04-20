@@ -806,11 +806,13 @@
                         var src = $this.attr('src');
                         if(href){
                             if(!/http/.test(href) && !/^#.*/.test(href)){
-                                $this.attr('href', 'https://tabrisjs.com' + href);
+                                $this.attr('href', 'http://docs.tabris.com' + href);
                             }
                         } else if(src){
                             if(!/http/.test(src)){
-                                $this.attr('src', 'https://tabrisjs.com' + src);
+                                $this.attr('src', 'http://docs.tabris.com' + src);
+                            } else {
+                              $this.attr('src', src.replace('https://tabrisjs.com/tabris-js-docs', 'http://docs.tabris.com'));
                             }
                         }
                     });
