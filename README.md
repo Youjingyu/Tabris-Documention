@@ -1,8 +1,8 @@
 # Tabris 中文文档
 
-相较于知名的 JavaScript 跨平台框架，比如 React Native、Weex、NativeScript 等，[Tabris](https://tabrisjs.com/) 相对来说要小众得多。但个人觉得相对于其他跨平台框架，它要简单得多，几乎只需要会 JavaScript 就够了；另外，其他跨平台框架，几乎都需要在本地搭建原生开发环境，对于不熟悉原生的 web 前端，可能搭环境就得花一天，而 Tabris 不需要你搭建恼人的原生开发环境，可以直接“云”构建。当然它还有其他的有点，详情参考我单独写的一篇[入门文章](https://segmentfault.com/a/1190000011575529)
+相较于知名的 JavaScript 跨平台框架，比如 React Native、Weex、NativeScript 等，[Tabris](https://tabrisjs.com/) 相对来说要小众得多。但个人觉得相对于其他跨平台框架，它是最易上手的，几乎只需要会 JavaScript 就够了；另外，其他跨平台框架，几乎都需要在本地搭建原生开发环境，对于不熟悉原生的 web 前端，可能搭环境就得花一天，而 Tabris 不需要你搭建恼人的原生开发环境，可以直接“云”构建。当然它还有其他的有点，详情参考我单独写的一篇[入门文章](https://segmentfault.com/a/1190000011575529)
 
-点击查看[中文文档])(https://youjingyu.github.io/Tabris-Documention)
+点击查看[中文文档](https://youjingyu.github.io/Tabris-Documention)
 
 #### 参与翻译 ####
 
