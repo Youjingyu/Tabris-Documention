@@ -3,7 +3,7 @@
     <p>向app store发布新的app版本可能需要一些时间。Tabris.js允许直接向你的用户发布热更新，而无需等待app store更新。</p>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">为了符合Apple App Store的规则，修补程序必须<em>“[…] not change the primary purpose of the app by providing features or functionality that are inconsistent with the intended and advertised purpose”（iOS开发者计划许可协议第3.3.2节）</em>。</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">为了符合Apple App Store的规则，修补程序必须<em>“[…] not change the primary purpose of the app by providing features or functionality that are inconsistent with the intended and advertised purpose”（iOS开发者计划许可协议第3.3.2节）</em>。</p>
     </blockquote>
 
     <h2 id="the-patch-format">补丁格式</h2>
@@ -35,7 +35,7 @@ patch.json
     </div>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">如果你有本地的cordova版本，在将源文件复制到文件夹<code class="highlighter-rouge">cordova/www</code>中之前，你可能已经进行了预处理。在这种情况下，补丁必须对应于最终在<code class="highlighter-rouge">cordova/www</code>中的文件。</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">如果你有本地的cordova版本，在将源文件复制到文件夹<code class="highlighter-rouge">cordova/www</code>中之前，你可能已经进行了预处理。在这种情况下，补丁必须对应于最终在<code class="highlighter-rouge">cordova/www</code>中的文件。</p>
     </blockquote>
 
     <h2 id="discovering-a-patch">发现补丁</h2>
@@ -49,7 +49,7 @@ patch.json
     <p>要安装修补程序，需要调用<code class="highlighter-rouge">app.installPatch</code>方法，并传递补丁文件的URL和具有两个参数的回调函数（<em>error</em> 和 <em>patch</em>）作为参数。补丁文件会在后台下载并安装，但在app重新加载之前不会有影响。</p>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js支持cache-control header。 如果Tabris.js没有找到新的更新，请检查HTTP服务器的缓存无效设置。</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">Tabris.js支持cache-control header。 如果Tabris.js没有找到新的更新，请检查HTTP服务器的缓存无效设置。</p>
     </blockquote>
 
     <p>在出现错误的情况下，使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error对象</a>作为第一个参数来调用回调函数。<code class="highlighter-rouge">error.message</code>字段会包含错误消息。如果补丁成功安装，则第二个参数将包含补丁文件中的<em>patch.json</em>文件的解析内容（如果有的话）。</p>
@@ -73,5 +73,5 @@ patch.json
     <p>多个补丁可以彼此覆盖。如果app已经打好补丁了，则后续的补丁会覆盖以前的补丁。</p>
 
     <blockquote>
-        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">此功能是临时性的，并且此处的API说明可能会在将来的版本中进行调整。</p>
+        <p><img class="emoji" title=":point_right:" alt=":point_right:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png" height="20" width="20" align="absmiddle">此功能是临时性的，并且此处的API说明可能会在将来的版本中进行调整。</p>
     </blockquote>
