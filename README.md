@@ -6,8 +6,8 @@
 
 #### 参与翻译 ####
 
-由于个人水平有限，翻译难免有不准确的地方，欢迎在 [issues](https://github.com/Youjingyu/Tabris-Documention/issues)中提出问题。  
-目前已翻译完成基础部分，剩下的api文档会慢慢推进。也欢迎大家 Fork 参与翻译：
+由于个人水平有限，翻译难免有不准确的地方，欢迎在 [issues](https://github.com/Youjingyu/Tabris-Documention/issues) 中提出问题。  
+目前已翻译完成基础部分，剩下的 api 文档会慢慢推进。也欢迎大家 fork 参与翻译：
 
 - fork 代码
 - clone 你 fork 后的代码
